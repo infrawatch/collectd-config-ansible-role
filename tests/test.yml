@@ -4,12 +4,12 @@
   roles:
     - '../../collectd-config-ansible-role'
   vars:
-      collectd_output_conf_dir: "/etc/collectd.conf.d"
       collectd_plugins:
         # - amqp1
         # - ceph
         - connectivity
         - cpu
+        - csv
         - df
         - disk
         - hugepages
