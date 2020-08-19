@@ -1,5 +1,8 @@
 ---
 # defaults file for test-role
+
+# write templates to disk
+templates_generate_to_disk: true
 # These defaults mirror the defaults set for corresponding parameters in TripleO
 keystone_region: "regionOne"
 #NOTE(efoley) TripleO does not provide defaults for these values in the template, they are probably passed in from elsewhere.
