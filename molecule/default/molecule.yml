@@ -1,0 +1,27 @@
+---
+driver:
+  name: podman
+platforms:
+  - name: collectd-test
+    image: docker.io/tripleomaster/centos-binary-collectd:current-tripleo-rdo
+provisioner:
+  name: ansible
+  log: true
+verifier:
+  name: ansible
+
+scenario:
+  name: default
+  test_sequence:
+    - lint
+    - destroy
+    - dependency
+    # - syntax
+    - create
+    - prepare
+    - converge
+    # - idempotence
+    - side_effect
+    - verify
+    - destroy
+    - cleanup
