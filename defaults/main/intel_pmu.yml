@@ -1,0 +1,7 @@
+---
+# Ansible managed
+# Defaults for intel_pmu plugin
+collectd_plugin_intelpmu_reporthardwarecacheevents: true
+collectd_plugin_intelpmu_reportkernelpmuevents: true
+collectd_plugin_intelpmu_reportsoftwareevents: true
+collectd_plugin_intelpmu_dispatchmultipmu: false
