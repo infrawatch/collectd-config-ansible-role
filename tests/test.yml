@@ -4,9 +4,6 @@
   roles:
     - '../../collectd-config-ansible-role'
   vars:
-      collectd_plugin_intel_rdt_cores:
-        - 0-23
-        - 24-47
       collectd_plugins:
         # - amqp1
         # - ceph
@@ -17,6 +14,7 @@
         - disk
         - hugepages
         - intel_rdt
+        - intel_pmu
         - interface
         # TODO: reenable this when there are reasonable defaults or the template has been updated
         # - ipmi
