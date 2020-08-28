@@ -24,6 +24,7 @@ collectd_server_port: '25826'
 collectd_username: ''
 collectd_password: ''
 collectd_security_level: 'None'
+# TODO(efoley): Add gnocchi template or remove gnocchi
 collectd_gnocchi_auth_mode: 'keystone'
 collectd_gnocchi_protocol: 'http'
 collectd_gnocchi_server: nil
@@ -44,9 +45,16 @@ collectd_gnocchi_keystone_interface: nil
 collectd_gnocchi_keystone_endpoint: nil
 collectd_gnocchi_resource_type: 'collectd'
 collectd_gnocchi_batch_size: 10
+
+# TODO(efoley): Add sqlalchemy template or remove
+# TODO(efoley): Is this a tripleo_* or collectd_ option? tripleo options should
+# be moved to tripleo-collectd-ansible-role
 collectd_sql_alchemy_enable: false
 collectd_sql_alchemy_log_messages: 'info'
 collectd_sql_alchemy_bind_host: 'localhost'
+
+# TODO(efoley): rename these, and find where they should end up.
+# Probably collectd_plugin_amqp1_*
 collectd_amqp_host: nil
 collectd_amqp_port: 5666
 collectd_amqp_user: 'guest'
@@ -56,6 +64,9 @@ collectd_amqp_address: 'collectd'
 collectd_amqp_instances: {}
 collectd_amqp_retry_delay: 1
 collectd_amqp_interval: -666
+
+# TODO(efoley): Add in sensubility support.
+# TODO(efoley): enable_sensubility might be a tripleo option
 collectd_sensubility_enable: false
 collectd_sensubility_exec_sudo_rule: ''
 collectd_sensubility_log_level: 'WARNING'
