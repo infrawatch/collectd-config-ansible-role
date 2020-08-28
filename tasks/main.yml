@@ -1,8 +1,4 @@
 ---
-# tasks file for test-role
-# Tasks to replace the conditions section from THT
-# Set up defaults to set bools to false
-
 - debug:
     var: collectd_plugins
 
