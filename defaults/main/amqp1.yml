@@ -1,0 +1,7 @@
+---
+collectd_plugin_amqp1_host: 'localhost'
+collectd_plugin_amqp1_port: '5672'
+collectd_plugin_amqp1_address: 'collectd'
+# collectd_plugin_amqp1_retry_delay: 1
+# TODO: Add the rest, and add example for instances (uses a dict)
+# https://github.com/voxpupuli/puppet-collectd/blob/eb8cfee3dc3ca20a146e2f2bc9f7a126b4404c39/manifests/plugin/amqp1.pp

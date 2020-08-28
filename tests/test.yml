@@ -5,7 +5,7 @@
     - '../../collectd-config-ansible-role'
   vars:
       collectd_plugins:
-        # - amqp1
+        - amqp1
         # - ceph
         - connectivity
         - cpu

@@ -8,7 +8,7 @@
         collectd_plugins:
           # There are some undefined vars in the template that are causing
           # rendering to fail, these will be updated
-          # - amqp1
+          - amqp1
           - ceph
           - connectivity
           - cpu
