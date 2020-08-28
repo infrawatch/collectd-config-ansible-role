@@ -21,9 +21,10 @@
         var: conf.files | length
 
     - name: "start collectd"
-      shell:
+      command:
         /usr/sbin/collectd -C /etc/collectd.conf
 
+# TODO: import this properly, since it should be fixed upstream
 - hosts: localhost
   tasks:
     - name: "Run the collectd test from stf-functional-tests"
