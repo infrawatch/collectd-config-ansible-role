@@ -1,0 +1,33 @@
+---
+# This is an example playbook to execute Ansible tests.
+
+- name: Verify
+  hosts: collectd-test
+  tasks:
+    - name: Check for files in conf output dir
+      find:
+        paths: /etc/collectd.d
+        patterns: '*.conf'
+      register: output
+      failed_when: output.files|length == 0
+
+    - name: "Check for collectd.conf"
+      find:
+        paths: /etc/
+        patterns: collectd.conf
+      register: conf
+      failed_when: conf.files|length != 1
+    - debug:
+        var: conf.files | length
+
+    - name: "start collectd"
+      command:
+        /usr/sbin/collectd -C /etc/collectd.conf
+
+# TODO: import this properly, since it should be fixed upstream
+- hosts: localhost
+  tasks:
+    - name: "Run the collectd test from stf-functional-tests"
+      import_tasks: "{{ playbook_dir }}/stf-functional-tests/tasks/test_collectd.yml"
+      vars:
+        collectd_container_name: 'collectd-test'
