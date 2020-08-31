@@ -11,13 +11,3 @@
       copy:
         src: "{{ playbook_dir }}/../../tests/kolla_config_files/config.json"
         dest: /var/lib/kolla/config_files/config.json
-
-- name: "Clone the functional tests"
-  hosts: localhost
-  tasks:
-    - name: "Clone the functional tests"
-      git:
-        clone: yes
-        repo: http://github.com/infrawatch/functional-tests
-        dest: "{{ playbook_dir }}/stf-functional-tests"
-        version: reorg_tests

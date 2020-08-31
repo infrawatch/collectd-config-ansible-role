@@ -1,4 +1,7 @@
 ---
+dependency:
+  roles:
+    - git+https://github.com/infrawatch/functional-tests
 driver:
   name: podman
 platforms:
