@@ -1,6 +1,4 @@
 ---
-# This is an example playbook to execute Ansible tests.
-
 - name: Verify
   hosts: collectd-test
   tasks:
@@ -24,10 +22,11 @@
       command:
         /usr/sbin/collectd -C /etc/collectd.conf
 
-# TODO: import this properly, since it should be fixed upstream
 - hosts: localhost
   tasks:
-    - name: "Run the collectd test from stf-functional-tests"
-      import_tasks: "{{ playbook_dir }}/stf-functional-tests/tasks/test_collectd.yml"
+    - name: "Run the collectd test from STF functional-tests"
+      include_role:
+        name: functional-tests
+        tasks_from: test_collectd
       vars:
         collectd_container_name: 'collectd-test'
