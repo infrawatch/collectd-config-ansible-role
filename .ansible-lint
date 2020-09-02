@@ -1,4 +1,3 @@
 skip_list:
    - '301'  # Commands should not change things if nothing needs doing
    - '701'  # Role info should contain platforms
-   - '703'  # Should change default metadata
