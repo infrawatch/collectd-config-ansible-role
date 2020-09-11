@@ -2,7 +2,9 @@
 FQDNLookup true
 
 AutoLoadPlugin false
-TypesDB "/usr/share/collectd/types.db"
+
+TypesDB "/usr/share/collectd/types.db"{% if "libpodstats" in collectd_plugins %} "/usr/share/collectd/types.db.libpodstats"{% endif %}
+
 Interval "{{ collectd_interval }}"
 Timeout 2
 ReadThreads 5
