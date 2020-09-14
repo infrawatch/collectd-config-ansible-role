@@ -1,0 +1,15 @@
+---
+# defaults for network plugin config
+
+collectd_plugin_network_server: []
+#    - name: "first_server"
+#      securitylevel: None
+#      username: "first_user"
+#      password: "firstpass"
+#    - name: "second_server"
+#      port: 12345
+#      securitylevel: "Encrypt"
+#      username: "other"
+#      password: "lastPass"
+# TODO: add other options, and a Listener config
+collectd_plugin_network_listen: []

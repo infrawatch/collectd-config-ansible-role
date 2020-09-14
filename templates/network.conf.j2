@@ -1,1 +1,31 @@
 LoadPlugin network
+
+{# TODO: Add additional config options and circle back to see if multiple servers are supported #}
+{# TODO: Add Listener config #}
+<Plugin "network">
+{% for server in collectd_plugin_network_server %}
+   <Server "{{ server.name }}"{% if server.port is defined %} "{{ server.port }}"{% endif %}>
+{% if server.securitylevel is defined %}
+     SecurityLevel "{{ server.securitylevel }}"
+{% endif %}
+{% if server.username is defined %}
+     Username "{{ server.username }}"
+{% endif %}
+{% if server.password is defined %}
+     Password "{{ server.password }}"
+{% endif %}
+    {# TODO: Add port, interface and ResolveInterval -#}
+   </Server>
+{% endfor %}
+
+{% for listen in collectd_plugin_network_listen %}
+   <Listen "{{ listen.address }}"{% if listen.port is defined %} "{{ listen.port }}"{% endif %}>
+{% if listen.securitylevel is defined %}
+      SecurityLevel "{{ listen.securitylevel }}"
+{% endif %}
+{% if listen.authfile is defined %}
+      AuthFile "{{ listen.auth_file }}"
+{% endif %}
+   </Listen>
+{% endfor %}
+</Plugin>
