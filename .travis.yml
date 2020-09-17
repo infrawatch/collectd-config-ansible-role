@@ -9,7 +9,7 @@ before_install:
   - sudo echo "deb https://download.opensuse.org/repositories/devel:/kubic:/libcontainers:/stable/xUbuntu_18.04/ /" | sudo tee /etc/apt/sources.list.d/devel:kubic:libcontainers:stable.list
   - curl -L https://download.opensuse.org/repositories/devel:/kubic:/libcontainers:/stable/xUbuntu_18.04/Release.key | sudo apt-key add -
   - sudo apt-get update
-  - sudo apt-get upgrade
+    #- sudo apt-get upgrade
   - sudo apt-get install -y podman
   - sudo podman pull docker.io/tripleomaster/centos-binary-collectd:current-tripleo-rdo
 
@@ -28,10 +28,9 @@ install:
   - ansible --version
 
   # Create ansible.cfg with correct roles_path
-  - printf '[defaults]\nroles_path=./' >ansible.cfg
+  #- printf '[defaults]\nroles_path=../' >ansible.cfg
 
 script:
-  - ansible-lint tests/test.yml
   - time molecule test --all
 
 notifications:
