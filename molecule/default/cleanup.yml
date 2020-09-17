@@ -1,8 +1,0 @@
----
-- name: Cleanup
-  hosts: localhost
-  tasks:
-    - name: "Remove the clone functional tests dir"
-      file:
-        name: "{{ playbook_dir }}/stf-functional-tests/"
-        state: absent

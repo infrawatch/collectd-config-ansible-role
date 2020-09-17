@@ -26,7 +26,7 @@
   tasks:
     - name: "Run the collectd test from STF functional-tests"
       include_role:
-        name: functional-tests
+        name: functional_tests
         tasks_from: test_collectd
       vars:
         collectd_container_name: 'collectd-test'

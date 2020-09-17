@@ -1,0 +1,3 @@
+---
+- src: git+https://github.com/infrawatch/functional-tests
+  name: functional_tests
