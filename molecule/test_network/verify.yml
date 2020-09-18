@@ -1,0 +1,61 @@
+---
+- name: Verify
+  hosts:
+    - collectd-test
+    - collectd-server
+  tasks:
+    - name: Check for files in conf output dir
+      find:
+        paths: /etc/collectd.d
+        patterns: '*.conf'
+      register: output
+      failed_when: output.files|length == 0
+
+    - name: "Check for collectd.conf"
+      find:
+        paths: /etc/
+        patterns: collectd.conf
+      register: conf
+      failed_when: conf.files|length != 1
+
+    - name: "(Re)start collectd service"
+      block:
+        - name: "Check for running collectd processes"
+          shell:
+            ps aux | grep collectd | awk '{ print $2 }'
+          register: procs
+
+        - name: "Kill running collectd processes"
+          command: |
+            kill {{ procs.stdout | regex_replace('\n', ' ') }}
+          # The previous task caught the grep command PID in the output, this
+          # is expected to throw an error since kill will try to kill the now
+          # non-existant process
+          ignore_errors: true
+
+        - name: "Start collectd"
+          command:
+            /usr/sbin/collectd -C /etc/collectd.conf
+
+- hosts: collectd-server
+  tasks:
+    - name: "Check for metrics received by the collectd server"
+      command:
+        collectdctl -s /var/run/collectd-socket listval
+      register: plugins
+      failed_when: plugins.stdout_lines|length == 0
+
+        # - hosts: localhost
+        #   tasks:
+        #     - name: "Run the collectd test from STF functional-tests"
+        #       include_role:
+        #         name: functional_tests
+        #         tasks_from: test_collectd
+        #       vars:
+        #         collectd_container_name: 'collectd-test'
+        #     - name: "Run the collectd test from STF functional-tests"
+        #       include_role:
+        #         name: functional_tests
+        #         tasks_from: test_collectd
+        #       vars:
+        #         collectd_container_name: 'collectd-server'
