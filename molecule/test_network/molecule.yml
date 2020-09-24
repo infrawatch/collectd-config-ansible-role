@@ -8,8 +8,6 @@ driver:
 platforms:
   - name: collectd-test
     image: docker.io/tripleomaster/centos-binary-collectd:current-tripleo-rdo
-    #image: opnfv/barometer-collectd:latest
-    #priviledged: true
     docker_networks:
       - name: foo
         ipam_config:
@@ -18,23 +16,12 @@ platforms:
     networks:
       - name: foo
         ipv4_address: "192.168.42.1"
-    # network_mode: host
-    exposed_ports:
-       - "25826"
-    published_ports:
-       - "25826:25826"
   - name: collectd-server
-    #image: opnfv/barometer-collectd:latest
     image: docker.io/tripleomaster/centos-binary-collectd:current-tripleo-rdo
     privileged: true
     networks:
       - name: foo
         ipv4_address: "192.168.42.2"
-    # network_mode: host
-    exposed:
-      - 25826
-    published:
-      - 25826:25826
 
 provisioner:
   name: ansible

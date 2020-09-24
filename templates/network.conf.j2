@@ -1,7 +1,6 @@
 LoadPlugin network
 
-{# TODO: Add additional config options and circle back to see if multiple servers are supported #}
-{# TODO: Add Listener config #}
+{# TODO: see if multiple servers are supported #}
 <Plugin "network">
 
 {% if collectd_plugin_network_timetolive is defined %}
@@ -34,7 +33,6 @@ LoadPlugin network
 {% if server.resolveinterval is defined %}
      ResolveInterval {{ server.resolveinterval }}
 {% endif %}
-{# TODO: Add port, interface and ResolveInterval -#}
    </Server>
 {% endfor %}
 
