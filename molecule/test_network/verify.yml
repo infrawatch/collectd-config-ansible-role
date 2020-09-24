@@ -45,17 +45,19 @@
       register: plugins
       failed_when: plugins.stdout_lines|length == 0
 
-        # - hosts: localhost
-        #   tasks:
-        #     - name: "Run the collectd test from STF functional-tests"
-        #       include_role:
-        #         name: functional_tests
-        #         tasks_from: test_collectd
-        #       vars:
-        #         collectd_container_name: 'collectd-test'
-        #     - name: "Run the collectd test from STF functional-tests"
-        #       include_role:
-        #         name: functional_tests
-        #         tasks_from: test_collectd
-        #       vars:
-        #         collectd_container_name: 'collectd-server'
+- hosts: localhost
+  vars:
+    container_bin: docker
+  tasks:
+    - name: "Run the collectd test from STF functional-tests"
+      include_role:
+        name: functional_tests
+        tasks_from: test_collectd
+      vars:
+        collectd_container_name: 'collectd-test'
+    - name: "Run the collectd test from STF functional-tests"
+      include_role:
+        name: functional_tests
+        tasks_from: test_collectd
+      vars:
+        collectd_container_name: 'collectd-server'
