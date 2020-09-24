@@ -7,6 +7,7 @@
         collectd_conf_output_dir: "/etc/collectd.d"
         collectd_plugin_network_server:
           - name: "192.168.42.2"
+        collectd_plugin_network_reportstats: true
         collectd_plugins:
           - cpu
           - df

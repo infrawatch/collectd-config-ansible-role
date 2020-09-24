@@ -3,6 +3,20 @@ LoadPlugin network
 {# TODO: Add additional config options and circle back to see if multiple servers are supported #}
 {# TODO: Add Listener config #}
 <Plugin "network">
+
+{% if collectd_plugin_network_timetolive is defined %}
+   TimeToLive {{ collectd_plugin_network_timetolive }}
+{% endif %}
+{% if collectd_plugin_network_maxpacketsize is defined %}
+   MaxPacketSize {{ collectd_plugin_network_maxpacketsize }}
+{% endif %}
+{% if collectd_plugin_network_forward is defined %}
+   Forward {{ collectd_plugin_network_forward }}
+{% endif %}
+{% if collectd_plugin_network_reportstats is defined %}
+   ReportStats {{ collectd_plugin_network_reportstats }}
+{% endif %}
+
 {% for server in collectd_plugin_network_server %}
    <Server "{{ server.name }}"{% if server.port is defined %} "{{ server.port }}"{% endif %}>
 {% if server.securitylevel is defined %}
@@ -14,7 +28,13 @@ LoadPlugin network
 {% if server.password is defined %}
      Password "{{ server.password }}"
 {% endif %}
-    {# TODO: Add port, interface and ResolveInterval -#}
+{% if server.interface is defined %}
+     Interface {{ server.interface }}
+{% endif %}
+{% if server.resolveinterval is defined %}
+     ResolveInterval {{ server.resolveinterval }}
+{% endif %}
+{# TODO: Add port, interface and ResolveInterval -#}
    </Server>
 {% endfor %}
 
@@ -25,6 +45,9 @@ LoadPlugin network
 {% endif %}
 {% if listen.authfile is defined %}
       AuthFile "{{ listen.auth_file }}"
+{% endif %}
+{% if listen.interface is defined %}
+      Interface {{ listen.interface }}
 {% endif %}
    </Listen>
 {% endfor %}
