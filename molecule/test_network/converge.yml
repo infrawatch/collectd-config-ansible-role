@@ -1,5 +1,5 @@
 ---
-- name: Converge
+- name: Converge client
   hosts: collectd-test
   roles:
     - role: "{{ playbook_dir }}/../../../collectd-config-ansible-role"
@@ -16,7 +16,7 @@
           - network
           - unixsock
 
-- name: Converge
+- name: Converge server
   hosts: collectd-server
   roles:
     - role: "{{ playbook_dir }}/../../../collectd-config-ansible-role"
