@@ -1,0 +1,42 @@
+---
+dependency:
+  name: galaxy
+  options:
+    role-file: molecule/common/requirements.yml
+driver:
+  name: docker
+platforms:
+  - name: collectd-test
+    image: docker.io/tripleomaster/centos-binary-collectd:current-tripleo-rdo
+    docker_networks:
+      - name: foo
+        ipam_config:
+          - subnet: "192.168.42.0/24"
+            gateway: "192.168.42.254"
+    networks:
+      - name: foo
+        ipv4_address: "192.168.42.1"
+  - name: collectd-server
+    image: docker.io/tripleomaster/centos-binary-collectd:current-tripleo-rdo
+    privileged: true
+    networks:
+      - name: foo
+        ipv4_address: "192.168.42.2"
+
+provisioner:
+  name: ansible
+  log: true
+verifier:
+  name: ansible
+
+scenario:
+  name: test_network
+  test_sequence:
+    - destroy
+    - dependency
+    - create
+    - prepare
+    - converge
+    - verify
+    - destroy
+    - cleanup

@@ -1,0 +1,61 @@
+---
+- name: Verify
+  hosts:
+    - collectd-test
+    - collectd-server
+  tasks:
+    - name: Check for files in conf output dir
+      find:
+        paths: /etc/collectd.d
+        patterns: '*.conf'
+      register: output
+      failed_when: output.files|length == 0
+
+    - name: "Check for collectd.conf"
+      find:
+        paths: /etc/
+        patterns: collectd.conf
+      register: conf
+      failed_when: conf.files|length != 1
+
+    - name: "(Re)start collectd service"
+      block:
+        - name: "Kill running collectd process"
+          command:
+            pkill -e -c collectd
+          ignore_errors: true
+
+        - name: "Start collectd"
+          command:
+            /usr/sbin/collectd -C /etc/collectd.conf
+
+- hosts: collectd-server
+  tasks:
+    - name: "Check for metrics received by the collectd server"
+      command:
+        collectdctl -s /var/run/collectd-socket listval
+      register: plugins
+      failed_when: ( plugins.stdout_lines|length == 0 ) or ( plugins.stderr | length > 0 )
+
+    - name: "Check that collectd-test is reporting network stats (collectd_plugin_network_reportstats: True)"
+      assert:
+        that: "{{ ( plugins.stdout_lines | map('regex_findall', '^collectd-test/network/.*$') | reject('equalto', []) | list | length ) > 0 }}"
+        fail_msg: "The network plugin is not reporting stats."
+        success_msg: "Stats received from the network plugin."
+
+- hosts: localhost
+  vars:
+    container_bin: docker
+  tasks:
+    - name: "Run the collectd test from STF functional-tests"
+      include_role:
+        name: functional_tests
+        tasks_from: test_collectd
+      vars:
+        collectd_container_name: 'collectd-test'
+    - name: "Run the collectd test from STF functional-tests"
+      include_role:
+        name: functional_tests
+        tasks_from: test_collectd
+      vars:
+        collectd_container_name: 'collectd-server'

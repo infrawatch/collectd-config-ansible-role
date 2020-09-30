@@ -1,0 +1,25 @@
+---
+# defaults for network plugin config
+
+# collectd_plugin_network_timetolive:
+# collectd_plugin_network_maxpacketsize: 1452
+# collectd_plugin_network_forward: false
+# collectd_plugin_network_reportstats: false
+
+collectd_plugin_network_server: []
+#    - name: "first_server"
+#    - name: "second_server"
+#      port: 12345
+#      securitylevel: "Encrypt"
+#      username: "other"
+#      password: "lastPass"
+#      interface:
+#      resolveinterval:
+collectd_plugin_network_listen: []
+#    - name: "first_server"
+#    - name: "second_server"
+#      port: 12345
+#      securitylevel: "Encrypt"
+#      username: "other"
+#      password: "lastPass"
+#      interface:
