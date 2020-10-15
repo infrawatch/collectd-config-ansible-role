@@ -16,6 +16,16 @@ An incomplete list of supported options is below (list is WIP). To check whether
 If there are no defaults set (e.g. all config options are optional), then the ``defaults/main/<plugin>.yml`` will not exist. Otherwise, commented examples are given for the unset, optional config options.
 
 
+collectd_plugin_ovs_stats_*
+~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+These vars are ones passed to the ``ovs_stats`` plugin.
+See the collectd `config guide <https://collectd.org/documentation/manpages/collectd.conf.5.shtml#plugin_ovs_stats>`_ for details.
+collectd_plugin_ovs_stats_port: 6640
+collectd_plugin_ovs_stats_address: "127.0.0.1"
+collectd_plugin_ovs_stats_socket: "/var/run/openvswitch/db.sock" # definitely a string
+collectd_plugin_ovs_stats_bridges: br0 br_ext
+
 Dependencies
 ------------
 
