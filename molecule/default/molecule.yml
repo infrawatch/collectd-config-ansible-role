@@ -11,8 +11,6 @@ platforms:
 provisioner:
   name: ansible
   log: true
-  playbooks:
-    prepare: ../common/prepare.yml
 verifier:
   name: ansible
 lint: |
