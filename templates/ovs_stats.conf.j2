@@ -8,7 +8,7 @@ LoadPlugin ovs_stats
   Address "{{ collectd_plugin_ovs_stats_address }}"
 {% endif %}
 {% if collectd_plugin_ovs_stats_socket is defined %}
-  Socket "/var/run/openvswitch/db.sock"
+  Socket "{{ collectd_plugin_ovs_stats_socket }}"
 {% endif %}
 {% if collectd_plugin_ovs_stats_bridges is defined %}
   Bridges {{ collectd_plugin_ovs_stats_bridges }}
