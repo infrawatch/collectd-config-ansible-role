@@ -22,7 +22,7 @@ addons:
 
 install:
   # Install ansible
-  - pip install ansible ansible-lint molecule[docker] molecule-podman
+  - pip install ansible ansible-lint molecule[docker]==3.0.8 molecule-podman==0.1
 
   # Check ansible version
   - ansible --version
