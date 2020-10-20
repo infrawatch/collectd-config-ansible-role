@@ -11,6 +11,7 @@ LoadPlugin ovs_stats
   Socket "{{ collectd_plugin_ovs_stats_socket }}"
 {% endif %}
 {% if collectd_plugin_ovs_stats_bridges is defined %}
-  Bridges {{ collectd_plugin_ovs_stats_bridges }}
+  Bridges{% for br in collectd_plugin_ovs_stats_bridges.split(" ") %} "{{ br }}"{% endfor %}
 {% endif %}
+
 </Plugin>
