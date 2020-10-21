@@ -1,9 +1,9 @@
 LoadPlugin hugepages
 
-<Plugin hugepages>
-  ReportPerNodeHP true
-  ReportRootHP true
-  ValuesPages true
-  ValuesBytes false
-  ValuesPercentage false
+<Plugin "hugepages">
+  ReportPerNodeHP {{ collectd_plugin_hugepages_report_per_node_hp }}
+  ReportRootHP {{ collectd_plugin_hugepages_report_root_hp }}
+  ValuesPages {{ collectd_plugin_hugepages_values_pages }}
+  ValuesBytes {{ collectd_plugin_hugepages_values_bytes }}
+  ValuesPercentage {{ collectd_plugin_hugepages_values_percentage }}
 </Plugin>
