@@ -22,6 +22,11 @@
       command:
         /usr/sbin/collectd -C /etc/collectd.conf
 
+    - name: "Check for metrics from different plugins"
+      shell: |
+        set -o pipefail
+        collectdctl -s /var/run/collectd-socket listval | grep hugepages
+
 - hosts: localhost
   tasks:
     - name: "Run the collectd test from STF functional-tests"
