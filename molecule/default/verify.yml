@@ -18,9 +18,16 @@
     - debug:
         var: conf.files | length
 
-    - name: "start collectd"
-      command:
-        /usr/sbin/collectd -C /etc/collectd.conf
+    - name: "(Re)start collectd"
+      block:
+        - name: "Kill running collectd process"
+          command:
+            pkill -e -c collectd
+          ignore_errors: true
+
+        - name: "Start collectd"
+          command:
+            /usr/sbin/collectd -C /etc/collectd.conf
 
 - hosts: localhost
   tasks:
