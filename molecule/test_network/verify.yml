@@ -34,8 +34,11 @@
     - name: "Check for metrics received by the collectd server"
       command:
         collectdctl -s /var/run/collectd-socket listval
+      retries: 3
+      delay: 5
       register: plugins
-      failed_when: ( plugins.stdout_lines|length == 0 ) or ( plugins.stderr | length > 0 )
+      until: plugins.stdout_lines | length > 0
+      failed_when: ( plugins.stderr | length > 0 ) or ( plugins.rc != 0 )
 
     - name: "Check that collectd-test is reporting network stats (collectd_plugin_network_reportstats: True)"
       assert:
