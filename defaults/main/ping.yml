@@ -1,0 +1,9 @@
+---
+collectd_plugin_ping_hosts: []
+# collectd_plugin_ping_interval: 1.0
+# collectd_plugin_ping_timeout: 0.9
+# collectd_plugin_ping_ttl: 255
+# collectd_plugin_ping_source_address: localhost
+# collectd_plugin_ping_device: eth0
+# collectd_plugin_ping_max_missed: -1  # disabled
+# collectd_plugin_ping_size: 56

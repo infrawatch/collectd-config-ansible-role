@@ -1,0 +1,28 @@
+LoadPlugin ping
+
+<Plugin "ping">
+{% for host in collectd_plugin_ping_hosts %}
+  Host "{{ host }}"
+{% endfor %}
+{% if collectd_plugin_ping_interval is defined %}
+  Interval "{{ collectd_plugin_ping_interval }}"
+{% endif %}
+{% if collectd_plugin_ping_timeout is defined %}
+  Timeout "{{ collectd_plugin_ping_timeout }}"
+{% endif %}
+{% if collectd_plugin_ping_ttl is defined %}
+  TTL "<{{ collectd_plugin_ping_ttl }}"
+{% endif %}
+{% if collectd_plugin_ping_source_address is defined %}
+  SourceAddress "{{ collectd_plugin_ping_source_address }}"
+{% endif %}
+{% if collectd_plugin_ping_device is defined %}
+  Device "{{ collectd_plugin_ping_device }}"
+{% endif %}
+{% if collectd_plugin_ping_max_missed is defined %}
+  MaxMissed "{{ collectd_plugin_ping_max_missed }}"
+{% endif %}
+{% if collectd_plugin_ping_size is defined %}
+  Size "{{ collectd_plugin_ping_size }}"
+{% endif %}
+</Plugin>

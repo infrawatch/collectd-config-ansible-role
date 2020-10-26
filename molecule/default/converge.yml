@@ -27,6 +27,7 @@
           - memory
           - network
           - ovs_stats
+          - ping
           - processes
           - procevent
           - unixsock
