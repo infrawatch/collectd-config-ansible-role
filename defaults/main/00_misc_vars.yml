@@ -18,15 +18,10 @@ collectd_server_port: '25826'
 collectd_username: ''
 collectd_password: ''
 
-# this might be for TripleO; if so, it needs to be dealt with by TripleO
-enable_file_logging: true
+# this is stuff from puppet, need to have equivalent functionality here
 collectd_manage_repo: true
 collectd_purge: true
 collectd_recurse: true
 collectd_minimum_version: true
 
 collectd_conf_output_dir: "/etc/collectd.conf.d/"
-
-# vars used for debugging OoO
-role_vars: "role_vars are only valid for debugging OoO"
-collectd_vars: "collectd_vars only valid for debugging OoO"
