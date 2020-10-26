@@ -10,18 +10,21 @@ LoadPlugin intel_pmu
 {% if collectd_plugin_intelpmu_cores is defined %}
   Cores{% for item in collectd_plugin_intelpmu_cores %} "{{ item }}"{% endfor %}
 {% endif %}
-
+{% if collectd_plugin_intelpmu_reporthardwarecacheevents is defined %}
   ReportHardwareCacheEvents {{ collectd_plugin_intelpmu_reporthardwarecacheevents | string | lower }}
+{% endif %}
+{% if collectd_plugin_intelpmu_reportkernelpmuevents is defined %}
   ReportKernelPMUEvents {{ collectd_plugin_intelpmu_reportkernelpmuevents | string | lower }}
+{% endif %}
+{% if collectd_plugin_intelpmu_reportsoftwareevents is defined %}
   ReportSoftwareEvents {{ collectd_plugin_intelpmu_reportsoftwareevents | string | lower }}
+{% endif %}
 {% if collectd_plugin_intelpmu_eventlist is defined %}
   EventList{% for item in collectd_plugin_intelpmu_eventlist %} "{{ item }}"{% endfor %}
 {% endif %}
-
 {% if collectd_plugin_intelpmu_hardwareevents is defined %}
   HardwareEvents{% for item in collectd_plugin_intelpmu_hardwareevents %} "{{ item }}"{% endfor %}
 {% endif %}
-
 {% if collectd_plugin_intelpmu_dispatchmultipmu is defined %}
   DispatchMultiPmu {{ collectd_plugin_intelpmu_dispatchmultipmu }}
 {% endif %}
