@@ -32,6 +32,7 @@
           - processes
           - procevent
           - smart
+          - syslog
           - unixsock
           - uptime
           - uuid
