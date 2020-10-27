@@ -1,0 +1,17 @@
+# This file was created using the template generator at https://github.com/infrawatch/osp-observability-ansible/tree/plugin_templates_generate/tools/
+LoadPlugin smart
+
+<Plugin "smart">
+{% for disk in collectd_plugin_smart_disk %}
+  Disk "{{ disk }}"
+{% endfor %}
+{% if collectd_plugin_smart_ignoreselected is defined %}
+  IgnoreSelected {{ collectd_plugin_smart_ignoreselected | string | lower }}
+{% endif %}
+{% if collectd_plugin_smart_ignoresleepmode is defined %}
+  IgnoreSleepMode {{ collectd_plugin_smart_ignoresleepmode | string | lower }}
+{% endif %}
+{% if collectd_plugin_smart_useserial is defined %}
+  UseSerial "{{ collectd_plugin_smart_useserial }}"
+{% endif %}
+</Plugin>
