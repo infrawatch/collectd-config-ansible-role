@@ -33,6 +33,7 @@
           - procevent
           - smart
           - syslog
+          - swap
           - unixsock
           - uptime
           - uuid
