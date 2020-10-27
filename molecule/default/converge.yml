@@ -26,6 +26,7 @@
           - logfile
           - memory
           - network
+          - ntpd
           - ovs_stats
           - ping
           - processes
