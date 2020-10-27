@@ -1,8 +1,17 @@
 LoadPlugin ovs_stats
 
 <Plugin ovs_stats>
-#  Port "6640"
-#  Address "127.0.0.1"
-#  Socket "/var/run/openvswitch/db.sock"
-#  Bridges "br0" "br_ext"
+{% if collectd_plugin_ovs_stats_port is defined %}
+  Port "{{ collectd_plugin_ovs_stats_port }}"
+{% endif %}
+{% if collectd_plugin_ovs_stats_address is defined %}
+  Address "{{ collectd_plugin_ovs_stats_address }}"
+{% endif %}
+{% if collectd_plugin_ovs_stats_socket is defined %}
+  Socket "{{ collectd_plugin_ovs_stats_socket }}"
+{% endif %}
+{% if collectd_plugin_ovs_stats_bridges is defined %}
+  Bridges{% for br in collectd_plugin_ovs_stats_bridges.split(" ") %} "{{ br }}"{% endfor %}
+{% endif %}
+
 </Plugin>
