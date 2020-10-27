@@ -1,0 +1,6 @@
+# This file was created using the template generator at https://github.com/infrawatch/osp-observability-ansible/tree/plugin_templates_generate/tools/
+LoadPlugin vmem
+
+<Plugin "vmem">
+  Verbose {{ collectd_plugin_vmem_verbose | string | lower }}
+</Plugin>

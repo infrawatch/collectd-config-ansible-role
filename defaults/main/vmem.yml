@@ -1,0 +1,4 @@
+---
+# This file was created using the template generator at https://github.com/infrawatch/osp-observability-ansible/tree/plugin_templates_generate/tools/
+# Defaults for vmem plugin
+collectd_plugin_vmem_verbose: False
