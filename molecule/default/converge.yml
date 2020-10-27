@@ -17,6 +17,7 @@
           - csv
           - df
           - disk
+          - dns
           - hddtemp
           - hugepages
           - intel_rdt
