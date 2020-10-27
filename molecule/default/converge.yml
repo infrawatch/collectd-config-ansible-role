@@ -30,6 +30,10 @@
           - ping
           - processes
           - procevent
+          - smart
+          - syslog
+          - swap
+          - turbostat
           - unixsock
           - uptime
           - uuid

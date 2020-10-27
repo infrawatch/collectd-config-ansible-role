@@ -1,0 +1,26 @@
+# This file was created using the template generator at https://github.com/infrawatch/osp-observability-ansible/tree/plugin_templates_generate/tools/
+LoadPlugin turbostat
+
+<Plugin "turbostat">
+{% if collectd_plugin_turbostat_corecstates is defined %}
+  CoreCstates "{{ collectd_plugin_turbostat_corecstates }}"
+{% endif %}
+{% if collectd_plugin_turbostat_packagecstates is defined %}
+  PackageCstates "{{ collectd_plugin_turbostat_packagecstates }}"
+{% endif %}
+{% if collectd_plugin_turbostat_systemmanagementinterrupt is defined %}
+  SystemManagementInterrupt "{{ collectd_plugin_turbostat_systemmanagementinterrupt }}"
+{% endif %}
+{% if collectd_plugin_turbostat_digitaltemperaturesensor is defined %}
+  DigitalTemperatureSensor "{{ collectd_plugin_turbostat_digitaltemperaturesensor }}"
+{% endif %}
+{% if collectd_plugin_turbostat_tccactivationtemp is defined %}
+  TCCActivationTemp "{{ collectd_plugin_turbostat_tccactivationtemp }}"
+{% endif %}
+{% if collectd_plugin_turbostat_runningaveragepowerlimit is defined %}
+  RunningAveragePowerLimit "{{ collectd_plugin_turbostat_runningaveragepowerlimit }}"
+{% endif %}
+{% if collectd_plugin_turbostat_logicalcorenames is defined %}
+  LogicalCoreNames "{{ collectd_plugin_turbostat_logicalcorenames }}"
+{% endif %}
+</Plugin>
