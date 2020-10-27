@@ -1,0 +1,11 @@
+# This file was created using the template generator at https://github.com/infrawatch/osp-observability-ansible/tree/plugin_templates_generate/tools/
+LoadPlugin hddtemp
+
+<Plugin "hddtemp">
+{% if collectd_plugin_hddtemp_host is defined %}
+  Host "{{ collectd_plugin_hddtemp_host }}"
+{% endif %}
+{% if collectd_plugin_hddtemp_port is defined %}
+  Port "{{ collectd_plugin_hddtemp_port }}"
+{% endif %}
+</Plugin>
