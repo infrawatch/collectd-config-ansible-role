@@ -1,9 +1,8 @@
 ---
-# Ansible managed
 # Defaults for df plugin
-# collectd_plugin_df_device: nil
-# collectd_plugin_df_mountpoint: nil
-# collectd_plugin_df_fstype: nil
+collectd_plugin_df_devices: []
+collectd_plugin_df_mountpoints: []
+collectd_plugin_df_fstype: []
 collectd_plugin_df_ignoreselected: true
 collectd_plugin_df_reportbydevice: true
 collectd_plugin_df_reportinodes: true

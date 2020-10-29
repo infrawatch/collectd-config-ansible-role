@@ -1,0 +1,17 @@
+# This file was created using the template generator at https://github.com/infrawatch/osp-observability-ansible/tree/plugin_templates_generate/tools/
+LoadPlugin ntpd
+
+<Plugin "ntpd">
+{% if collectd_plugin_ntpd_host is defined %}
+  Host "{{ collectd_plugin_ntpd_host }}"
+{% endif %}
+{% if collectd_plugin_ntpd_port is defined %}
+  Port {{ collectd_plugin_ntpd_port | string | lower }}
+{% endif %}
+{% if collectd_plugin_ntpd_reverselookups is defined %}
+  ReverseLookups {{ collectd_plugin_ntpd_reverselookups | string | lower }}
+{% endif %}
+{% if collectd_plugin_ntpd_includeunitid is defined %}
+  IncludeUnitID {{ collectd_plugin_ntpd_includeunitid | string | lower }}
+{% endif %}
+</Plugin>

@@ -1,2 +1,13 @@
 LoadPlugin procevent
-#TODO: Get a default config for this, as expected by OoO
+
+<Plugin "procevent">
+{% if collectd_plugin_procevent_process is defined %}
+    Process "{{ collectd_plugin_procevent_process }}"
+{% endif %}
+{% if collectd_plugin_procevent_process_regex is defined %}
+    ProcessRegex "{{ collectd_plugin_procevent_process_regex }}"
+{% endif %}
+{% if collectd_plugin_procevent_buffer_length is defined %}
+    BufferLength {{ collectd_plugin_procevent_buffer_length }}
+{% endif %}
+</Plugin>

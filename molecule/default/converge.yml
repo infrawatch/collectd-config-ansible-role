@@ -17,6 +17,8 @@
           - csv
           - df
           - disk
+          - dns
+          - hddtemp
           - hugepages
           - intel_rdt
           - interface
@@ -26,10 +28,16 @@
           - logfile
           - memory
           - network
+          - ntpd
           - ovs_stats
+          - ping
           - processes
           - procevent
+          - smart
+          - syslog
+          - swap
           - unixsock
           - uptime
           - uuid
           - virt
+          - vmem

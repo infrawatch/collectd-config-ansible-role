@@ -4,7 +4,9 @@ LoadPlugin cpu
 <Plugin "cpu">
   ReportByCpu "{{ collectd_plugin_cpu_reportbycpu }}"
   ReportByState "{{ collectd_plugin_cpu_reportbystate }}"
+{% if collectd_plugin_cpu_reportnumcpu is defined %}
   ReportNumCpu "{{ collectd_plugin_cpu_reportnumcpu }}"
+{% endif %}
   ValuesPercentage "{{ collectd_plugin_cpu_valuespercentage }}"
 {% if collectd_plugin_cpu_reportgueststate is defined %}
   ReportGuestState "{{ collectd_plugin_cpu_reportgueststate }}"

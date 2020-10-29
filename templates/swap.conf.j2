@@ -1,0 +1,20 @@
+# This file was created using the template generator at https://github.com/infrawatch/osp-observability-ansible/tree/plugin_templates_generate/tools/
+LoadPlugin swap
+
+<Plugin "swap">
+{% if collectd_plugin_swap_reportbydevice is defined %}
+  ReportByDevice {{ collectd_plugin_swap_reportbydevice | string | lower }}
+{% endif %}
+{% if collectd_plugin_swap_reportbytes is defined %}
+  ReportBytes "{{ collectd_plugin_swap_reportbytes }}"
+{% endif %}
+{% if collectd_plugin_swap_valuesabsolute is defined %}
+  ValuesAbsolute {{ collectd_plugin_swap_valuesabsolute | string | lower }}
+{% endif %}
+{% if collectd_plugin_swap_valuespercentage is defined %}
+  ValuesPercentage {{ collectd_plugin_swap_valuespercentage | string | lower }}
+{% endif %}
+{% if collectd_plugin_swap_reportio is defined %}
+  ReportIO {{ collectd_plugin_swap_reportio | string | lower }}
+{% endif %}
+</Plugin>

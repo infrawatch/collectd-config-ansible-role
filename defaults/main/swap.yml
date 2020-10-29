@@ -1,0 +1,6 @@
+---
+collectd_plugin_swap_reportbydevice: false
+collectd_plugin_swap_reportbytes: true
+collectd_plugin_swap_valuesabsolute: true
+collectd_plugin_swap_valuespercentage: false
+collectd_plugin_swap_reportio: true

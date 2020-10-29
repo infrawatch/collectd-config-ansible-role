@@ -2,15 +2,15 @@
 LoadPlugin df
 
 <Plugin "df">
-{% if collectd_plugin_df_device is defined %}
-  Device "{{ collectd_plugin_df_device }}"
-{% endif %}
-{% if collectd_plugin_df_mountpoint is defined %}
-  MountPoint "{{ collectd_plugin_df_mountpoint }}"
-{% endif %}
-{% if collectd_plugin_df_fstype is defined %}
-  FSType "{{ collectd_plugin_df_fstype }}"
-{% endif %}
+{% for device in collectd_plugin_df_devices %}
+  Device "{{ device }}"
+{% endfor %}
+{% for mountpoint in  collectd_plugin_df_mountpoints %}
+  MountPoint "{{ mountpoint }}"
+{% endfor %}
+{% for fstype in collectd_plugin_df_fstype %}
+  FSType "{{ fstype }}"
+{% endfor %}
   IgnoreSelected "{{ collectd_plugin_df_ignoreselected }}"
   ReportByDevice "{{ collectd_plugin_df_reportbydevice }}"
   ReportInodes "{{ collectd_plugin_df_reportinodes }}"

@@ -1,11 +1,12 @@
-# Ansible managed
+# This file was created using the template generator at https://github.com/infrawatch/osp-observability-ansible/tree/plugin_templates_generate/tools/
 LoadPlugin disk
 
 <Plugin "disk">
-{% if collectd_plugin_disk_disk is defined %}
-  {% for disk in collectd_plugin_disk_disk %}
+{% for disk in collectd_plugin_disk_disk %}
   Disk "{{ disk }}"
-  {% endfor %}
+{% endfor %}
+  IgnoreSelected {{ collectd_plugin_disk_ignoreselected | string | lower }}
+{% if collectd_plugin_disk_udevnameattr is defined %}
+  UdevNameAttr "{{ collectd_plugin_disk_udevnameattr }}"
 {% endif %}
-  IgnoreSelected {{ collectd_plugin_disk_ignoreselected| string | lower }}
 </Plugin>

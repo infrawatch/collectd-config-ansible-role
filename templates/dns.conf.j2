@@ -1,0 +1,14 @@
+# This file was created using the template generator at https://github.com/infrawatch/osp-observability-ansible/tree/plugin_templates_generate/tools/
+LoadPlugin dns
+
+<Plugin "dns">
+{% if collectd_plugin_dns_interface is defined %}
+  Interface "{{ collectd_plugin_dns_interface }}"
+{% endif %}
+{% if collectd_plugin_dns_ignoresource is defined %}
+  IgnoreSource "{{ collectd_plugin_dns_ignoresource }}"
+{% endif %}
+{% if collectd_plugin_dns_selectnumericquerytypes is defined %}
+  SelectNumericQueryTypes "{{ collectd_plugin_dns_selectnumericquerytypes }}"
+{% endif %}
+</Plugin>
