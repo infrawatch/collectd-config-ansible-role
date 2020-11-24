@@ -1,4 +1,10 @@
+{% if collectd_plugin_hugepages_interval is not defined %}
 LoadPlugin hugepages
+{% else %}
+<LoadPlugin hugepages>
+   Interval {{ collectd_plugin_hugepages_interval }}
+</LoadPlugin>
+{% endif %}
 
 <Plugin "hugepages">
   ReportPerNodeHP {{ collectd_plugin_hugepages_report_per_node_hp }}

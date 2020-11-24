@@ -1,17 +1,40 @@
+{% if collectd_plugin_processes_interval is not defined %}
 LoadPlugin processes
+{% else %}
+<LoadPlugin processes>
+   Interval {{ collectd_plugin_processes_interval }}
+</LoadPlugin>
+{% endif %}
 
 <Plugin processes>
-#	CollectFileDescriptor true
-#	CollectContextSwitch true
-#	CollectMemoryMaps true
-#	Process "name"
-#	ProcessMatch "name" "regex"
-#	<Process "collectd">
-#		CollectFileDescriptor false
-#		CollectContextSwitch false
-#	</Process>
-#	<ProcessMatch "name" "regex">
-#		CollectFileDescriptor false
-#		CollectContextSwitch true
-#	</Process>
+{% if collectd_plugin_processes_collectfiledescriptor is defined %}
+    CollectFileDescriptor {{ collectd_plugin_processes_collectfiledescriptor }}
+{% endif %}
+{% if collectd_plugin_processes_collectcontextswitch is defined %}
+    CollectContextSwitch {{ collectd_plugin_processes_collectcontextswitch }}
+{% endif %}
+{% if collectd_plugin_processes_collectmemorymaps is defined %}
+    CollectMemoryMaps {{ collectd_plugin_processes_collectmemorymaps }}
+{% endif %}
+{% for process in collectd_plugin_processes_process %}
+    <Process "{{ process.name }}" >
+{% if process.collectfiledescriptor is defined %}
+      CollectFileDescriptor {{ process.collectfiledescriptor }}
+{% endif %}
+{% if process.collectcontextswitch is defined %}
+      CollectContextSwitch {{ process.collectcontextswitch }}
+{% endif %}
+    </Process>
+{% endfor %}
+
+{% for processmatch in collectd_plugin_processes_processmatch %}
+  <ProcessMatch "{{ processmatch.name }}" "{{ processmatch.regex }}">
+{% if processmatch.collectfiledescriptor is defined %}
+      CollectFileDescriptor {{ processmatch.collectfiledescriptor }}
+{% endif %}
+{% if processmatch.collectcontextswitch is defined %}
+      CollectContextSwitch {{ processmatch.collectcontextswitch }}
+{% endif %}
+  </ProcessMatch>
+{% endfor %}
 </Plugin>

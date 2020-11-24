@@ -1,7 +1,13 @@
 #TODO: Add new value for Host and port
 #TODO: create a loop to parse input and generate the Instance members
 
+{% if plugin_amqp1_interval is not defined %}
 LoadPlugin amqp1
+{% else %}
+<LoadPlugin amqp1>
+   Interval {{ collectd_plugin_amqp1_interval }}
+</LoadPlugin>
+{% endif %}
 
 <Plugin amqp1>
   <Transport "metrics">

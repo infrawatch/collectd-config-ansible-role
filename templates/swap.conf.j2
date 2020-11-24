@@ -1,5 +1,11 @@
 # This file was created using the template generator at https://github.com/infrawatch/osp-observability-ansible/tree/plugin_templates_generate/tools/
+{% if collectd_plugin_swap_interval is not defined %}
 LoadPlugin swap
+{% else %}
+<LoadPlugin swap>
+   Interval {{ collectd_plugin_swap_interval }}
+</LoadPlugin>
+{% endif %}
 
 <Plugin "swap">
 {% if collectd_plugin_swap_reportbydevice is defined %}

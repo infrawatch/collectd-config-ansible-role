@@ -1,3 +1,11 @@
+{% if collectd_plugin_connectivity_interval is not defined %}
+LoadPlugin connectivity
+{% else %}
+<LoadPlugin connectivity>
+   Interval {{ collectd_plugin_connectivity_interval }}
+</LoadPlugin>
+{% endif %}
+
 LoadPlugin connectivity
 
 <Plugin connectivity>

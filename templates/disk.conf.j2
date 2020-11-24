@@ -1,5 +1,11 @@
 # This file was created using the template generator at https://github.com/infrawatch/osp-observability-ansible/tree/plugin_templates_generate/tools/
+{% if collectd_plugin_disk_interval is not defined %}
 LoadPlugin disk
+{% else %}
+<LoadPlugin disk>
+   Interval {{ collectd_plugin_disk_interval }}
+</LoadPlugin>
+{% endif %}
 
 <Plugin "disk">
 {% for disk in collectd_plugin_disk_disk %}
