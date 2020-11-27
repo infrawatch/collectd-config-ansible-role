@@ -30,6 +30,7 @@
           - ipc
           # The rendered conf file is not syntactically correct yet
           # - ipmi
+          - irq
           - load
           - logfile
           - memory

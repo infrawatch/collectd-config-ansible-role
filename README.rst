@@ -33,6 +33,18 @@ collectd_plugin_ethstat_interface: "eth0"
 collectd_plugin_ethstat_map: []
 collectd_plugin_ethstat_mappedonly: False
 
+collectd_plugin_irq_*
+~~~~~~~~~~~~~~~~~~~~~~~~~
+These vars are ones passed to the ``irq`` plugin.
+See the collectd `config guide <https://collectd.org/documentation/manpages/collectd.conf.5.shtml#plugin_irq>`_ for details.
+
+collectd_plugin_irq_ignoreselected: False
+collectd_plugin_irq_irq: ["7", "8", "9"]
+OR
+collectd_plugin_irq_irq:
+   - 7
+   - 8
+   - 9
 
 collectd_plugin_ovs_stats_*
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~
