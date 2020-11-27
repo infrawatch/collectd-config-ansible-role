@@ -7,6 +7,7 @@
       collectd_plugins:
         - amqp1
         # - ceph
+        - capabilities
         - connectivity
         - cpu
         - csv

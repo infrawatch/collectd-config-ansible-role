@@ -17,6 +17,14 @@ If there are no defaults set (e.g. all config options are optional), then the ``
 
 Each set of config options below include some sample values.
 
+collectd_plugin_capabilities_*
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+These vars are ones passed to the ``capabilities`` plugin.
+See the collectd `wiki <https://collectd.org/wiki/index.php/Plugin:capabilities>`_ for details.
+collectd_plugin_capabilities_host: localhost
+collectd_plugin_capabilities_port: "9104"
+
+
 collectd_plugin_ovs_stats_*
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
