@@ -27,6 +27,7 @@
           - intel_pmu
           - intel_rdt
           - interface
+          - ipc
           # The rendered conf file is not syntactically correct yet
           # - ipmi
           - load
