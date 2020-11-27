@@ -21,6 +21,7 @@
           - df
           - disk
           - dns
+          - ethstat
           - hddtemp
           - hugepages
           - intel_rdt

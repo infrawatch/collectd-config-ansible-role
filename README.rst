@@ -24,6 +24,15 @@ See the collectd `wiki <https://collectd.org/wiki/index.php/Plugin:capabilities>
 collectd_plugin_capabilities_host: localhost
 collectd_plugin_capabilities_port: "9104"
 
+collectd_plugin_ethstat_*
+~~~~~~~~~~~~~~~~~~~~~~~~~
+These vars are ones passed to the ``ethstat`` plugin.
+See the collectd `config guide <https://collectd.org/documentation/manpages/collectd.conf.5.shtml#plugin_ethstat>`_ for details.
+
+collectd_plugin_ethstat_interface: "eth0"
+collectd_plugin_ethstat_map: []
+collectd_plugin_ethstat_mappedonly: False
+
 
 collectd_plugin_ovs_stats_*
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~
