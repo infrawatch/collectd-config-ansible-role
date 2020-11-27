@@ -1,4 +1,4 @@
 ---
 collectd_plugin_interface_interfaces: []
-collectd_plugin_interface_ignore_selected: False
-collectd_plugin_interface_report_inactive: False
+collectd_plugin_interface_ignoreselected: False
+collectd_plugin_interface_reportinactive: False
