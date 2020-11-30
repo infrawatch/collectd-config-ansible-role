@@ -5,6 +5,8 @@
 templates_generate_to_disk: true
 
 # used in collectd.conf
+# Used to set a specific hostname for the host
+# collectd_hostname: 'localhost'
 collectd_interval: 120
 
 # TODO: Move collectd_default_plugins and collectd_extra_plugins to OoO role
