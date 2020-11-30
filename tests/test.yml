@@ -32,6 +32,7 @@
         - processes
         - procevent
         # - python
+        - swap
         - unixsock
         - uptime
         # - virt
