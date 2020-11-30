@@ -27,6 +27,7 @@
         # - logfile
         - memory
         - network
+        - numa
         - ovs_stats
         - processes
         - procevent

@@ -35,7 +35,9 @@
           - logfile
           - memory
           - network
+          - numa
           - ntpd
+          - numa
           - ovs_stats
           - ping
           - processes
