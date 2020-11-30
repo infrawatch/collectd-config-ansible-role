@@ -56,6 +56,25 @@ collectd_plugin_ovs_stats_address: "127.0.0.1"
 collectd_plugin_ovs_stats_socket: "/var/run/openvswitch/db.sock"
 collectd_plugin_ovs_stats_bridges: br0 br_ext
 
+collectd_plugins_processes_*
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+These vars are ones passed to the ``processes`` plugin
+See the collectd `config guide <https://collectd.org/documentation/manpages/collectd.conf.5.shtml#plugin_processes>`_ f
+or details.
+
+collectd_plugin_processes_process:
+  - name: "someprocessname"
+    collectfiledescriptor: True
+    collectcontextswitch: True
+collectd_plugin_processes_processmatch:
+  - name: "someprocessname"
+    regex: "(^_^|*.*)"
+    collectfiledescriptor: True
+    collectcontextswitch: True
+collectd_plugin_processes_collectfiledescriptor: True
+collectd_plugin_processes_collectcontextswitch: True
+collectd_plugin_processes_collectmemorymaps: True
+
 Dependencies
 ------------
 
