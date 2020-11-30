@@ -24,6 +24,7 @@
           - ethstat
           - hddtemp
           - hugepages
+          - intel_pmu
           - intel_rdt
           - interface
           # The rendered conf file is not syntactically correct yet
