@@ -9,6 +9,7 @@
         # - ceph
         - capabilities
         - connectivity
+        - contextswitch
         - cpu
         - csv
         - df

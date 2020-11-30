@@ -1,0 +1,9 @@
+{% if collectd_plugin_contextswitch_interval is not defined %}
+LoadPlugin contextswitch
+{% else %}
+<LoadPlugin contextswitch>
+   Interval {{ collectd_plugin_contextswitch_interval }}
+</LoadPlugin>
+{% endif %}
+
+
