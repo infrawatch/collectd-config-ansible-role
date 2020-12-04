@@ -4,7 +4,7 @@ dependency:
   options:
     role-file: molecule/common/requirements.yml
 driver:
-  name: podman
+  name: docker
 platforms:
   - name: collectd-test
     image: docker.io/tripleomaster/centos-binary-collectd:current-tripleo-rdo
@@ -15,12 +15,11 @@ verifier:
   name: ansible
 lint: |
   yamllint .
-  ansible-lint
+  ansible-lint .
 
 scenario:
   name: default
   test_sequence:
-    - lint
     - destroy
     - dependency
     # - syntax
