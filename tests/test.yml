@@ -27,6 +27,7 @@
         # - logfile
         - memory
         - network
+        - ntpd
         - numa
         - ovs_stats
         - processes
