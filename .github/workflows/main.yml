@@ -1,0 +1,48 @@
+name: CI
+
+on: push
+
+jobs:
+  molecule:
+    runs-on: ubuntu-18.04
+    strategy:
+      fail-fast: false
+      matrix:
+        scenario:
+          - default
+          - test_network
+    env:
+      PY_COLORS: '1'
+      ANSIBLE_FORCE_COLOR: '1'
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+        with:
+          path: "${{ github.repository }}"
+      - uses: actions/setup-python@v2
+        with:
+          python-version: 3.6
+      - name: Pre-pull container
+        run: |
+          sudo docker pull docker.io/tripleomaster/centos-binary-collectd:current-tripleo-rdo
+      - name: "Molecule"
+        uses: gofrolist/molecule-action@v2
+        with:
+          molecule_command: test
+          molecule_args: --scenario-name ${{ matrix.scenario }}
+          molecule_working_dir: ${{ github.repository }}
+
+  lint:
+    runs-on: ubuntu-18.04
+    strategy:
+      fail-fast: false
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+        with:
+          path: "${{ github.repository }}"
+      - name: Lint Ansible Playbook
+        uses: ansible/ansible-lint-action@master
+        with:
+          targets: "."

@@ -35,6 +35,8 @@
         collectdctl -s /var/run/collectd-socket listval | grep hugepages
 
 - hosts: localhost
+  vars:
+    container_bin: docker
   tasks:
     - name: "Run the collectd test from STF functional-tests"
       include_role:
