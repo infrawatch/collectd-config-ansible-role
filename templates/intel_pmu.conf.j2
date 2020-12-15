@@ -1,13 +1,19 @@
+{% if collectd_plugin_intel_pmu_interval is not defined %}
 LoadPlugin intel_pmu
+{% else %}
+<LoadPlugin intel_pmu>
+   Interval {{ collectd_plugin_intel_pmu_interval }}
+</LoadPlugin>
+{% endif %}
 
 <Plugin "intel_pmu">
 {% if collectd_plugin_intelpmu_cores is defined %}
   Cores{% for item in collectd_plugin_intelpmu_cores %} "{{ item }}"{% endfor %}
 {% endif %}
 
-  ReportHardwareCacheEvents {{ collectd_plugin_intelpmu_reporthardwarecacheevents }}
-  ReportKernelPMUEvents {{ collectd_plugin_intelpmu_reportkernelpmuevents }}
-  ReportSoftwareEvents {{ collectd_plugin_intelpmu_reportsoftwareevents }}
+  ReportHardwareCacheEvents {{ collectd_plugin_intelpmu_reporthardwarecacheevents | string | lower }}
+  ReportKernelPMUEvents {{ collectd_plugin_intelpmu_reportkernelpmuevents | string | lower }}
+  ReportSoftwareEvents {{ collectd_plugin_intelpmu_reportsoftwareevents | string | lower }}
 {% if collectd_plugin_intelpmu_eventlist is defined %}
   EventList{% for item in collectd_plugin_intelpmu_eventlist %} "{{ item }}"{% endfor %}
 {% endif %}
@@ -16,5 +22,7 @@ LoadPlugin intel_pmu
   HardwareEvents{% for item in collectd_plugin_intelpmu_hardwareevents %} "{{ item }}"{% endfor %}
 {% endif %}
 
+{% if collectd_plugin_intelpmu_dispatchmultipmu is defined %}
   DispatchMultiPmu {{ collectd_plugin_intelpmu_dispatchmultipmu }}
+{% endif %}
 </Plugin>

@@ -1,5 +1,11 @@
-# Ansible managed
+# This file was created using the template generator at https://github.com/infrawatch/osp-observability-ansible/tree/plugin_templates_generate/tools/
+{% if collectd_plugin_uptime_interval is not defined %}
 LoadPlugin uptime
+{% else %}
+<LoadPlugin uptime>
+   Interval {{ collectd_plugin_uptime_interval }}
+</LoadPlugin>
+{% endif %}
 
 <Plugin "uptime">
 </Plugin>

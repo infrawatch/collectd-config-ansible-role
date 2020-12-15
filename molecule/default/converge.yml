@@ -8,9 +8,12 @@
         collectd_plugins:
           # There are some undefined vars in the template that are causing
           # rendering to fail, these will be updated
-          # - amqp1
+          - amqp1
+          # collectd image doesn't recognise capabilities plugin
+          # - capabilities
           - ceph
           - connectivity
+          - contextswitch
           - cpu
           - cpufreq
           - cpusleep
@@ -18,17 +21,23 @@
           - df
           - disk
           - dns
+          - ethstat
           - hddtemp
           - hugepages
+          - intel_pmu
           - intel_rdt
           - interface
+          - ipc
           # The rendered conf file is not syntactically correct yet
           # - ipmi
+          - irq
           - load
           - logfile
           - memory
           - network
+          - numa
           - ntpd
+          - numa
           - ovs_stats
           - ping
           - processes

@@ -1,10 +1,18 @@
+{% if collectd_plugin_connectivity_interval is not defined %}
+LoadPlugin connectivity
+{% else %}
+<LoadPlugin connectivity>
+   Interval {{ collectd_plugin_connectivity_interval }}
+</LoadPlugin>
+{% endif %}
+
 LoadPlugin connectivity
 
 <Plugin connectivity>
 {% for interface in collectd_plugin_connectivity_interface %}
   Interface {{ interface }}
 {% endfor %}
-{% if collectd_plugin_connectivity_ignore_selected is defined %}
-  IgnoreSelected {{ collectd_plugin_connectivity_ignore_selected }}
+{% if collectd_plugin_connectivity_ignoreselected is defined %}
+  IgnoreSelected {{ collectd_plugin_connectivity_ignoreselected }}
 {% endif %}
 </Plugin>

@@ -1,4 +1,8 @@
-# Hostname localhost
+{% if collectd_hostname is defined %}
+Hostname "{{ collectd_hostname }}"
+{% elif ansible_hostname is defined %}
+Hostname "{{ ansible_hostname }}"
+{% endif %}
 FQDNLookup true
 
 AutoLoadPlugin false

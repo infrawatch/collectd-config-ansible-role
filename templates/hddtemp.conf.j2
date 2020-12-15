@@ -1,5 +1,11 @@
 # This file was created using the template generator at https://github.com/infrawatch/osp-observability-ansible/tree/plugin_templates_generate/tools/
+{% if collectd_plugin_hddtemp_interval is not defined %}
 LoadPlugin hddtemp
+{% else %}
+<LoadPlugin hddtemp>
+   Interval {{ collectd_plugin_hddtemp_interval }}
+</LoadPlugin>
+{% endif %}
 
 <Plugin "hddtemp">
 {% if collectd_plugin_hddtemp_host is defined %}

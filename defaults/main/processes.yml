@@ -1,0 +1,15 @@
+---
+collectd_plugin_processes_process: []
+#collectd_plugin_processes_process:
+#  - name: "someprocessname"
+#    collectfiledescriptor: True
+#    collectcontextswitch: True
+collectd_plugin_processes_processmatch: []
+#collectd_plugin_processes_processmatch:
+#  - name: "someprocessname"
+#    regex: "(^_^|*.*)"
+#    collectfiledescriptor: True
+#    collectcontextswitch: True
+collectd_plugin_processes_collectfiledescriptor: True
+collectd_plugin_processes_collectcontextswitch: True
+collectd_plugin_processes_collectmemorymaps: True

@@ -17,6 +17,35 @@ If there are no defaults set (e.g. all config options are optional), then the ``
 
 Each set of config options below include some sample values.
 
+collectd_plugin_capabilities_*
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+These vars are ones passed to the ``capabilities`` plugin.
+See the collectd `wiki <https://collectd.org/wiki/index.php/Plugin:capabilities>`_ for details.
+collectd_plugin_capabilities_host: localhost
+collectd_plugin_capabilities_port: "9104"
+
+collectd_plugin_ethstat_*
+~~~~~~~~~~~~~~~~~~~~~~~~~
+These vars are ones passed to the ``ethstat`` plugin.
+See the collectd `config guide <https://collectd.org/documentation/manpages/collectd.conf.5.shtml#plugin_ethstat>`_ for details.
+
+collectd_plugin_ethstat_interface: "eth0"
+collectd_plugin_ethstat_map: []
+collectd_plugin_ethstat_mappedonly: False
+
+collectd_plugin_irq_*
+~~~~~~~~~~~~~~~~~~~~~~~~~
+These vars are ones passed to the ``irq`` plugin.
+See the collectd `config guide <https://collectd.org/documentation/manpages/collectd.conf.5.shtml#plugin_irq>`_ for details.
+
+collectd_plugin_irq_ignoreselected: False
+collectd_plugin_irq_irq: ["7", "8", "9"]
+OR
+collectd_plugin_irq_irq:
+   - 7
+   - 8
+   - 9
+
 collectd_plugin_ovs_stats_*
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
@@ -26,6 +55,25 @@ collectd_plugin_ovs_stats_port: 6640
 collectd_plugin_ovs_stats_address: "127.0.0.1"
 collectd_plugin_ovs_stats_socket: "/var/run/openvswitch/db.sock"
 collectd_plugin_ovs_stats_bridges: br0 br_ext
+
+collectd_plugins_processes_*
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+These vars are ones passed to the ``processes`` plugin
+See the collectd `config guide <https://collectd.org/documentation/manpages/collectd.conf.5.shtml#plugin_processes>`_ f
+or details.
+
+collectd_plugin_processes_process:
+  - name: "someprocessname"
+    collectfiledescriptor: True
+    collectcontextswitch: True
+collectd_plugin_processes_processmatch:
+  - name: "someprocessname"
+    regex: "(^_^|*.*)"
+    collectfiledescriptor: True
+    collectcontextswitch: True
+collectd_plugin_processes_collectfiledescriptor: True
+collectd_plugin_processes_collectcontextswitch: True
+collectd_plugin_processes_collectmemorymaps: True
 
 Dependencies
 ------------

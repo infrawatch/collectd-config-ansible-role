@@ -1,0 +1,7 @@
+{% if collectd_plugin_numa_interval is not defined %}
+LoadPlugin numa
+{% else %}
+<LoadPlugin numa>
+   Interval {{ collectd_plugin_numa_interval }}
+</LoadPlugin>
+{% endif %}

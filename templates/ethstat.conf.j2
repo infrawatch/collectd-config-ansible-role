@@ -1,0 +1,21 @@
+{% if collectd_plugin_ethstat_interval is not defined %}
+LoadPlugin ethstat
+{% else %}
+<LoadPlugin ethstat>
+   Interval "{{ collectd_plugin_ethstat_interval }}"
+</LoadPlugin>
+{% endif %}
+
+<Plugin "ethstat">
+{% if collectd_plugin_ethstat_interface is defined %}
+    Interface "{{ interface }}"
+{% endif %}
+{% for map in collectd_plugin_ethstat_map %}
+    Map {{ map }}
+    # Map "rx_csum_offload_errors" "if_rx_errors" "checksum_offload"
+    # Map "multicast" "if_multicast"
+{% endfor %}
+{% if collectd_plugin_ethstat_mappedonly is defined %}
+    MappedOnly false
+{% endif %}
+</Plugin>

@@ -1,0 +1,9 @@
+---
+# Defaults for irq plugin
+collectd_plugin_irq_irq: []
+# collectd_plugin_irq_irq:
+#        - 7
+#        - 8
+#        - 9
+# collectd_plugin_irq_irq: ["7", "8", "9"]
+# collectd_plugin_irq_ignoreselected: False

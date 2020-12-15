@@ -1,9 +1,15 @@
+{% if collectd_plugin_hugepages_interval is not defined %}
 LoadPlugin hugepages
+{% else %}
+<LoadPlugin hugepages>
+   Interval {{ collectd_plugin_hugepages_interval }}
+</LoadPlugin>
+{% endif %}
 
 <Plugin "hugepages">
-  ReportPerNodeHP {{ collectd_plugin_hugepages_report_per_node_hp }}
-  ReportRootHP {{ collectd_plugin_hugepages_report_root_hp }}
-  ValuesPages {{ collectd_plugin_hugepages_values_pages }}
-  ValuesBytes {{ collectd_plugin_hugepages_values_bytes }}
-  ValuesPercentage {{ collectd_plugin_hugepages_values_percentage }}
+  ReportPerNodeHP {{ collectd_plugin_hugepages_report_per_node_hp | lower }}
+  ReportRootHP {{ collectd_plugin_hugepages_report_root_hp | lower }}
+  ValuesPages {{ collectd_plugin_hugepages_values_pages | lower }}
+  ValuesBytes {{ collectd_plugin_hugepages_values_bytes | lower }}
+  ValuesPercentage {{ collectd_plugin_hugepages_values_percentage | lower }}
 </Plugin>

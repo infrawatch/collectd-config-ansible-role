@@ -4,3 +4,9 @@
 # if not, then add an if defined block to the templates
 collectd_plugin_ipmi_username: ""
 collectd_plugin_ipmi_password: ""
+
+collectd_plugin_ipmi_sensors: []
+collectd_plugin_ipmi_ignoreselected: false
+collectd_plugin_ipmi_notifysensoradd: false
+collectd_plugin_ipmi_notifysensorremove: true
+collectd_plugin_ipmi_notifysensornotpresent: false

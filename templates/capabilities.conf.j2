@@ -1,0 +1,11 @@
+LoadPlugin capabilities
+
+<Plugin capabilities>
+{% if collectd_plugin_capabilities_host is defined %}
+  Host "{{ collectd_plugin_capabilities_host }}"
+{% endif %}
+{% if collectd_plugin_capabilities_port is defined %}
+  Port "{{ collectd_plugin_capabilities_port }}"
+{% endif %}
+</Plugin>
+

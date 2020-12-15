@@ -1,5 +1,11 @@
 # This file was created using the template generator at https://github.com/infrawatch/osp-observability-ansible/tree/plugin_templates_generate/tools/
+{% if collectd_plugin_turbostat_interval is not defined %}
 LoadPlugin turbostat
+{% else %}
+<LoadPlugin turbostat>
+   Interval {{ collectd_plugin_turbostat_interval }}
+</LoadPlugin>
+{% endif %}
 
 <Plugin "turbostat">
 {% if collectd_plugin_turbostat_corecstates is defined %}

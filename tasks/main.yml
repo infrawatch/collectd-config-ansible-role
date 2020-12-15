@@ -1,13 +1,9 @@
 ---
-# tasks file for test-role
-# Tasks to replace the conditions section from THT
-# Set up defaults to set bools to false
-
 - debug:
     var: collectd_plugins
 
 - block:
-  - name: "Remove file"
+  - name: "Remove files from {{ collectd_conf_output_dir }}"
     file:
       path: "{{ item }}"
       state: absent
@@ -15,19 +11,19 @@
       - "{{ collectd_conf_output_dir }}/"
       - "{{ collectd_conf_output_dir }}/../collectd.conf"
 
-  - name: "Create config dir"
+  - name: "Create config dir at {{ collectd_conf_output_dir }}"
     file:
       path: "{{ collectd_conf_output_dir }}/"
       state: directory
       mode: 0644
 
-  - name: "Create core collectd config"
+  - name: "Create core collectd config beside {{ collectd_conf_output_dir }}"
     template:
       src: collectd.conf.j2
       dest: "{{ collectd_conf_output_dir }}/../collectd.conf"
       mode: 0644
 
-  - name: "Create plugin config files"
+  - name: "Create plugin config files in {{ collectd_conf_output_dir }}"
     template:
       src: "{{ item }}.conf.j2"
       dest: "{{ collectd_conf_output_dir }}/{{ item }}.conf"
