@@ -15,6 +15,7 @@
         - df
         - disk
         - ethstat
+        - exec
         - hugepages
         - intel_pmu
         - intel_rdt

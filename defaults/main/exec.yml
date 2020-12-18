@@ -1,0 +1,15 @@
+---
+collectd_plugin_exec_exec: []
+#collectd_plugin_exec_exec:
+# - user: collectd
+#   group: collectd
+#   exec: "my-prog"
+#   args: ["arg0", "arg1"]
+
+collectd_plugin_exec_notification: []
+#collectd_plugin_exec_notification:
+# - user: collectd
+#   group: collectd
+#   notification_exec: "my-notifier"
+#   args: ["arg0", "arg1"]
+

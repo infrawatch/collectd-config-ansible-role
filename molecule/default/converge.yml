@@ -22,6 +22,7 @@
           - disk
           - dns
           - ethstat
+          - exec
           - hddtemp
           - hugepages
           - intel_pmu
