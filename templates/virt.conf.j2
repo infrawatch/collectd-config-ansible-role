@@ -37,7 +37,7 @@ LoadPlugin virt
   InterfaceFormat "{{ collectd_plugin_virt_interfaceformat }}"
 {% endif %}
 {% if collectd_plugin_virt_plugininstanceformat is defined %}
-  PluginInstanceFormat "{{ collectd_plugin_virt_plugininstanceformat }}"
+  PluginInstanceFormat {{ collectd_plugin_virt_plugininstanceformat }}
 {% endif %}
 {% if collectd_plugin_virt_instances is defined %}
   Instances "{{ collectd_plugin_virt_instances }}"
