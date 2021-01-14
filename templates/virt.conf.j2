@@ -31,7 +31,7 @@ LoadPlugin virt
   BlockDeviceFormatBasename {{ collectd_plugin_virt_blockdeviceformatbasename }}
 {% endif %}
 {% if collectd_plugin_virt_hostnameformat is defined %}
-  HostnameFormat "{{ collectd_plugin_virt_hostnameformat }}"
+  HostnameFormat {{ collectd_plugin_virt_hostnameformat }}
 {% endif %}
 {% if collectd_plugin_virt_interfaceformat is defined %}
   InterfaceFormat "{{ collectd_plugin_virt_interfaceformat }}"
