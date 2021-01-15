@@ -1,0 +1,16 @@
+LoadPlugin dcpmm
+
+<Plugin "dcpmm">
+{% if collectd_plugin_dcpmm_interval is defined %}
+  Interval {{ collectd_plugin_dcpmm_interval }}
+{% endif %}
+{% if collectd_plugin_dcpmm_collect_health is defined %}
+  CollectdHealth {{ collectd_plugin_dcpmm_collect_health }}
+{% endif %}
+{% if collectd_plugin_dcpmm_collect_perf_metrics is defined %}
+  CollectPerfMetrics {{ collectd_plugin_dcpmm_collect_perf_metrics }}
+{% endif %}
+{% if collectd_plugin_dcpmm_enable_dispatch_all is defined %}
+  EnableDispatchAll {{ collectd_plugin_dcpmm_enable_dispatch_all }}
+{% endif %}
+</Plugin>

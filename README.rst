@@ -24,6 +24,16 @@ See the collectd `wiki <https://collectd.org/wiki/index.php/Plugin:capabilities>
 collectd_plugin_capabilities_host: localhost
 collectd_plugin_capabilities_port: "9104"
 
+collectd_plugin_dcpmm_*
+~~~~~~~~~~~~~~~~~~~~~~~
+These vars are ones passed to the ``dcpmm`` plugin.
+See the collectd `config guide <https://collectd.org/documentation/manpages/collectd.conf.5.shtml#plugin_dcpmm>`_ for details.
+
+collectd_plugin_dcpmm_interval: 10.0
+collectd_plugin_dcpmm_collect_health: False
+collectd_plugin_dcpmm_collect_perf_metrics: True
+collectd_plugin_dcpmm_enable_dispatch_all: False
+
 collectd_plugin_ethstat_*
 ~~~~~~~~~~~~~~~~~~~~~~~~~
 These vars are ones passed to the ``ethstat`` plugin.
