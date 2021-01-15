@@ -1,0 +1,22 @@
+{% if collectd_plugin_mdevents_interval is not defined %}
+LoadPlugin mdevents
+{% else %}
+<LoadPlugin mdevents>
+   Interval {{ collectd_plugin_mdevents_interval }}
+</LoadPlugin>
+{% endif %}
+
+<Plugin "mdevents">
+{% if collectd_plugin_mdevents_event is defined %}
+  Event "{{ collectd_plugin_mdevents_event }}"
+{% endif %}
+{% if collectd_plugin_mdevents_ignore_event is defined %}
+  IgnoreEvent {{ collectd_plugin_mdevents_ignore_event | string | lower }}
+{% endif %}
+{% if collectd_plugin_mdevents_array is defined %}
+  Array "{{ collectd_plugin_mdevents_array }}"
+{% endif %}
+{% if collectd_plugin_mdevents_ignore_array is defined %}
+  IgnoreArray {{ collectd_plugin_mdevents_ignore_array | string | lower }}
+{% endif %}
+</Plugin>
