@@ -180,6 +180,16 @@ See the collectd `config guide <https://collectd.org/documentation/manpages/coll
   collectd_plugin_dns_ignoresource: 123.45.67.89
   collectd_plugin_dns_selectnumericquerytypes: True
 
+collectd_plugin_dpdk_telemetry_*
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+These vars are ones passed to the ``dpdk_telemetry`` plugin.
+See the collectd `config guide <https://collectd.org/documentation/manpages/collectd.conf.5.shtml#plugin_dpdk_telemetry>`_ for details.
+
+::
+
+  collectd_plugin_dpdk_telemetry_client_socket_path: "/var/run/.client"
+  collectd_plugin_dpdk_telemetry_dpdk_socket_path: "/var/run/dpdk/rte/telemetry"
+
 collectd_plugin_ethstat_*
 ~~~~~~~~~~~~~~~~~~~~~~~~~
 These vars are ones passed to the ``ethstat`` plugin.

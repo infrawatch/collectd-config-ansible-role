@@ -1,0 +1,16 @@
+{% if collectd_plugin_dpdk_telemetry_interval is not defined %}
+LoadPlugin dpdk_telemetry
+{% else %}
+<LoadPlugin dpdk_telemetry>
+   Interval {{ collectd_plugin_dpdk_telemetry_interval }}
+</LoadPlugin>
+{% endif %}
+
+<Plugin "dpdk_telemetry">
+{% if collectd_plugin_dpdk_telemetry_client_socket_path is defined %}
+  ClientSocketPath "{{ collectd_plugin_dpdk_telemetry_client_socket_path }}"
+{% endif %}
+{% if collect_plugin_dpdk_telemetry_dpdk_socket_path is defined %}
+  DpdkSocketPath "{{ collectd_plugin_dpdk_telemetry_dpdk_socket_path }}"
+{% endif %}
+</Plugin>
