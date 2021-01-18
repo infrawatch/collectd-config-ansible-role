@@ -16,6 +16,6 @@ LoadPlugin ethstat
     # Map "multicast" "if_multicast"
 {% endfor %}
 {% if collectd_plugin_ethstat_mappedonly is defined %}
-    MappedOnly false
+    MappedOnly {{ collectd_plugin_ethstat_mappedonly | string | lower }}
 {% endif %}
 </Plugin>

@@ -1,4 +1,3 @@
-# This file was created using the template generator at https://github.com/infrawatch/osp-observability-ansible/tree/plugin_templates_generate/tools/
 {% if collectd_plugin_df_interval is not defined %}
 LoadPlugin df
 {% else %}
@@ -17,9 +16,16 @@ LoadPlugin df
 {% for fstype in collectd_plugin_df_fstype %}
   FSType "{{ fstype }}"
 {% endfor %}
-  IgnoreSelected "{{ collectd_plugin_df_ignoreselected }}"
-  ReportByDevice "{{ collectd_plugin_df_reportbydevice }}"
-  ReportInodes "{{ collectd_plugin_df_reportinodes }}"
-  ValuesAbsolute "{{ collectd_plugin_df_valuesabsolute }}"
-  ValuesPercentage "{{ collectd_plugin_df_valuespercentage }}"
+  IgnoreSelected {{ collectd_plugin_df_ignoreselected | string | lower }}
+  ReportByDevice {{ collectd_plugin_df_reportbydevice | string | lower }}
+  ReportInodes {{ collectd_plugin_df_reportinodes | string | lower }}
+{% if collectd_plugin_df_reportreserved is defined %}
+  ReportReserved {{ collectd_plugin_df_reportreserved | string | lower }}
+{% endif %}
+{% if collectd_plugin_df_values_absolute is defined %}
+  ValuesAbsolute {{ collectd_plugin_df_valuesabsolute | string | lower }}"
+{% endif %}
+{% if collectd_plugin_df_valuespercentage is defined %}
+  ValuesPercentage {{ collectd_plugin_df_valuespercentage | string | lower }}"
+{% endif %}
 </Plugin>
