@@ -1,0 +1,26 @@
+{% if collectd_plugin_netlink_interval is not defined %}
+LoadPlugin netlink
+{% else %}
+<LoadPlugin netlink>
+   Interval {{ collectd_plugin_netlink_interval }}
+</LoadPlugin>
+{% endif %}
+
+<Plugin "netlink">
+{% for interface in collectd_plugin_netlink_interfaces %}
+  Interface "{{ interface }}"
+{% endfor %}
+{% for verbose_interface in collectd_plugin_netlink_verboseinterfaces %}
+  VerboseInterface "{{ verbose_interface }}"
+{% endfor %}
+{% for qdisc in collectd_plugin_netlink_qdiscs %}
+  QDisc {{ qdisc }}
+{% endfor %}
+{% for class in collectd_plugin_netlink_classes %}
+  Class {{ class }}
+{% endfor %}
+{% for filter in collectd_plugin_netlink_filters %}
+  Filter {{ filter }}
+{% endfor  %}
+  IgnoreSelected {{ collectd_plugin_netlink_ignoreselected | string | lower }}
+</Plugin>

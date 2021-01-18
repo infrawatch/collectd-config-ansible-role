@@ -27,6 +27,7 @@
         - load
         # - logfile
         - memory
+        - netlink
         - network
         - ntpd
         - numa
