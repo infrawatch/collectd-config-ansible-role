@@ -1,0 +1,17 @@
+---
+collectd_plugin_netlink_interfaces: []
+# collectd_plugin_netlink_interfaces: ["All"]
+collectd_plugin_netlink_verboseinterfaces: []
+collectd_plugin_netlink_qdiscs: []
+# collectd_plugin_netlink_qdiscs:
+#     - '"eth0" "pfifo_fast-1:0"'
+#     - '"ppp0"'
+collectd_plugin_netlink_classes: []
+# collectd_plugin_netlink_classes:
+#     - '"ppp0" "htb-1:10"'
+collectd_plugin_netlink_filters: []
+# collectd_plugin_netlink_filters: ['"ppp0" "u32-1:0"']
+collectd_plugin_netlink_ignoreselected: False
+# collectd_plugin_netlink_ignoreselected: False
+
+
