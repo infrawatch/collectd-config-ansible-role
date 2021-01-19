@@ -1,0 +1,23 @@
+{% if collectd_plugin_mcelog_interval is not defined %}
+LoadPlugin mcelog
+{% else %}
+<LoadPlugin mcelog>
+   Interval {{ collectd_plugin_mcelog_interval }}
+</LoadPlugin>
+{% endif %}
+
+<Plugin "mcelog">
+{% if collectd_plugin_mcelog_mceloglogfile is defined %}
+  McelogLogfile "{{ collectd_plugin_mcelog_mceloglogfile }}"
+{% endif %}
+{% if collectd_plugin_mcelog_memory is defined %}
+  <Memory>
+{% if collectd_plugin_mcelog_memory["mcelogclientsocket"] | default() is defined %}
+    McelogClientSocket "{{ collectd_plugin_mcelog_memory["mcelogclientsocket"] }}"
+{% endif %}
+{% if collectd_plugin_mcelog_memory["persistentnotification"] | default() is defined %}
+    PersistentNotification {{ collectd_plugin_mcelog_memory["persistentnotification"] }}
+{% endif %}
+  </Memory>
+{% endif %}
+</Plugin>
