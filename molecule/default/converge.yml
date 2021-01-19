@@ -12,6 +12,7 @@
           # collectd image doesn't recognise capabilities plugin
           # - capabilities
           - ceph
+          - cgroups
           - connectivity
           - contextswitch
           - cpu

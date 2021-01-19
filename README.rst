@@ -64,6 +64,19 @@ See the collectd `wiki <https://collectd.org/wiki/index.php/Plugin:capabilities>
 collectd_plugin_capabilities_host: localhost
 collectd_plugin_capabilities_port: "9104"
 
+collectd_plugin_cgroups_*
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+These vars are ones passed to the ``cgroups`` plugin.
+See the collectd `config guide <https://collectd.org/documentation/manpages/collectd.conf.5.shtml#plugin_cgroups>`_ for details.
+
+::
+
+  collectd_plugin_cgroups_cgroups: []
+  collectd_plugin_cgroups_cgroups:
+    - libvirt
+
+  collectd_plugin_cgroups_ignoreselected: False
+
 collectd_plugin_dcpmm_*
 ~~~~~~~~~~~~~~~~~~~~~~~
 These vars are ones passed to the ``dcpmm`` plugin.
