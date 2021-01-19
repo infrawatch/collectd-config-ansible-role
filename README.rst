@@ -56,6 +56,16 @@ collectd_plugin_irq_irq:
    - 8
    - 9
 
+collectd_plugin_mdevents_*
+~~~~~~~~~~~~~~~~~~~~~~~~~
+These vars are ones passed to the ``mdevents`` plugin.
+See the collectd `config guide <https://collectd.org/documentation/manpages/collectd.conf.5.shtml#plugin_mdevents>`_ for details.
+
+collectd_plugin_mdevents_event: "DeviceDisappeared Fail DegradedArray"
+collectd_plugin_mdevents_ignore_event: False
+collectd_plugin_mdevents_array: "/dev/md[0-9]"
+collectd_plugin_mdevents_ignore_array: False
+
 collectd_plugin_ovs_stats_*
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
