@@ -1,6 +1,3 @@
-#TODO: Add new value for Host and port
-#TODO: create a loop to parse input and generate the Instance members
-
 {% if plugin_amqp1_interval is not defined %}
 LoadPlugin amqp1
 {% else %}
@@ -10,21 +7,56 @@ LoadPlugin amqp1
 {% endif %}
 
 <Plugin amqp1>
-  <Transport "metrics">
+  <Transport "{{ collectd_plugin_amqp1_transport }}">
     Host "{{ collectd_plugin_amqp1_host }}"
     Port "{{ collectd_plugin_amqp1_port }}"
+{% if collectd_plugin_amqp1_user is defined %}
+    User "{{ collectd_plugin_amqp1_user }}"
+{%- endif -%}
+{% if collectd_plugin_amqp1_password is defined %}
+    Password "{{ collectd_plugin_amqp1_password }}"
+{%- endif -%}
     Address "{{ collectd_plugin_amqp1_address }}"
 {% if collectd_plugin_amqp1_retry_delay is defined %}
     RetryDelay {{ collectd_plugin_amqp1_retry_delay }}
-{% endif %}
-    <Instance "openshift-notify">
-        Format JSON
-        PreSettle false
-        Notify true
+{%- endif -%}
+{% if collectd_plugin_amqp1_send_queue_limit is defined %}
+    SendQueueLimit {{ collectd_plugin_amqp1_send_queue_limit }}
+{%- endif -%}
+{% for instance in collectd_plugin_amqp1_instances %}
+    <Instance "{{ instance.name }}">
+{%- if "format" in instance %}
+       Format {{ instance.format }}
+{%- endif -%}
+{% if "presettle" in instance %}
+       PreSettle {{ instance.presettle | string | lower }}
+{%- endif -%}
+{% if "notify" in instance %}
+       Notify {{ instance.notify | string | lower }}
+{%- endif -%}
+{% if "store_rates" in instance %}
+       StoreRates {{ instance.store_rates | string | lower }}
+{%- endif -%}
+{% if "graphite_prefix" in instance %}
+       GraphitePrefix {{ instance.graphite_prefix }}
+{%- endif -%}
+{% if "graphite_postfix" in instance %}
+       GraphitePostfix {{ instance.graphite_postfix }}
+{%- endif -%}
+{% if "graphite_escape_char" in instance %}
+       GraphiteEscapeChar {{ instance.graphite_escape_char }}
+{%- endif -%}
+{%- if "graphite_separate_instances" in instance -%}
+       GraphiteSeparateInstances {{ instance.graphite_separate_instances | string | lower }}
+{%- endif -%}
+{% if "graphite_always_append_ds" in instance %}
+       GraphiteAlwaysAppendDS {{ instance.graphite_always_append_ds | string | lower }}
+{%- endif -%}
+{% if "graphite_preserve_separator" in instance %}
+       GraphitePreserveSeperator {{ instance.graphite_preserve_separator | string | lower }}
+{%- endif %}
+
     </Instance>
-    <Instance "openshift-telemetry">
-        Format JSON
-        PreSettle false
-    </Instance>
+{% endfor %}
   </Transport>
 </Plugin>

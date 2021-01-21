@@ -17,6 +17,46 @@ If there are no defaults set (e.g. all config options are optional), then the ``
 
 Each set of config options below include some sample values.
 
+collectd_plugin_amqp1_*
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+These vars are ones passed to the ``amqp1`` plugin.
+See the collectd `config guide <https://collectd.org/documentation/manpages/collectd.conf.5.shtml#plugin_amqp1>`_ for details.
+
+::
+
+  collectd_plugin_amqp1_transport: 'metrics'
+  collectd_plugin_amqp1_host: 'localhost'
+  collectd_plugin_amqp1_port: '5672'
+  collectd_plugin_amqp1_user: 'guest'
+  collectd_plugin_amqp1_password: 'guest'
+  collectd_plugin_amqp1_address: 'collectd'
+  collectd_plugin_amqp1_retry_delay: 1
+  collectd_plugin_amqp1_send_queue_limit:
+
+  collectd_plugin_amqp1_instances: []
+  # OR
+  collectd_plugin_amqp1_instances:
+     - name: "openshift-notify"
+       format: JSON
+       presettle: False
+       notify: true
+     - name: "openshift-telemetry"
+       format: JSON
+       presettle: False
+   # OR
+   collectd_plugin_amqp1_instances:
+     - name: metrics
+       format: "Command|JSON|Graphite"
+       presettle: false
+       notify: false
+       store_rates: false
+       graphite_prefix:
+       graphite_postfix:
+       graphite_escape_char: '_'
+       graphite_separate_instances: False
+       graphite_always_append_ds: False
+       graphite_preserve_separator: False
+
 collectd_plugin_capabilities_*
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 These vars are ones passed to the ``capabilities`` plugin.
