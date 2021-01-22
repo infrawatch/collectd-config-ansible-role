@@ -1,0 +1,71 @@
+LoadPlugin write_http
+
+<Plugin "write_http">
+{% for node in collectd_plugin_write_http_nodes %}
+{% if collectd_plugin_write_http_nodes[node].url is defined %}
+  <Node "{{ node }}">
+    URL "{{ collectd_plugin_write_http_nodes[node].url }}"
+{% else %}
+  <URL "{{ node }}">
+{% endif %}
+{% if "user" in collectd_plugin_write_http_nodes[node] %}
+    User "{{ node.user }}"
+{%- endif -%}
+{% if "password" in collectd_plugin_write_http_nodes[node] %}
+    Password "{{ collectd_plugin_write_http_nodes[node].password }}"
+{%- endif -%}
+{% if "verifypeer" in collectd_plugin_write_http_nodes[node] %}
+    VerifyPeer {{ collectd_plugin_write_http_nodes[node].verifypeer | string | lower }}
+{%- endif -%}
+{% if "verifyhost" in collectd_plugin_write_http_nodes[node] %}
+    VerifyHost {{ collectd_plugin_write_http_nodes[node].verifyhost | string | lower }}
+{%- endif -%}
+{% if "cacert" in collectd_plugin_write_http_nodes[node] %}
+    CACert "{{ collectd_plugin_write_http_nodes[node].cacert }}"
+{%- endif -%}
+{% if "capath" in collectd_plugin_write_http_nodes[node] %}
+    CAPath "{{ collectd_plugin_write_http_nodes[node].path }}"
+{%- endif -%}
+{% if "clientkey" in collectd_plugin_write_http_nodes[node] %}
+    ClientKey "{{ collectd_plugin_write_http_nodes[node].clientkey}}"
+{%- endif -%}
+{% if "clientcert" in collectd_plugin_write_http_nodes[node] %}
+    ClientCert "{{ collectd_plugin_write_http_nodes[node].clientcert }}"
+{%- endif -%}
+{% if "clientkeypass" in collectd_plugin_write_http_nodes[node] %}
+    ClientKeyPass "{{ collectd_plugin_write_http_nodes[node].clientkeypass }}"
+{%- endif -%}
+{% if "header" in collectd_plugin_write_http_nodes[node] %}
+    Header "{{ collectd_plugin_write_http_nodes[node].header }}"
+{%- endif -%}
+{% if "ssl_version" in collectd_plugin_write_http_nodes[node] %}
+    SSLVersion "{{ collectd_plugin_write_http_nodes[node].ssl_version }}"
+{%- endif -%}
+{% if "format" in collectd_plugin_write_http_nodes[node] %}
+    Format "{{ collectd_plugin_write_http_nodes[node].format }}"
+{%- endif -%}
+{% if "metrics" in collectd_plugin_write_http_nodes[node] %}
+    Metrics {{ collectd_plugin_write_http_nodes[node].metrics | string | lower }}
+{%- endif -%}
+{% if "notifications" in collectd_plugin_write_http_nodes[node] %}
+    Notifications {{ collectd_plugin_write_http_nodes[node].notifications | string | lower }}
+{%- endif -%}
+{% if "storerates" in collectd_plugin_write_http_nodes[node] %}
+    StoreRates {{ collectd_plugin_write_http_nodes[node].storerates | string | lower }}
+{%- endif -%}
+{% if "buffer_size" in collectd_plugin_write_http_nodes[node] %}
+    BufferSize {{ collectd_plugin_write_http_nodes[node].buffer_size }}
+{%- endif -%}
+{% if "low_speed_limit" in collectd_plugin_write_http_nodes[node] %}
+    LowSpeedLimit {{ collectd_plugin_write_http_nodes[node].low_speed_limit }}
+{%- endif -%}
+{% if "timeout" in collectd_plugin_write_http_nodes[node] %}
+    Timeout {{ collectd_plugin_write_http_nodes[node].timeout }}
+{%- endif %}
+{% if "url" in collectd_plugin_write_http_nodes[node] %}
+  </Node>
+{% else %}
+  </URL>
+{% endif %}
+{% endfor %}
+</Plugin>
