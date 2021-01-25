@@ -1,0 +1,28 @@
+---
+collectd_plugin_write_http_nodes: {}
+#collectd_plugin_write_http_nodes:
+#  example:
+#    url: "http://example.com/collectd-post"
+#    password: "pass"
+#    verifypeer: true|false
+#    verifyhost: true|false
+#    cacert: "/etc/ssl/ca.crt"
+#    capath: "/etc/ssl/certs/"
+#    clientkey: "/etc/ssl/client.pem"
+#    clientcert: "/etc/ssl/client.crt"
+#    clientkeypass: "secret"
+#    header: ["X-Custom-Header: custom_value"]
+#    ssl_version: "SSLv2"|"SSLv3"|"TLSv1"|"TLSv1_0"|"TLSv1_1"|"TLSv1_2"
+#    format: "Command"|"JSON"
+#    metrics: true|false
+#    notifications: false|true
+#    storerates: false|true
+#    buffer_size: 4096
+#    low_speed_limit: 0
+#    timeout: 0
+#
+#collectd_plugin_write_http_nodes:
+#  collectd:
+#    url: 'write_http_server'
+#    metrics: True
+#    header: 'foo'

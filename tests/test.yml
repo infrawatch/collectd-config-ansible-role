@@ -39,3 +39,4 @@
         - unixsock
         - uptime
         # - virt
+        - write_http

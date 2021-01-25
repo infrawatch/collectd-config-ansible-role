@@ -95,6 +95,43 @@ collectd_plugin_processes_collectfiledescriptor: True
 collectd_plugin_processes_collectcontextswitch: True
 collectd_plugin_processes_collectmemorymaps: True
 
+
+collectd_plugins_write_http_*
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+These vars are ones passed to the ``write_http`` plugin
+See the collectd `config guide <https://collectd.org/documentation/manpages/collectd.conf.5.shtml#plugin_write_http>`_ for details.
+
+::
+
+  collectd_plugin_write_http_nodes: {}
+  # OR
+  collectd_plugin_write_http_nodes:
+    example:
+      url: "http://example.com/collectd-post"
+      password: "pass"
+      verifypeer: true|false
+      verifyhost: true|false
+      cacert: "/etc/ssl/ca.crt"
+      capath: "/etc/ssl/certs/"
+      clientkey: "/etc/ssl/client.pem"
+      clientcert: "/etc/ssl/client.crt"
+      clientkeypass: "secret"
+      header: ["X-Custom-Header: custom_value"]
+      ssl_version: "SSLv2"|"SSLv3"|"TLSv1"|"TLSv1_0"|"TLSv1_1"|"TLSv1_2"
+      format: "Command"|"JSON"
+      metrics: true|false
+      notifications: false|true
+      storerates: false|true
+      buffer_size: 4096
+      low_speed_limit: 0
+      timeout: 0
+  # OR
+  collectd_plugin_write_http_nodes:
+    collectd:
+      url: 'write_http_server'
+      metrics: True
+      header: 'foo'
+
 Dependencies
 ------------
 

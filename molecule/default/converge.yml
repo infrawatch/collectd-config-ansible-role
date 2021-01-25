@@ -52,3 +52,4 @@
           - uuid
           - virt
           - vmem
+          - write_http
