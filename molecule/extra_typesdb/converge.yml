@@ -1,0 +1,40 @@
+---
+- name: Converge
+  hosts: all
+  roles:
+    - role: "{{ playbook_dir }}/../../../collectd-config-ansible-role"
+  vars:
+    collectd_conf_output_dir: "/etc/collectd.d"
+    collectd_typesdb_extra:
+      - name: "libpodstats"
+        path: "/etc/collectd.d"
+        types:
+          pod_cpu:
+            - ds_type: 'GAUGE'
+              min: 0
+              max: 100.1
+              ds_name: 'percent'
+            - ds_type: 'DERIVE'
+              min: 0
+              max: 'U'
+              ds_name: 'time'
+          pod_memory:
+            - ds_type: 'GAUGE'
+              min: 0
+              max: 281474976710656
+              ds_name: 'value'
+      - name: 'other_stats'
+        path: "/etc/collectd.d"
+        types:
+          messages:
+            - ds_type: 'GAUGE'
+              min: 0
+              max: 'U'
+              ds_name: 'received'
+            - ds_type: 'GAUGE'
+              min: 0
+              max: 'U'
+              ds_name: 'sent'
+    collectd_plugins:
+      - write_http
+      - cpu
