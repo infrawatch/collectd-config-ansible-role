@@ -96,6 +96,23 @@ collectd_plugin_irq_irq:
    - 8
    - 9
 
+collectd_plugin_mcelog_*
+~~~~~~~~~~~~~~~~~~~~~~~~~
+These vars are ones passed to the ``mcelog`` plugin.
+See the collectd `config guide <https://collectd.org/documentation/manpages/collectd.conf.5.shtml#plugin_mcelog>`_ for details.
+
+::
+  collectd_plugin_mcelog_mceloglogfile: "/var/log/mcelog"
+  collectd_plugin_mcelog_memory:
+    mcelogclientsocket: "/var/run/mcelog-client"
+    persistentnotification: False
+
+.. NOTE::
+
+  The two config options (``collectd_plugin_mcelog_mceloglogfile`` and
+  ``collectd_plugin_mcelog_memory`` are mutually exclusive in collectd.
+  Collectd will complain about this, however this role will not.
+
 collectd_plugin_mdevents_*
 ~~~~~~~~~~~~~~~~~~~~~~~~~
 These vars are ones passed to the ``mdevents`` plugin.

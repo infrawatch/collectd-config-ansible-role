@@ -34,6 +34,7 @@
           - irq
           - load
           - logfile
+          - mcelog
           - memory
           - netlink
           - network
