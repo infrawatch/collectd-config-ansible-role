@@ -19,14 +19,14 @@ rpmbuild -bb --define "upstream_version ${UPSTREAM_VERSION}" --define "version $
 
 if [ -d "/usr/share/ansible/roles/collectd_config" ]
 then
-	echo "Removing existing ansible-collectd-config package..."
-	dnf -y remove ansible-collectd-config
+	echo "Removing existing ansible-role-collectd-config package..."
+	dnf -y remove ansible-role-collectd-config
 fi
 
 if [ -d "/usr/share/ansible/roles/collectd_config" ]
 then
 	echo "Forcibly removing ansible role collectd_config..."
-	rm -rf /usr/share/ansible/roles/collectd_config	
+	rm -rf /usr/share/ansible/roles/collectd_config
 fi
 
 ls -R $HOME/rpmbuild
@@ -34,7 +34,7 @@ ls -R $HOME/rpmbuild
 ls $HOME/rpmbuild/RPMS/noarch/
 
 echo "Installing RPM..."
-dnf install -y $HOME/rpmbuild/RPMS/noarch/ansible-collectd-config-${VERSION}-${RELEASE}.noarch.rpm
+dnf install -y $HOME/rpmbuild/RPMS/noarch/ansible-role-collectd-config-${VERSION}-${RELEASE}.noarch.rpm
 
 if [ ! -d "/usr/share/ansible/roles/collectd_config" ]
 then
@@ -44,4 +44,4 @@ else
 	echo "collectd_config was successfully installed!"
 fi
 
-cp $HOME/rpmbuild/RPMS/noarch/ansible-collectd-config-${VERSION}-${RELEASE}.noarch.rpm /opt/
+cp $HOME/rpmbuild/RPMS/noarch/ansible-role-collectd-config-${VERSION}-${RELEASE}.noarch.rpm /opt/
