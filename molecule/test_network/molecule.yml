@@ -4,7 +4,8 @@ dependency:
   options:
     role-file: molecule/common/requirements.yml
 driver:
-  name: docker
+  name:  ${CONTAINER_BIN:-podman}
+
 platforms:
   - name: collectd-test
     image: quay.io/tripleomaster/openstack-collectd:current-tripleo

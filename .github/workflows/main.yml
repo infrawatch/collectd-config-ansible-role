@@ -11,9 +11,11 @@ jobs:
         scenario:
           - default
           - test_network
+
     env:
       PY_COLORS: '1'
       ANSIBLE_FORCE_COLOR: '1'
+      CONTAINER_BIN: docker
 
     steps:
       - name: Checkout
@@ -37,6 +39,8 @@ jobs:
     runs-on: ubuntu-18.04
     strategy:
       fail-fast: false
+    env:
+      CONTAINER_BIN: docker
     steps:
       - name: Checkout
         uses: actions/checkout@v2

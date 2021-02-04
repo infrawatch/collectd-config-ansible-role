@@ -34,21 +34,28 @@
     - name: "Check for metrics received by the collectd server"
       command:
         collectdctl -s /var/run/collectd-socket listval
-      retries: 3
+      retries: 5
       delay: 5
       register: plugins
       until: plugins.stdout_lines | length > 0
       failed_when: ( plugins.stderr | length > 0 ) or ( plugins.rc != 0 )
 
-    - name: "Check that collectd-test is reporting network stats (collectd_plugin_network_reportstats: True)"
+    - name: "Make sure collectd-server is getting metrics"
       assert:
-        that: "{{ ( plugins.stdout_lines | map('regex_findall', '^collectd-test/network/.*$') | reject('equalto', []) | list | length ) > 0 }}"
-        fail_msg: "The network plugin is not reporting stats."
-        success_msg: "Stats received from the network plugin."
+        that: "{{ plugins.stdout | length > 0 }}"
+        success_msg: "collectd-server is receiving metrics!"
+        fail_msg: "collectd-server is not receiving metrics."
+
+    - name: "Check that collectd-test is reporting network stats (collectd_plugin_network_reportstats: true)"
+      assert:
+        that: "{{ ( plugins.stdout_lines | map('regex_findall', '^collectd-test/network/.*$') | reject('equalto', []) | length ) > 0 }}"
+        fail_msg: "The network plugin on collectd-test is not reporting stats."
+        success_msg: "Stats received from the network plugin on collectd-test."
+      ignore_errors: true
 
 - hosts: localhost
   vars:
-    container_bin: docker
+    container_bin: "{{ lookup('env', 'CONTAINER_BIN') | default('podman', True) }}"
   tasks:
     - name: "Run the collectd test from STF functional-tests"
       include_role:
@@ -62,3 +69,4 @@
         tasks_from: test_collectd
       vars:
         collectd_container_name: 'collectd-server'
+
