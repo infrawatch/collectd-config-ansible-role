@@ -9,6 +9,13 @@ AutoLoadPlugin false
 
 TypesDB "/usr/share/collectd/types.db"{% if "libpodstats" in collectd_plugins %} "/usr/share/collectd/types.db.libpodstats"{% endif %}
 
+{% if collectd_write_queue_limit_high is defined %}
+WriteQueueLimitHigh {{ collectd_write_queue_limit_high }}
+{% endif %}
+{% if collectd_write_queue_limit_low is defined %}
+WriteQueueLimitLow {{ collectd_write_queue_limit_low }}
+{% endif %}
+
 Interval "{{ collectd_interval }}"
 Timeout 2
 ReadThreads 5
