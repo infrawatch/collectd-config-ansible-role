@@ -1,5 +1,8 @@
 ---
 # Defaults for ethstat plugin
 collectd_plugin_ethstat_map: []
+# collectd_plugin_ethstat_map:
+#     - '"rx_csum_offload_errors" "if_rx_errors" "checksum_offload"'
+#     - '"multicast" "if_multicast"'
 # collectd_plugin_ethstat_interface: "eth0"
 # collectd_plugin_ethstat_mappedonly: False

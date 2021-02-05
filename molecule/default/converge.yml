@@ -9,7 +9,7 @@
           # There are some undefined vars in the template that are causing
           # rendering to fail, these will be updated
           - amqp1
-          # collectd image doesn't recognise capabilities plugin
+          # collectd image doesn't have capabilities plugin
           # - capabilities
           - ceph
           - connectivity
@@ -18,6 +18,8 @@
           - cpufreq
           - cpusleep
           - csv
+          # collectd image doesn't have dcpmm plugin
+          # - dcpmm
           - df
           - disk
           - dns
@@ -35,10 +37,11 @@
           - load
           - logfile
           - mcelog
+          # collectd image doesn't have mdevents plugin
+          # - mdevents
           - memory
           - netlink
           - network
-          - numa
           - ntpd
           - numa
           - ovs_stats

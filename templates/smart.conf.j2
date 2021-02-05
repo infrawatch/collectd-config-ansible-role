@@ -18,6 +18,6 @@ LoadPlugin smart
   IgnoreSleepMode {{ collectd_plugin_smart_ignoresleepmode | string | lower }}
 {% endif %}
 {% if collectd_plugin_smart_useserial is defined %}
-  UseSerial "{{ collectd_plugin_smart_useserial }}"
+  UseSerial {{ collectd_plugin_smart_useserial | string | lower }}
 {% endif %}
 </Plugin>

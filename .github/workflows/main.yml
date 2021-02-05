@@ -11,9 +11,11 @@ jobs:
         scenario:
           - default
           - test_network
+
     env:
       PY_COLORS: '1'
       ANSIBLE_FORCE_COLOR: '1'
+      CONTAINER_BIN: docker
 
     steps:
       - name: Checkout
@@ -25,7 +27,7 @@ jobs:
           python-version: 3.6
       - name: Pre-pull container
         run: |
-          sudo docker pull docker.io/tripleomaster/centos-binary-collectd:current-tripleo-rdo
+          sudo docker pull quay.io/tripleomaster/openstack-collectd:current-tripleo
       - name: "Molecule"
         uses: gofrolist/molecule-action@v2
         with:
@@ -37,12 +39,21 @@ jobs:
     runs-on: ubuntu-18.04
     strategy:
       fail-fast: false
+    env:
+      CONTAINER_BIN: docker
     steps:
       - name: Checkout
         uses: actions/checkout@v2
         with:
           path: "${{ github.repository }}"
-      - name: Lint Ansible Playbook
-        uses: ansible/ansible-lint-action@master
+      - uses: actions/setup-python@v2
         with:
-          targets: "."
+          python-version: 3.6
+      - name: Pre-pull container
+        run: |
+          sudo docker pull quay.io/tripleomaster/openstack-collectd:current-tripleo
+      - name: "Molecule"
+        uses: gofrolist/molecule-action@v2
+        with:
+          molecule_command: lint
+          molecule_working_dir: ${{ github.repository }}

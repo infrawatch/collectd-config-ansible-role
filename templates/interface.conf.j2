@@ -10,6 +10,8 @@ LoadPlugin interface
 {% for interface in collectd_plugin_interface_interfaces %}
   Interface "{{ interface }}"
 {% endfor %}
-  IgnoreSelected {{ collectd_plugin_interface_ignoreselected }}
-  ReportInactive {{ collectd_plugin_interface_reportinactive }}
+  IgnoreSelected {{ collectd_plugin_interface_ignoreselected | string | lower }}
+{% if collectd_plugin_interface_reportinactive is defined %}
+  ReportInactive {{ collectd_plugin_interface_reportinactive | string | lower }}
+{% endif %}
 </Plugin>

@@ -4,10 +4,11 @@ dependency:
   options:
     role-file: molecule/common/requirements.yml
 driver:
-  name: docker
+  name:  ${CONTAINER_BIN:-podman}
+
 platforms:
   - name: collectd-test
-    image: docker.io/tripleomaster/centos-binary-collectd:current-tripleo-rdo
+    image: quay.io/tripleomaster/openstack-collectd:current-tripleo
     docker_networks:
       - name: foo
         ipam_config:
@@ -17,7 +18,7 @@ platforms:
       - name: foo
         ipv4_address: "192.168.42.1"
   - name: collectd-server
-    image: docker.io/tripleomaster/centos-binary-collectd:current-tripleo-rdo
+    image: quay.io/tripleomaster/openstack-collectd:current-tripleo
     privileged: true
     networks:
       - name: foo

@@ -4,30 +4,27 @@ dependency:
   options:
     role-file: molecule/common/requirements.yml
 driver:
-  name: docker
+  name:  ${CONTAINER_BIN:-podman}
+
 platforms:
   - name: collectd-test
-    image: docker.io/tripleomaster/centos-binary-collectd:current-tripleo-rdo
+    image: quay.io/tripleomaster/openstack-collectd:current-tripleo
 provisioner:
   name: ansible
   log: true
 verifier:
   name: ansible
 lint: |
-  yamllint .
-  ansible-lint .
+  ansible-lint **/*.yml
 
 scenario:
   name: default
   test_sequence:
     - destroy
     - dependency
-    # - syntax
     - create
     - prepare
     - converge
-    # - idempotence
-    - side_effect
     - verify
     - destroy
     - cleanup

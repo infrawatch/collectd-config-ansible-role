@@ -4,4 +4,4 @@
 collectd_plugin_smart_disk: []
 # collectd_plugin_smart_ignoreselected: False
 # collectd_plugin_smart_ignoresleepmode: False
-# collectd_plugin_smart_useserial: nil
+# collectd_plugin_smart_useserial: False

@@ -8,21 +8,21 @@ LoadPlugin processes
 
 <Plugin processes>
 {% if collectd_plugin_processes_collectfiledescriptor is defined %}
-    CollectFileDescriptor {{ collectd_plugin_processes_collectfiledescriptor }}
+    CollectFileDescriptor {{ collectd_plugin_processes_collectfiledescriptor | string | lower }}
 {% endif %}
 {% if collectd_plugin_processes_collectcontextswitch is defined %}
-    CollectContextSwitch {{ collectd_plugin_processes_collectcontextswitch }}
+    CollectContextSwitch {{ collectd_plugin_processes_collectcontextswitch | string | lower }}
 {% endif %}
 {% if collectd_plugin_processes_collectmemorymaps is defined %}
-    CollectMemoryMaps {{ collectd_plugin_processes_collectmemorymaps }}
+    CollectMemoryMaps {{ collectd_plugin_processes_collectmemorymaps | string | lower }}
 {% endif %}
 {% for process in collectd_plugin_processes_process %}
     <Process "{{ process.name }}" >
 {% if process.collectfiledescriptor is defined %}
-      CollectFileDescriptor {{ process.collectfiledescriptor }}
+      CollectFileDescriptor {{ process.collectfiledescriptor | string | lower }}
 {% endif %}
 {% if process.collectcontextswitch is defined %}
-      CollectContextSwitch {{ process.collectcontextswitch }}
+      CollectContextSwitch {{ process.collectcontextswitch | string | lower }}
 {% endif %}
     </Process>
 {% endfor %}
@@ -30,10 +30,10 @@ LoadPlugin processes
 {% for processmatch in collectd_plugin_processes_processmatch %}
   <ProcessMatch "{{ processmatch.name }}" "{{ processmatch.regex }}">
 {% if processmatch.collectfiledescriptor is defined %}
-      CollectFileDescriptor {{ processmatch.collectfiledescriptor }}
+      CollectFileDescriptor {{ processmatch.collectfiledescriptor | string | lower }}
 {% endif %}
 {% if processmatch.collectcontextswitch is defined %}
-      CollectContextSwitch {{ processmatch.collectcontextswitch }}
+      CollectContextSwitch {{ processmatch.collectcontextswitch | string | lower }}
 {% endif %}
   </ProcessMatch>
 {% endfor %}

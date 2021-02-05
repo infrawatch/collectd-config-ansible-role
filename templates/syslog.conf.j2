@@ -1,4 +1,3 @@
-# This file was created using the template generator at https://github.com/infrawatch/osp-observability-ansible/tree/plugin_templates_generate/tools/
 {% if collectd_plugin_syslog_interval is not defined %}
 LoadPlugin syslog
 {% else %}
@@ -9,9 +8,9 @@ LoadPlugin syslog
 
 <Plugin "syslog">
 {% if collectd_plugin_syslog_loglevel is defined %}
-  LogLevel "{{ collectd_plugin_syslog_loglevel }}"
+  LogLevel {{ collectd_plugin_syslog_loglevel }}
 {% endif %}
 {% if collectd_plugin_syslog_notifylevel is defined %}
-  NotifyLevel "{{ collectd_plugin_syslog_notifylevel }}"
+  NotifyLevel {{ collectd_plugin_syslog_notifylevel }}
 {% endif %}
 </Plugin>

@@ -36,7 +36,7 @@
 
 - hosts: localhost
   vars:
-    container_bin: docker
+    container_bin: "{{ lookup('env', 'CONTAINER_BIN') | default('podman', True) }}"
   tasks:
     - name: "Run the collectd test from STF functional-tests"
       include_role:

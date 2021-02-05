@@ -1,10 +1,5 @@
 ---
 # defaults for configuring the ipmi plugin
-# TODO: Determine if there are reasonable defaults for these.
-# if not, then add an if defined block to the templates
-collectd_plugin_ipmi_username: ""
-collectd_plugin_ipmi_password: ""
-
 collectd_plugin_ipmi_sensors: []
 collectd_plugin_ipmi_ignoreselected: false
 collectd_plugin_ipmi_notifysensoradd: false
