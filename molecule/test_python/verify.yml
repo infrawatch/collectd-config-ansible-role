@@ -1,0 +1,45 @@
+---
+- name: Verify
+  hosts: collectd-test
+  tasks:
+    - name: "Check for python.conf"
+      find:
+        paths: /etc/collectd.d
+        patterns: python.conf
+      register: output
+      failed_when: output.files| length == 0
+
+    - command: |
+        cat /etc/collectd.d/python.conf
+      register: output
+
+    - name: "Check that LogTraces and Interactive are set"
+      assert:
+        that:
+          - '"LogTraces true" in output.stdout'
+          - '"Interactive false" in output.stdout'
+
+    - name: "Check config for collectd_connect_time module"
+      assert:
+        that:
+          - '"Import \"collectd_connect_time\"" in output.stdout'
+          - '"<Module \"collectd_connect_time\">" in output.stdout'
+
+    - name: "Check config for SQLAlchemy"
+      assert:
+        that:
+          - '"Import \"sqlalchemy_collectd.server.plugin\"" in output.stdout'
+          - '"<Module \"sqlalchemy_collectd.server.plugin\">" in output.stdout'
+          - '"listen \"0.0.0.0\" 25827" in output.stdout'
+          - '"loglevel \"info\"" in output.stdout'
+
+    - name: "Check that values are rendered correctly"
+      assert:
+        that:
+          - '"  <Module \"collectd_sample_module\">" in output.stdout'
+          - '"    list 1 2 3 4" in output.stdout'
+          - '"    bool true" in output.stdout'
+          - '"    number 12345" in output.stdout'
+          - '"    string \"abcde\"" in output.stdout'
+
+# - import_playbook: ../common/verify.yml

@@ -13,6 +13,7 @@ jobs:
           - extra_typesdb
           - test_exec
           - test_network
+          - test_python
     env:
       PY_COLORS: '1'
       ANSIBLE_FORCE_COLOR: '1'
