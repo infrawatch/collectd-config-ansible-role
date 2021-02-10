@@ -9,6 +9,9 @@ templates_generate_to_disk: true
 # collectd_hostname: 'localhost'
 collectd_interval: 120
 
+# collectd_write_queue_limit_high
+# collectd_write_queue_limit_low
+
 # TODO: Move collectd_default_plugins and collectd_extra_plugins to OoO role
 # Here, there should be a list of enabled plugins only i.e.
 collectd_plugins: []
