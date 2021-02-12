@@ -8,9 +8,10 @@ LoadPlugin exec
 
 <Plugin "exec">
 {% for exec in collectd_plugin_exec_exec %}
-  Exec "{{ exec.user }}{% if exec.group is defined %}:{{ exec.group }}{% endif %}" "{{ exec.exec }} {{ exec.args | default([]) | join(" ") }}"
+   Exec "{{ exec.user }}{% if exec.group is defined %}:{{ exec.group }}{% endif %}" "{{ [ exec.exec ] | union(exec.args|default([])) | join(" ") }}"
 {% endfor %}
 {% for exec in collectd_plugin_exec_notification %}
-  NotificationExec "{{ exec.user }}{% if exec.group is defined %}:{{ exec.group }}{% endif %}" "{{ exec.notification_exec }} {{  exec.args | default([]) | join(" ") }}"
+  NotificationExec "{{ exec.user }}{% if exec.group is defined %}:{{ exec.group }}{% endif %}" "{{ [exec.notification_exec] | union(exec.args | default([])) | join(" ") }}"
 {% endfor %}
 </Plugin>
+

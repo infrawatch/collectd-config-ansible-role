@@ -10,6 +10,7 @@ jobs:
       matrix:
         scenario:
           - default
+          - test_exec
           - test_network
 
     env:
