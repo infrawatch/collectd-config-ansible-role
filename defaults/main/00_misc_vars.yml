@@ -28,3 +28,4 @@ collectd_recurse: true
 collectd_minimum_version: true
 
 collectd_conf_output_dir: "/etc/collectd.conf.d/"
+collectd_typesdb_extra: []

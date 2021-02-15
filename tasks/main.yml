@@ -29,6 +29,17 @@
       dest: "{{ collectd_conf_output_dir }}/{{ item }}.conf"
       mode: 0644
     loop: "{{ collectd_plugins }}"
+
+  - name: "Create new typesdb files"
+    when: collectd_typesdb_extra is defined
+    template:
+      src: types.db.j2
+      dest: "{{ item.path }}/types.db.{{ item.name }}"
+      mode: 0644
+    vars:
+      types: "{{ item.types }}"
+    loop: "{{ collectd_typesdb_extra }}"
+
   when: templates_generate_to_disk
 
 - block:
