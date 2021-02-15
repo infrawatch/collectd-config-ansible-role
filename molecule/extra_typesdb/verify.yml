@@ -1,0 +1,52 @@
+---
+- name: Verify
+  hosts: collectd-test
+  tasks:
+    - name: Check for files in conf output dir
+      find:
+        paths: /etc/collectd.d
+        patterns: '*.conf'
+      register: output
+      failed_when: output.files|length == 0
+
+    - name: "Check for collectd.conf"
+      find:
+        paths: /etc/
+        patterns: collectd.conf
+      register: conf
+      failed_when: conf.files|length != 1
+    - debug:
+        var: conf.files | length
+
+    - name: "Check that the TypesDB entries were added to collectd.conf"
+      slurp:
+        src: /etc/collectd.conf
+      register: conf
+      failed_when:
+        - not 'TypesDB \"/etc/collectd.d/types.db.libpodstats\"\n' in conf.content | b64decode
+        - not 'TypesDB \"/etc/collectd.d/types.db.other_stats\"\n' in conf.content | b64decode
+
+    - name: "Make sure that custom types.db.{{ item }} was created"
+      stat:
+        path: "/etc/collectd.d/types.db.{{ item }}"
+      register: typesdb_file
+      failed_when:
+        - not typesdb_file.stat.exists
+      with_items:
+        - "libpodstats"
+        - "other_stats"
+
+    - name: "Check that the types.db files are in the right format"
+      slurp:
+        src: /etc/collectd.d/types.db.libpodstats
+      register: libpodstats
+      failed_when:
+        - not "pod_cpu    percent:GAUGE:0:100.1, time:DERIVE:0:U" in libpodstats.content | b64decode
+        - not "\npod_memory value:GAUGE:0:281474976710656" in libpodstats.content | b64decode
+
+    - name: "Check that the types.db files are in the right format"
+      slurp:
+        src: /etc/collectd.d/types.db.other_stats
+      register: other_stats
+      failed_when:
+        - not "messages received:GAUGE:0:U, sent:GAUGE:0:U" in other_stats.content | b64decode
