@@ -1,0 +1,35 @@
+---
+- name: Verify
+  hosts: collectd-test
+  tasks:
+    - name: Check for files in conf output dir
+      find:
+        paths: /etc/collectd.d
+        patterns: '*.conf'
+      register: output
+      failed_when: output.files|length == 0
+
+    - name: "Check for collectd.conf"
+      find:
+        paths: /etc/
+        patterns: collectd.conf
+      register: conf
+      failed_when: conf.files|length != 1
+
+    - name: "Check for exec.conf"
+      stat:
+        path: /etc/collectd.d/exec.conf
+      register: exec_conf
+      failed_when:
+        - not exec_conf.stat.exists
+
+    - name: "Get contents of exec.conf"
+      command: |
+        cat /etc/collectd.d/exec.conf
+      changed_when: false
+      register: exec_conf_contents
+      failed_when:
+        - '"Exec \"collectd:collectd\" \"my-prog arg0 arg1\"" not in exec_conf_contents.stdout'
+        - '"Exec \"other:other\" \"prog2\"" not in exec_conf_contents.stdout'
+        - '"Notify \"collectd:collectd\" \"my-notifier arg0 arg1\"" not in exec_conf_contents.stdout'
+        - '"Notify \"foo:bar\" \"other-notifier\"" not in exec_conf_contents.stdout'

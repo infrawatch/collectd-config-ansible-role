@@ -11,6 +11,7 @@ jobs:
         scenario:
           - default
           - extra_typesdb
+          - test_exec
           - test_network
     env:
       PY_COLORS: '1'
