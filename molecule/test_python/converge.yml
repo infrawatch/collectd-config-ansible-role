@@ -1,0 +1,35 @@
+---
+- name: Converge
+  hosts: all
+  roles:
+    - role: "{{ playbook_dir }}/../../../collectd-config-ansible-role"
+  vars:
+        collectd_conf_output_dir: "/etc/collectd.d"
+        collectd_plugins:
+          - cpu
+          - python
+          - unixsock
+        collectd_plugin_python_logtraces: true
+        collectd_plugin_python_interactive: false
+        collectd_plugin_python_modules:
+          collectd_connect_time:
+            config:
+              target: 'google.de'
+          collectd_sqlalchemy:
+            module_import: "sqlalchemy_collectd.server.plugin"
+            config:
+              listen: ["0.0.0.0", 25827]
+              loglevel: info
+          collectd_rabbitmq_monitoring:
+            config:
+              host: "rabbithost"
+              port: 1234
+              username: "rabbit"
+              password: "rabbit"
+          collectd_sample_module:
+            config:
+              list: [1, 2, 3, 4]
+              bool: true
+              number: 12345
+              string: "abcde"
+

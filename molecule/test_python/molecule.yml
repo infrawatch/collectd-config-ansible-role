@@ -5,22 +5,16 @@ dependency:
     role-file: molecule/common/requirements.yml
 driver:
   name:  ${CONTAINER_BIN:-podman}
-
 platforms:
   - name: collectd-test
     image: quay.io/tripleomaster/openstack-collectd:current-tripleo
 provisioner:
   name: ansible
   log: true
-  playbooks:
-    verify: ../common/verify.yml
 verifier:
   name: ansible
-lint: |
-  ansible-lint **/*.yml
 
 scenario:
-  name: default
   test_sequence:
     - destroy
     - dependency

@@ -1,0 +1,10 @@
+---
+- name: Prepare
+  hosts: collectd-test
+  tasks:
+    - name: "Install collectd plugin for testing"
+      pip:
+        name:
+          - collectd-connect-time
+        state: present
+
