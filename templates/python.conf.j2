@@ -42,13 +42,13 @@
   <Module "{{ plugin }}">
 {% endif %}
 {% for key, value in collectd_plugin_python_modules[plugin].config.items() %}
-{% if value is boolean %}
+{% if value|string|lower == value|bool|string|lower %}
     {{ key }} {{ value | string | lower }}
 {% elif value is number %}
     {{ key }} {{ value }}
 {% elif value is iterable and value is not string %}
 {# Render arrays as key "value1" "value2" true 22 #}
-    {{ key }}{% for v in value %} {% if v is boolean %}{{ v | string | lower }}{% elif v is number %}{{ v }}{% else %}"{{ v }}"{% endif %}
+    {{ key }}{% for v in value %} {% if v|string|lower == v|bool|string|lower %}{{ v | string | lower }}{% elif v is number %}{{ v }}{% else %}"{{ v }}"{% endif %}
 {% endfor %}
 
 {% else %}
