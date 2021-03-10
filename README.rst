@@ -116,6 +116,19 @@ See the collectd `wiki <https://collectd.org/wiki/index.php/Plugin:csv>`_ for de
   collectd_plugin_csv_datadir: /var/log/collectd/csv/
   collectd_plugin_csv_storerates: false
 
+collectd_plugin_cgroups_*
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+These vars are ones passed to the ``cgroups`` plugin.
+See the collectd `config guide <https://collectd.org/documentation/manpages/collectd.conf.5.shtml#plugin_cgroups>`_ for details.
+
+::
+
+  collectd_plugin_cgroups_cgroups: []
+  collectd_plugin_cgroups_cgroups:
+    - libvirt
+
+  collectd_plugin_cgroups_ignoreselected: False
+
 collectd_plugin_dcpmm_*
 ~~~~~~~~~~~~~~~~~~~~~~~
 These vars are ones passed to the ``dcpmm`` plugin.

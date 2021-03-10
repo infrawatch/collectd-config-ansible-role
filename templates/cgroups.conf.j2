@@ -1,0 +1,14 @@
+{% if collectd_plugin_cgroups_interval is not defined %}
+LoadPlugin cgroups
+{% else %}
+<LoadPlugin cgroups>
+   Interval {{ collectd_plugin_cgroups_interval }}
+</LoadPlugin>
+{% endif %}
+
+<Plugin "cgroups">
+{% for cgroup in collectd_plugin_cgroups_cgroups %}
+  CGroup "{{ cgroup }}"
+{% endfor %}
+  IgnoreSelected {{ collectd_plugin_cgroups_ignoreselected }}
+</Plugin>

@@ -1,0 +1,3 @@
+---
+collectd_plugin_cgroups_cgroups: []
+collectd_plugin_cgroups_ignoreselected: False

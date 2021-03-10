@@ -8,6 +8,7 @@
         - amqp1
         # - ceph
         - capabilities
+        - cgroups
         - connectivity
         - contextswitch
         - cpu
