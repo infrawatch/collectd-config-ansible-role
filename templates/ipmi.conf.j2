@@ -1,4 +1,10 @@
+{% if collectd_plugin_ipmi_interval is not defined %}
 LoadPlugin ipmi
+{% else %}
+<LoadPlugin ipmi>
+   Interval {{ collectd_plugin_ipmi_interval }}
+</LoadPlugin>
+{% endif %}
 
 <Plugin ipmi>
   {% for sensor in collectd_plugin_ipmi_sensors %}

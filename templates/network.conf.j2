@@ -2,7 +2,6 @@ LoadPlugin network
 
 {# TODO: see if multiple servers are supported #}
 <Plugin "network">
-
 {% if collectd_plugin_network_timetolive is defined %}
    TimeToLive {{ collectd_plugin_network_timetolive }}
 {% endif %}
@@ -13,9 +12,8 @@ LoadPlugin network
    Forward {{ collectd_plugin_network_forward }}
 {% endif %}
 {% if collectd_plugin_network_reportstats is defined %}
-   ReportStats {{ collectd_plugin_network_reportstats }}
+   ReportStats "{{ collectd_plugin_network_reportstats | string | lower }}"
 {% endif %}
-
 {% for server in collectd_plugin_network_server %}
    <Server "{{ server.name }}"{% if server.port is defined %} "{{ server.port }}"{% endif %}>
 {% if server.securitylevel is defined %}

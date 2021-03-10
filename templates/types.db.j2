@@ -1,0 +1,4 @@
+{% for type in types %}
+{{ type }}{% for t in types[type]%} {{ [ t.ds_name, t.ds_type, t.min, t.max ] | join(":") }},{% endfor %}
+
+{% endfor %}

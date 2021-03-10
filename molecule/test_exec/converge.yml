@@ -1,0 +1,26 @@
+---
+- name: Converge
+  hosts: all
+  roles:
+    - role: "{{ playbook_dir }}/../../../collectd-config-ansible-role"
+  vars:
+      collectd_conf_output_dir: "/etc/collectd.d"
+      collectd_plugins:
+        - exec
+      collectd_plugin_exec_exec:
+        - user: collectd
+          group: collectd
+          exec: "my-prog"
+          args: ["arg0", "arg1"]
+        - user: "other"
+          group: "other"
+          exec: "prog2"
+      collectd_plugin_exec_notification:
+        - user: collectd
+          group: collectd
+          notification_exec: "my-notifier"
+          args: ["arg0", "arg1"]
+        - user: foo
+          group: bar
+          notification_exec: "other-notifier"
+

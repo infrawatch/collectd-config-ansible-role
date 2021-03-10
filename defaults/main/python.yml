@@ -1,0 +1,7 @@
+---
+collectd_plugin_python_globals: true
+collectd_plugin_python_interactive: false
+collectd_plugin_python_logtraces: false
+collectd_plugin_python_modulepaths: []
+collectd_plugin_python_modules: []
+

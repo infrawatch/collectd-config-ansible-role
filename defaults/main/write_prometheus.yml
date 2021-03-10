@@ -1,1 +1,3 @@
+---
 collectd_plugin_write_prometheus_port: 9103
+# collectd_plugin_write_prometheus_stalenessdelta: 300

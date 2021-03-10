@@ -1,7 +1,7 @@
 ---
 # defaults for ceph plugin config
 
-collectd_plugin_ceph_daemon: {}
+collectd_plugin_ceph_daemon: []
 #    - name: "osd.0"
 #      socketpath: "/var/run/ceph/ceph-osd.0.asok"
 #    - name: "osd.1"
