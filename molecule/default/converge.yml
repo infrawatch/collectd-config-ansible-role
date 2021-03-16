@@ -58,3 +58,4 @@
           - virt
           - vmem
           - write_http
+          - write_kafka
