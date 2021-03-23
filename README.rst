@@ -435,7 +435,7 @@ See the collectd `config guide <https://collectd.org/documentation/manpages/coll
 collectd_plugin_write_kafka_*
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-hese vars are ones passed to the ``write_kafka`` plugin.
+These vars are ones passed to the ``write_kafka`` plugin.
 See the collectd `config guide <https://collectd.org/documentation/manpages/collectd.conf.5.shtml#plugin_write_kafka>`_ for details.
 
 ::
