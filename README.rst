@@ -432,6 +432,27 @@ See the collectd `config guide <https://collectd.org/documentation/manpages/coll
       metrics: True
       header: 'foo'
 
+collectd_plugin_write_kafka_*
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+These vars are ones passed to the ``write_kafka`` plugin.
+See the collectd `config guide <https://collectd.org/documentation/manpages/collectd.conf.5.shtml#plugin_write_kafka>`_ for details.
+
+::
+
+  collectd_plugin_write_kafka_kafka_hosts: ["localhost:9092"]
+  # OR
+  collectd_plugin_write_kafka_kafka_hosts:
+    - "localhost:9092"
+    - "otherhost:9093"
+  collectd_plugin_write_kafka_properties: {}
+  collectd_plugin_write_kafka_topics: {}
+  # OR
+  collectd_plugin_write_kafka_topics:
+    collectd:
+      format: json
+  collectd_plugin_write_kafka_meta: {}
+
 collectd_plugin_write_prometheus_*
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 These vars are ones passed to the ``write_prometheus`` plugin.

@@ -22,12 +22,16 @@
       src: collectd.conf.j2
       dest: "{{ collectd_conf_output_dir }}/../collectd.conf"
       mode: 0644
+      lstrip_blocks: true
+      trim_blocks: true
 
   - name: "Create plugin config files in {{ collectd_conf_output_dir }}"
     template:
       src: "{{ item }}.conf.j2"
       dest: "{{ collectd_conf_output_dir }}/{{ item }}.conf"
       mode: 0644
+      lstrip_blocks: true
+      trim_blocks: true
     loop: "{{ collectd_plugins }}"
 
   - name: "Create new typesdb files"
@@ -36,6 +40,8 @@
       src: types.db.j2
       dest: "{{ item.path }}/types.db.{{ item.name }}"
       mode: 0644
+      lstrip_blocks: true
+      trim_blocks: true
     vars:
       types: "{{ item.types }}"
     loop: "{{ collectd_typesdb_extra }}"

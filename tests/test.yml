@@ -42,3 +42,4 @@
         - uptime
         # - virt
         - write_http
+        - write_kafka

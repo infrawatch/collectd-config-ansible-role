@@ -1,0 +1,11 @@
+---
+collectd_plugin_write_kafka_kafka_hosts: ["localhost:9092"]
+#collectd_plugin_write_kafka_kafka_hosts:
+#  - "localhost:9092"
+#  - "otherhost:9093"
+collectd_plugin_write_kafka_properties: {}
+collectd_plugin_write_kafka_topics: {}
+#collectd_plugin_write_kafka_topics:
+#  collectd:
+#    format: JSON
+collectd_plugin_write_kafka_meta: {}

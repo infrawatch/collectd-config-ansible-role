@@ -1,0 +1,21 @@
+LoadPlugin write_kafka
+
+<Plugin "write_kafka">
+  Property "metadata.broker.list" "{{ collectd_plugin_write_kafka_kafka_hosts | join(',') }}"
+  {% for property in collectd_plugin_write_kafka_properties %}
+  Property "{{ property }}" "{{ collectd_plugin_write_kafka_properties[property] }}"
+  {% endfor %}
+  {% for topic in collectd_plugin_write_kafka_topics %}
+  <Topic "{{ topic }}">
+    {% if "format" in collectd_plugin_write_kafka_topics[topic] %}
+    Format {{ collectd_plugin_write_kafka_topics[topic].format }}
+    {% endif %}
+    {% if "store_rates" in collectd_plugin_write_kafka_topics[topic] %}
+    StoreRates {{ collectd_plugin_write_kafka_topics[topic].store_rates }}
+    {% endif %}
+  </Topic>
+{% endfor %}
+  {% for meta in collectd_plugin_write_kafka_meta %}
+  Meta "{{ meta }}" "{{ collectd_plugin_write_kafka_meta[meta] }}"
+  {% endfor %}
+</Plugin>
