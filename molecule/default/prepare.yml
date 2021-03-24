@@ -1,0 +1,10 @@
+---
+- import_playbook: ../common/prepare.yml
+
+- name: Prepare
+  hosts: all
+  tasks:
+    - name: "Install extra packages for plugins not included in the image"
+      package:
+        name:
+          - collectd-dpdk_telemetry

@@ -23,6 +23,7 @@
           # - dcpmm
           - df
           - disk
+          - dpdk_telemetry
           - dns
           - ethstat
           - exec
