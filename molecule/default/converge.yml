@@ -33,8 +33,7 @@
           - intel_rdt
           - interface
           - ipc
-          # The rendered conf file is not syntactically correct yet
-          # - ipmi
+          - ipmi
           - irq
           - load
           - logfile

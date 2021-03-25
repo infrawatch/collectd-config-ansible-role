@@ -22,8 +22,7 @@
         - intel_rdt
         - interface
         - ipc
-        # TODO: reenable this when there are reasonable defaults or the template has been updated
-        # - ipmi
+        - ipmi
         - irq
         - load
         # - logfile
