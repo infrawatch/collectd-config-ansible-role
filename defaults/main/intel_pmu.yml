@@ -1,8 +1,11 @@
 ---
 # Defaults for intel_pmu plugin
-collectd_plugin_intelpmu_reporthardwarecacheevents: true
-collectd_plugin_intelpmu_reportkernelpmuevents: true
-collectd_plugin_intelpmu_reportsoftwareevents: true
-# collectd_plugin_intelpmu_dispatchmultipmu: false
-# collectd_plugin_intelpmu_cores: ["1", "2", "3-4" ]
-# collectd_plugin_intelpmu_hardwareevents: ["L2_RQSTS.CODE_RD_HIT,L2_RQSTS.CODE_RD_MISS", "L2_RQSTS.ALL_CODE_RD"]
+collectd_plugin_intel_pmu_report_hardware_cache_events: true
+collectd_plugin_intel_pmu_report_kernel_pmu_events: true
+collectd_plugin_intel_pmu_report_software_events: true
+# collectd_plugin_intel_pmu_dispatch_multi_pmu: false
+collectd_plugin_intel_pmu_cores: []
+# collectd_plugin_intel_pmu_cores: ["1", "2", "3-4", "[12-15]"]
+# collectd_plugin_intel_pmu_event_list: "/path/to/event/list.json"
+collectd_plugin_intel_pmu_hardware_events: []
+# collectd_plugin_intel_pmu_hardware_events: ["L2_RQSTS.CODE_RD_HIT,L2_RQSTS.CODE_RD_MISS", "L2_RQSTS.ALL_CODE_RD"]

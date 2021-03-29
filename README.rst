@@ -216,6 +216,28 @@ See the collectd `config guide <https://collectd.org/documentation/manpages/coll
   collectd_plugin_hddtemp_host: '127.0.0.1'
   collectd_plugin_hddtemp_port: 7638
 
+collectd_plugin_intel_pmu_*
+~~~~~~~~~~~~~~~~~~~~~~~~~~~
+These vars are ones passed to the ``intel_pmu`` plugin.
+See the collectd `config guide <https://collectd.org/documentation/manpages/collectd.conf.5.shtml#plugin_intel_pmu>`_ for details.
+
+::
+
+  collectd_plugin_intel_pmu_report_hardware_cache_events: true
+  collectd_plugin_intel_pmu_report_kernel_pmu_events: true
+  collectd_plugin_intel_pmu_report_software_events: true
+  collectd_plugin_intel_pmu_dispatch_multi_pmu: false
+  collectd_plugin_intel_pmu_cores: []
+  # NOTE: The square brackets are semantically significent; when they are used,
+  each core is added to a separate group i.e. the cores are not aggregated.
+  Grouping without square brackets adds them to the same group and aggregates
+  the events for that core group.
+  collectd_plugin_intel_pmu_cores: ["1", "2", "3-4", "[12-15]"]
+
+  # NOTE: collectd_intel_pmu_hardware_events requires collectd_intel_pmu_event_list to be set
+  collectd_plugin_intel_pmu_event_list: "/path/to/event/list.json"
+  collectd_plugin_intel_pmu_hardware_events: ["L2_RQSTS.CODE_RD_HIT,L2_RQSTS.CODE_RD_MISS", "L2_RQSTS.ALL_CODE_RD"]
+
 collectd_plugin_interface_*
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~
 These vars are ones passed to the ``interface`` plugin.
