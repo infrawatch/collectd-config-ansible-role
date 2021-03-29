@@ -7,11 +7,57 @@ LoadPlugin ipmi
 {% endif %}
 
 <Plugin ipmi>
-  {% for sensor in collectd_plugin_ipmi_sensors %}
-  Sensor "{{ sensor }}"
+  {% for instance in collectd_plugin_ipmi_instances %}
+  <Instance "{{ instance }}">
+    {% if "host" in collectd_plugin_ipmi_instances[instance] %}
+    Host "{{ collectd_plugin_ipmi_instances[instance].host }}"
+    {% endif %}
+    {% if "address" in collectd_plugin_ipmi_instances[instance] %}
+    Address "{{ collectd_plugin_ipmi_instances[instance].address }}"
+    {% endif %}
+    {% if "username" in collectd_plugin_ipmi_instances[instance] %}
+    Username "{{ collectd_plugin_ipmi_instances[instance].username }}"
+    {% endif %}
+    {% if "password" in collectd_plugin_ipmi_instances[instance] %}
+    Password "{{ collectd_plugin_ipmi_instances[instance].password }}"
+    {% endif %}
+    {% if "auth_type" in collectd_plugin_ipmi_instances[instance] %}
+    AuthType "{{ collectd_plugin_ipmi_instances[instance].auth_type }}"
+    {% endif %}
+    {% if "sensors" in collectd_plugin_ipmi_instances[instance] %}
+    {% for sensor in collectd_plugin_ipmi_instances[instance].sensors %}
+    Sensor "{{ sensor }}"
+    {% endfor %}
+    {% endif %}
+    {% if "ignore_selected" in collectd_plugin_ipmi_instances[instance] %}
+    IgnoreSelected {{ collectd_plugin_ipmi_instances[instance].ignore_selected | string | lower }}
+    {% endif %}
+    {% if "notify_sensor_add" in collectd_plugin_ipmi_instances[instance] %}
+    NotifySensorAdd {{ collectd_plugin_ipmi_instances[instance].notify_sensor_add | string | lower }}
+    {% endif %}
+    {% if "notify_sensor_remove" in collectd_plugin_ipmi_instances[instance] %}
+    NotifySensorRemove {{ collectd_plugin_ipmi_instances[instance].notify_sensor_remove | string | lower }}
+    {% endif %}
+    {% if "notify_sensor_not_present" in collectd_plugin_ipmi_instances[instance] %}
+    NotifySensorNotPresent {{ collectd_plugin_ipmi_instances[instance].notify_sensor_not_present | string | lower }}
+    {% endif %}
+    {% if "notify_ipmi_connection_state" in collectd_plugin_ipmi_instances[instance] %}
+    NotifyIPMIConnectionState {{ collectd_plugin_ipmi_instances[instance].notify_ipmi_connection_state | string | lower }}
+    {% endif %}
+    {% if "sel_enabled" in collectd_plugin_ipmi_instances[instance] %}
+    SELEnabled {{ collectd_plugin_ipmi_instances[instance].sel_enabled | string | lower }}
+    {% endif %}
+    {% if "sel_sensors" in collectd_plugin_ipmi_instances[instance] %}
+    {% for sensor in collectd_plugin_ipmi_instances[instance].sel_sensors %}
+    SELSensor "{{ sensor }}"
+    {% endfor %}
+    {% endif %}
+    {% if "sel_ignore_selected" in collectd_plugin_ipmi_instances[instance] %}
+    SELIgnoreSelected {{ collectd_plugin_ipmi_instances[instance].sel_ignore_selected | string | lower }}
+    {% endif %}
+    {% if "sel_clear_event" in collectd_plugin_ipmi_instances[instance] %}
+    SELClearEvent {{ collectd_plugin_ipmi_instances[instance].sel_clear_event | string | lower }}
+    {% endif %}
+  </Instance>
   {% endfor %}
-  IgnoreSelected {{ collectd_plugin_ipmi_ignoreselected }}
-  NotifySensorAdd {{ collectd_plugin_ipmi_notifysensoradd }}
-  NotifySensorRemove {{ collectd_plugin_ipmi_notifysensorremove }}
-  NotifySensorNotPresent {{ collectd_plugin_ipmi_notifysensornotpresent }}
 </Plugin>

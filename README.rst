@@ -238,11 +238,36 @@ See the collectd `config guide <https://collectd.org/documentation/manpages/coll
 
 ::
 
-  collectd_plugin_ipmi_sensors: []
-  collectd_plugin_ipmi_ignoreselected: false
-  collectd_plugin_ipmi_notifysensoradd: false
-  collectd_plugin_ipmi_notifysensorremove: true
-  collectd_plugin_ipmi_notifysensornotpresent: false
+    collectd_plugin_ipmi_instances: {}
+    # OR
+    collectd_plugin_ipmi_instances:
+      local:
+        sensors:
+          - "some_sensor"
+          - "another_one"
+        ignore_selected: false
+        notify_sensor_add: false
+        notify_sensor_remove: true
+        notify_sensor_not_present: false
+        notify_ipmi_connection_state: false
+        sel_enabled: false
+        sel_clear_event: false
+      remote:
+        host: "server.example.com"
+        address: "1.2.3.4"
+        username: "user"
+        password: "secret"
+        auth_type: "md5"
+        sensors:
+          - "some_sensor"
+          - "another_one"
+        ignore_selected: false
+        notify_sensor_add: false
+        notify_sensor_remove: true
+        notify_sensor_not_present: false
+        notify_ipmi_connection_state: false
+        sel_enabled: false
+        sel_clear_event: false
 
 collectd_plugin_irq_*
 ~~~~~~~~~~~~~~~~~~~~~
