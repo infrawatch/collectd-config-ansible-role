@@ -1,0 +1,28 @@
+{% if collectd_plugin_ovs_events_interval is not defined %}
+LoadPlugin ovs_events
+{% else %}
+<LoadPlugin ovs_events>
+   Interval {{ collectd_plugin_ovs_events_interval }}
+</LoadPlugin>
+{% endif %}
+
+<Plugin "ovs_events">
+  {% if collectd_plugin_ovs_events_port is defined %}
+  Port {{ collectd_plugin_ovs_events_port }}
+  {% endif %}
+  {% if collectd_plugin_ovs_events_address is defined %}
+  Address "{{ collectd_plugin_ovs_events_address }}"
+  {% endif %}
+  {% if collectd_plugin_ovs_events_socket is defined %}
+  Socket "{{ collectd_plugin_ovs_events_socket }}"
+  {% endif %}
+  {% if collectd_plugin_ovs_events_interfaces | length > 0 %}
+  Interfaces "{{ collectd_plugin_ovs_events_interfaces | join('" "') }}"
+  {% endif %}
+  {% if collectd_plugin_ovs_events_send_notification is defined %}
+  SendNotification {{ collectd_plugin_ovs_events_send_notification | string | lower }}
+  {% endif %}
+  {% if collectd_plugin_ovs_events_dispatch_values is defined %}
+  DispatchValues {{ collectd_plugin_ovs_events_dispatch_values | string | lower }}
+  {% endif %}
+</Plugin>

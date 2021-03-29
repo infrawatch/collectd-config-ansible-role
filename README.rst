@@ -339,6 +339,20 @@ See the collectd `config guide <https://collectd.org/documentation/manpages/coll
   collectd_plugin_ntpd_reverselookups: False
   collectd_plugin_ntpd_includeunitid: True
 
+collectd_plugin_ovs_events_*
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+These vars are ones passed to the ``ovs_events`` plugin.
+See the collectd `config guide <https://collectd.org/documentation/manpages/collectd.conf.5.shtml#plugin_ovs_events>`_ for details.
+
+::
+
+  collectd_plugin_ovs_events_port: 6640
+  collectd_plugin_ovs_events_address: "127.0.0.1"
+  collectd_plugin_ovs_events_socket: "/var/run/openvswitch/db.sock"
+  collectd_plugin_ovs_events_interfaces: ["br0", "veth0"]
+  collectd_plugin_ovs_events_send_notification: true
+  collectd_plugin_ovs_events_dispatch_values: false
+
 collectd_plugin_ovs_stats_*
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~
 These vars are ones passed to the ``ovs_stats`` plugin.
@@ -349,7 +363,7 @@ See the collectd `config guide <https://collectd.org/documentation/manpages/coll
   collectd_plugin_ovs_stats_port: 6640
   collectd_plugin_ovs_stats_address: "127.0.0.1"
   collectd_plugin_ovs_stats_socket: "/var/run/openvswitch/db.sock"
-  collectd_plugin_ovs_stats_bridges: br0 br_ext
+  collectd_plugin_ovs_stats_bridges: ["br0", "br_ext"]
 
 collectd_plugins_processes_*
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~

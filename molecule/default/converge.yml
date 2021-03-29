@@ -46,6 +46,7 @@
           - network
           - ntpd
           - numa
+          - ovs_events
           - ovs_stats
           - ping
           - processes
