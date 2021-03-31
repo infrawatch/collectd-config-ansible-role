@@ -1,4 +1,10 @@
+{% if collectd_plugin_ovs_stats_interval is not defined %}
 LoadPlugin ovs_stats
+{% else %}
+<LoadPlugin ovs_stats>
+   Interval {{ collectd_plugin_ovs_stats_interval }}
+</LoadPlugin>
+{% endif %}
 
 <Plugin ovs_stats>
 {% if collectd_plugin_ovs_stats_port is defined %}
@@ -10,8 +16,8 @@ LoadPlugin ovs_stats
 {% if collectd_plugin_ovs_stats_socket is defined %}
   Socket "{{ collectd_plugin_ovs_stats_socket }}"
 {% endif %}
-{% if collectd_plugin_ovs_stats_bridges is defined %}
-  Bridges{% for br in collectd_plugin_ovs_stats_bridges.split(" ") %} "{{ br }}"{% endfor %}
+{% if collectd_plugin_ovs_stats_bridges | length > 0 %}
+  Bridges "{{ collectd_plugin_ovs_stats_bridges | join('" "') }}"
 {% endif %}
 
 </Plugin>
