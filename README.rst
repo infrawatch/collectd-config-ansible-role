@@ -18,7 +18,7 @@ If there are no defaults set (e.g. all config options are optional), then the ``
 Each set of config options below include some sample values.
 
 collectd_plugin_amqp1_*
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~
 These vars are ones passed to the ``amqp1`` plugin.
 See the collectd `config guide <https://collectd.org/documentation/manpages/collectd.conf.5.shtml#plugin_amqp1>`_ for details.
 
@@ -237,6 +237,16 @@ See the collectd `config guide <https://collectd.org/documentation/manpages/coll
   # NOTE: collectd_intel_pmu_hardware_events requires collectd_intel_pmu_event_list to be set
   collectd_plugin_intel_pmu_event_list: "/path/to/event/list.json"
   collectd_plugin_intel_pmu_hardware_events: ["L2_RQSTS.CODE_RD_HIT,L2_RQSTS.CODE_RD_MISS", "L2_RQSTS.ALL_CODE_RD"]
+
+collectd_plugin_intel_rdt_*
+~~~~~~~~~~~~~~~~~~~~~~~~~~~
+These vars are ones passed to the ``intel_rdt`` plugin.
+See the collectd `config guide <https://collectd.org/documentation/manpages/collectd.conf.5.shtml#plugin_intel_rdt>`_ for details.
+
+::
+
+  collectd_plugin_intel_rdt_cores: []
+
 
 collectd_plugin_interface_*
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~
