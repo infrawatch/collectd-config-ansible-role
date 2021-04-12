@@ -1,8 +1,13 @@
+{% if collectd_plugin_intel_rdt_interval is not defined %}
 LoadPlugin intel_rdt
-
-<Plugin "intel_rdt">
-{% if collectd_plugin_intelrdt_cores is defined %}
-  Cores{% for item in collectd_plugin_intelrdt_cores %} "{{ item  }}"{% endfor %}
+{% else %}
+<LoadPlugin intel_rdt>
+   Interval {{ collectd_plugin_intel_rdt_interval }}
+</LoadPlugin>
 {% endif %}
 
+<Plugin "intel_rdt">
+{% if collectd_plugin_intel_rdt_cores | length > 0 %}
+  Cores "{{ collectd_plugin_intel_rdt_cores | join('" "') }}"
+{% endif %}
 </Plugin>

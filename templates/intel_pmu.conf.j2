@@ -7,25 +7,26 @@ LoadPlugin intel_pmu
 {% endif %}
 
 <Plugin "intel_pmu">
-{% if collectd_plugin_intelpmu_cores is defined %}
-  Cores{% for item in collectd_plugin_intelpmu_cores %} "{{ item }}"{% endfor %}
-{% endif %}
-{% if collectd_plugin_intelpmu_reporthardwarecacheevents is defined %}
-  ReportHardwareCacheEvents {{ collectd_plugin_intelpmu_reporthardwarecacheevents | string | lower }}
-{% endif %}
-{% if collectd_plugin_intelpmu_reportkernelpmuevents is defined %}
-  ReportKernelPMUEvents {{ collectd_plugin_intelpmu_reportkernelpmuevents | string | lower }}
-{% endif %}
-{% if collectd_plugin_intelpmu_reportsoftwareevents is defined %}
-  ReportSoftwareEvents {{ collectd_plugin_intelpmu_reportsoftwareevents | string | lower }}
-{% endif %}
-{% if collectd_plugin_intelpmu_eventlist is defined %}
-  EventList{% for item in collectd_plugin_intelpmu_eventlist %} "{{ item }}"{% endfor %}
-{% endif %}
-{% if collectd_plugin_intelpmu_hardwareevents is defined %}
-  HardwareEvents{% for item in collectd_plugin_intelpmu_hardwareevents %} "{{ item }}"{% endfor %}
-{% endif %}
-{% if collectd_plugin_intelpmu_dispatchmultipmu is defined %}
-  DispatchMultiPmu {{ collectd_plugin_intelpmu_dispatchmultipmu }}
-{% endif %}
+  {% if collectd_plugin_intel_pmu_cores | length > 1 %}
+  Cores{% for item in collectd_plugin_intel_pmu_cores %} "{{ item }}"{% endfor %}
+  {% endif %}
+
+  {% if collectd_plugin_intel_pmu_report_hardware_cache_events is defined %}
+  ReportHardwareCacheEvents {{ collectd_plugin_intel_pmu_report_hardware_cache_events | string | lower }}
+  {% endif %}
+  {% if collectd_plugin_intel_pmu_report_kernel_pmu_events is defined %}
+  ReportKernelPMUEvents {{ collectd_plugin_intel_pmu_report_kernel_pmu_events | string | lower }}
+  {% endif %}
+  {% if collectd_plugin_intel_pmu_report_software_events is defined %}
+  ReportSoftwareEvents {{ collectd_plugin_intel_pmu_report_software_events | string | lower }}
+  {% endif %}
+  {% if collectd_plugin_intel_pmu_event_list is defined %}
+  EventList "{{ collectd_plugin_intel_pmu_event_list }}"
+  {% if collectd_plugin_intel_pmu_hardware_events | length > 1 %}
+  HardwareEvents "{{ collectd_plugin_intel_pmu_hardware_events | join(',') }}"
+  {% endif %}
+  {% endif %}
+  {% if collectd_plugin_intel_pmu_dispatch_multi_cpu is defined %}
+  DispatchMultiPmu {{ collectd_plugin_intel_pmu_dispatch_multi_cpu | string | lower }}
+  {% endif %}
 </Plugin>
