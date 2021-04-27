@@ -13,6 +13,7 @@
           # - capabilities
           - ceph
           - cgroups
+          - chrony
           - connectivity
           - contextswitch
           - cpu
