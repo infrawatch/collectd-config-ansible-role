@@ -82,6 +82,17 @@ See the collectd `config guide <https://collectd.org/documentation/manpages/coll
   collectd_plugin_ceph_longrunlatency: False
   collectd_plugin_ceph_convertspecialmetrictypes: True
 
+collectd_plugin_chrony_*
+~~~~~~~~~~~~~~~~~~~~~~
+These vars are ones passed to the ``chrony`` plugin.
+See the collectd `config guide <https://collectd.org/documentation/manpages/collectd.conf.5.shtml#plugin_chrony>`_ for details.
+
+::
+
+  collectd_plugin_chrony_host: localhost
+  collectd_plugin_chrony_port: 323
+  collectd_plugin_chrony_timeout: 2
+
 collectd_plugin_connectivity_*
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 These vars are ones passed to the ``connectivity`` plugin.
