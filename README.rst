@@ -75,10 +75,8 @@ See the collectd `config guide <https://collectd.org/documentation/manpages/coll
 ::
 
   collectd_plugin_ceph_daemon:
-    - name: "osd.0"
-      socketpath: "/var/run/ceph/ceph-osd.0.asok"
-    - name: "osd.1"
-      socketpath: "/var/run/ceph/ceph-osd.1.asok"
+    - "ceph-osd.0"
+    - "ceph-osd.1"
   collectd_plugin_ceph_longrunlatency: False
   collectd_plugin_ceph_convertspecialmetrictypes: True
 
