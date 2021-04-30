@@ -1,5 +1,8 @@
 ---
 collectd_plugin_ping_hosts: []
+# collectd_plugin_ping_hosts:
+#   - example.org
+#   - provider.net
 # collectd_plugin_ping_interval: 1.0
 # collectd_plugin_ping_timeout: 0.9
 # collectd_plugin_ping_ttl: 255

@@ -1,6 +1,9 @@
 ---
 # Defaults for df plugin
 collectd_plugin_df_devices: []
+# collectd_plugin_df_devices:
+#   - "/dev/hda1"
+#   - "192.168.0.2:/mnt/nfs"
 collectd_plugin_df_mountpoints: []
 collectd_plugin_df_fstypes: []
 collectd_plugin_df_ignoreselected: true
