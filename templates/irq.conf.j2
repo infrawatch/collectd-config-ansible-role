@@ -5,6 +5,6 @@ LoadPlugin irq
     Irq "{{ irq }}"
 {% endfor %}
 {% if collectd_plugin_irq_ignoreselected is defined %}
-    IgnoreSelected "{{ collectd_plugin_irq_ignoreselected }}"
+    IgnoreSelected {{ collectd_plugin_irq_ignoreselected | string | lower }}
 {% endif %}
 </Plugin>

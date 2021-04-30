@@ -3,7 +3,7 @@
 <Plugin "logfile">
   LogLevel {{ collectd_plugin_logfile_log_level }}
   File "{{ collectd_plugin_logfile_file }}"
-  Timestamp {{ collectd_plugin_logfile_timestamp }}
+  Timestamp {{ collectd_plugin_logfile_timestamp | string | lower }}
 {% if collectd_plugin_logfile_print_severity is defined %}
   PrintSeverity {{ collectd_plugin_logfile_print_severity | string | lower }}
 {% endif %}

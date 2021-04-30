@@ -14,10 +14,10 @@ LoadPlugin turbostat
   PackageCstates "{{ collectd_plugin_turbostat_package_c_states }}"
 {% endif %}
 {% if collectd_plugin_turbostat_system_management_interrupt is defined %}
-  SystemManagementInterrupt {{ collectd_plugin_turbostat_system_management_interrupt }}
+  SystemManagementInterrupt {{ collectd_plugin_turbostat_system_management_interrupt | string | lower }}
 {% endif %}
 {% if collectd_plugin_turbostat_digital_temperature_sensor is defined %}
-  DigitalTemperatureSensor {{ collectd_plugin_turbostat_digital_temperature_sensor }}
+  DigitalTemperatureSensor {{ collectd_plugin_turbostat_digital_temperature_sensor | string | lower }}
 {% endif %}
 {% if collectd_plugin_turbostat_tcc_activation_temp is defined %}
   TCCActivationTemp "{{ collectd_plugin_turbostat_tcc_activation_temp }}"
@@ -26,6 +26,6 @@ LoadPlugin turbostat
   RunningAveragePowerLimit "{{ collectd_plugin_turbostat_running_average_power_limit }}"
 {% endif %}
 {% if collectd_plugin_turbostat_logical_core_names is defined %}
-  LogicalCoreNames "{{ collectd_plugin_turbostat_logical_core_names }}"
+  LogicalCoreNames {{ collectd_plugin_turbostat_logical_core_names | string | lower }}
 {% endif %}
 </Plugin>

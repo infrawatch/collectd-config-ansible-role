@@ -22,13 +22,13 @@ LoadPlugin virt
   InterfaceDevice "{{ collectd_plugin_virt_interface_device }}"
 {% endif %}
 {% if collectd_plugin_virt_ignore_selected is defined %}
-  IgnoreSelected "{{ collectd_plugin_virt_ignore_selected }}"
+  IgnoreSelected {{ collectd_plugin_virt_ignore_selected | string | lower }}
 {% endif %}
 {% if collectd_plugin_virt_block_device_format is defined %}
   BlockDeviceFormat {{ collectd_plugin_virt_block_device_format }}
 {% endif %}
 {% if collectd_plugin_virt_block_device_format_basename is defined %}
-  BlockDeviceFormatBasename {{ collectd_plugin_virt_block_device_format_basename }}
+  BlockDeviceFormatBasename {{ collectd_plugin_virt_block_device_format_basename | string | lower }}
 {% endif %}
 {% if collectd_plugin_virt_hostname_format is defined %}
   HostnameFormat {{ collectd_plugin_virt_hostname_format }}
