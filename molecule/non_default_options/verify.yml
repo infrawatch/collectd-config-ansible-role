@@ -1,0 +1,27 @@
+---
+- name: Verify
+  hosts: all
+  gather_facts: false
+  tasks:
+  - name: "Check that {{ item }} was enabled"
+    stat:
+      path: /etc/collectd.d/{{ item }}.conf
+    register: output
+    failed_when:
+      - not output.stat.exists
+    with_items:
+      - netlink
+
+  # Check netlink
+  - name: "Get contents of netlink.conf"
+    slurp:
+      src: /etc/collectd.d/netlink.conf
+    register: netlink_conf
+
+  - debug:
+      var: netlink_conf.content | b64decode
+
+  - name: "Check contents of netlink.conf"
+    assert:
+      that:
+        - '"VerboseInterface \"All\"" in netlink_conf.content | b64decode'

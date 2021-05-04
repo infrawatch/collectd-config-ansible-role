@@ -5,3 +5,7 @@
     - role: "{{ playbook_dir }}/../../../collectd-config-ansible-role"
   vars:
     collectd_conf_output_dir: "/etc/collectd.d"
+    collectd_plugins:
+      - netlink
+
+    collectd_plugin_netlink_verboseinterfaces: ["All"]
