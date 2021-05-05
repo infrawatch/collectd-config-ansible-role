@@ -2,7 +2,7 @@
 - hosts: localhost
   remote_user: root
   roles:
-    - '../../collectd-config-ansible-role'
+    - '{{ playbook_dir }}/../../collectd-config-ansible-role'
   vars:
       collectd_plugins:
         - amqp1
@@ -28,6 +28,7 @@
         - load
         # - logfile
         - mcelog
+        - memcached
         - memory
         - netlink
         - network

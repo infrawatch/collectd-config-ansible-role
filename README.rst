@@ -369,6 +369,22 @@ See the collectd `config guide <https://collectd.org/documentation/manpages/coll
   collectd_plugin_mdevents_array: "/dev/md[0-9]"
   collectd_plugin_mdevents_ignore_array: False
 
+collectd_plugin_memcached_*
+~~~~~~~~~~~~~~~~~~~~~~~~~
+These vars are ones passed to the ``memcached`` plugin.
+See the collectd `config guide <https://collectd.org/documentation/manpages/collectd.conf.5.shtml#plugin_memcached>`_ for details.
+
+::
+  collectd_plugin_memcached_instances: {}
+  # OR
+  collectd_plugin_memcached_instances:
+    first_instance:
+      host: localhost
+      address: 127.0.0.1
+      port: 11211
+    second_instance:
+      socket: path/to/socket
+
 collectd_plugin_netlink_*
 ~~~~~~~~~~~~~~~~~~~~~~~~~
 These vars are ones passed to the ``netlink`` plugin.

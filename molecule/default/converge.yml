@@ -41,6 +41,7 @@
           - mcelog
           # collectd image doesn't have mdevents plugin
           # - mdevents
+          - memcached
           - memory
           - netlink
           - network

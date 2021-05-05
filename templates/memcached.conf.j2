@@ -1,0 +1,26 @@
+{% if collectd_plugin_memcached_interval is not defined %}
+LoadPlugin memcached
+{% else %}
+<LoadPlugin memcached>
+   Interval {{ collectd_plugin_memcached_interval }}
+</LoadPlugin>
+{% endif %}
+
+<Plugin memcached>
+{% for instance in collectd_plugin_memcached_instances %}
+  <Instance "{{ instance }}">
+    {% if "host" in collectd_plugin_memcached_instances[instance] %}
+    Host "{{  collectd_plugin_memcached_instances[instance]['host'] }}"
+    {% endif %}
+    {% if "address" in collectd_plugin_memcached_instances[instance] %}
+    Address "{{  collectd_plugin_memcached_instances[instance]['address'] }}"
+    {% endif %}
+    {% if "port" in collectd_plugin_memcached_instances[instance] %}
+    Port {{ collectd_plugin_memcached_instances[instance]['port'] }}
+    {% endif %}
+    {% if "socket" in collectd_plugin_memcached_instances[instance] %}
+    Socket "{{ collectd_plugin_memcached_instances[instance]['socket'] }}"
+    {% endif %}
+  </Instance>
+{% endfor %}
+</Plugin>
