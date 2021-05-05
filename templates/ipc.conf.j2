@@ -1,1 +1,7 @@
-LoadPlugin "ipc"
+{% if collectd_plugin_ipc_interval is not defined %}
+LoadPlugin ipc
+{% else %}
+<LoadPlugin ipc>
+   Interval {{ collectd_plugin_ipc_interval }}
+</LoadPlugin>
+{% endif %}

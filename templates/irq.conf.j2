@@ -1,4 +1,10 @@
+{% if collectd_plugin_irq_interval is not defined %}
 LoadPlugin irq
+{% else %}
+<LoadPlugin irq>
+   Interval {{ collectd_plugin_irq_interval }}
+</LoadPlugin>
+{% endif %}
 
 <Plugin "irq">
 {% for irq in collectd_plugin_irq_irqs %}

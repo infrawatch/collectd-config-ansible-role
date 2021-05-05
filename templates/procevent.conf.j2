@@ -1,4 +1,10 @@
+{% if collectd_plugin_procevent_interval is not defined %}
 LoadPlugin procevent
+{% else %}
+<LoadPlugin procevent>
+   Interval {{ collectd_plugin_procevent_interval }}
+</LoadPlugin>
+{% endif %}
 
 <Plugin "procevent">
 {% if collectd_plugin_procevent_process is defined %}

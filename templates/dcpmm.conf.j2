@@ -1,4 +1,10 @@
+{% if collectd_plugin_dcpmm_interval is not defined %}
 LoadPlugin dcpmm
+{% else %}
+<LoadPlugin dcpmm>
+   Interval {{ collectd_plugin_dcpmm_interval }}
+</LoadPlugin>
+{% endif %}
 
 <Plugin "dcpmm">
 {% if collectd_plugin_dcpmm_interval is defined %}
