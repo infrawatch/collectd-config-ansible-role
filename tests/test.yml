@@ -6,7 +6,7 @@
   vars:
       collectd_plugins:
         - amqp1
-        # - ceph
+        - ceph
         - capabilities
         - cgroups
         - chrony

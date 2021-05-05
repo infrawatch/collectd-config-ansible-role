@@ -2,14 +2,14 @@ LoadPlugin ceph
 
 <Plugin ceph>
 {% if collectd_plugin_ceph_longrunlatency is defined %}
-  LongRunAvgLatency {{ collectd_plugin_ceph_longrunlatency }}
+  LongRunAvgLatency {{ collectd_plugin_ceph_longrunlatency | string | lower }}
 {% endif %}
 {% if collectd_plugin_ceph_convertspecialmetrictypes is defined %}
-  ConvertSpecialMetricTypes {{ collectd_plugin_ceph_convertspecialmetrictypes }}
+  ConvertSpecialMetricTypes {{ collectd_plugin_ceph_convertspecialmetrictypes | string | lower }}
 {% endif %}
-{% for daemon in collectd_plugin_ceph_daemon %}
-  <Daemon "{{ daemon.name|e }}">
-    SocketPath "{{ daemon.socketpath|e }} "
+{% for daemon in collectd_plugin_ceph_daemons %}
+  <Daemon "{{ daemon }}">
+    SocketPath "/var/run/ceph/{{ daemon }}.asok"
   </Daemon>
 {% endfor %}
 </Plugin>
