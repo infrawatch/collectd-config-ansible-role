@@ -17,23 +17,22 @@ LoadPlugin processes
     CollectMemoryMaps {{ collectd_plugin_processes_collect_memory_maps | string | lower }}
 {% endif %}
 {% for process in collectd_plugin_processes_processes %}
-    <Process "{{ process.name }}" >
-{% if process.collect_file_descriptor is defined %}
-      CollectFileDescriptor {{ process.collect_file_descriptor | string | lower }}
+    <Process "{{ process }}" >
+{% if "collect_file_descriptor" in collectd_plugin_processes_processes[process] %}
+      CollectFileDescriptor {{ collectd_plugin_processes_processes[process].collect_file_descriptor | string | lower }}
 {% endif %}
-{% if process.collect_context_switch is defined %}
-      CollectContextSwitch {{ process.collect_context_switch | string | lower }}
+{% if "collectd_context_switch" in collectd_plugin_processes_processes[process] %}
+      CollectContextSwitch {{ collectd_plugin_processes_processes[process].collect_context_switch | string | lower }}
 {% endif %}
     </Process>
 {% endfor %}
-
-{% for process_match in collectd_plugin_processes_process_matches %}
-  <ProcessMatch "{{ process_match.name }}" "{{ process_match.regex }}">
-{% if process_match.collect_file_descriptor is defined %}
-      CollectFileDescriptor {{ process_match.collect_file_descriptor | string | lower }}
+{% for pm in collectd_plugin_processes_process_matches %}
+  <ProcessMatch "{{ pm }}" "{{ collectd_plugin_processes_process_matches[pm].regex }}">
+{% if "collect_file_descriptor" in collectd_plugin_processes_process_matches[pm] %}
+      CollectFileDescriptor {{ collectd_plugin_processes_process_matches[pm].collect_file_descriptor | string | lower }}
 {% endif %}
-{% if process_match.collect_context_switch is defined %}
-      CollectContextSwitch {{ process_match.collect_context_switch | string | lower }}
+{% if "collect_context_switch" in collectd_plugin_processes_process_matches[pm] %}
+      CollectContextSwitch {{ collectd_plugin_processes_process_matches[pm].collect_context_switch | string | lower }}
 {% endif %}
   </ProcessMatch>
 {% endfor %}

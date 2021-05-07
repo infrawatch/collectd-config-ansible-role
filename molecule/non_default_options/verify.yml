@@ -16,6 +16,7 @@
       - irq
       - netlink
       - ping
+      - processes
       - write_http
 
   # Check connectivity
@@ -110,6 +111,25 @@
       that:
         - '"Host \"example.org\"" in ping_conf.content | b64decode'
         - '"Host \"provider.net\"" in ping_conf.content | b64decode'
+
+  # Check processes
+  - name: "Get contents of processes"
+    slurp:
+      src: /etc/collectd.d/processes.conf
+    register: processes_conf
+
+  - debug:
+      var: processes_conf.content | b64decode
+
+  - name: "Check contents of processes.conf"
+    assert:
+      that:
+        - '"<Process \"someprocessname\" >" in processes_conf.content | b64decode'
+        - '"CollectFileDescriptor true" in processes_conf.content | b64decode'
+        - '"CollectContextSwitch true" in processes_conf.content | b64decode'
+        - '"<ProcessMatch \"someprocessname\" \"(^_^|*.*)\">" in processes_conf.content | b64decode'
+        - '"CollectFileDescriptor false" in processes_conf.content | b64decode'
+        - '"CollectContextSwitch false" in processes_conf.content | b64decode'
 
   # Check write_http
   - name: "Get contents of write_http.conf"

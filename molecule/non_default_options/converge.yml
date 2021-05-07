@@ -12,6 +12,7 @@
       - irq
       - netlink
       - ping
+      - processes
       - write_http
 
     collectd_plugin_connectivity_interfaces:
@@ -37,6 +38,15 @@
     collectd_plugin_ping_hosts:
       - example.org
       - provider.net
+    collectd_plugin_processes_processes:
+      someprocessname:
+        collect_file_descriptor: True
+        collect_context_switch: True
+    collectd_plugin_processes_process_matches:
+      someprocessname:
+        regex: "(^_^|*.*)"
+        collect_file_descriptor: False
+        collect_context_switch: False
     collectd_plugin_write_http_nodes:
       host1:
         headers:

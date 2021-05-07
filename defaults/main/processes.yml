@@ -1,12 +1,12 @@
 ---
-collectd_plugin_processes_processes: []
+collectd_plugin_processes_processes: {}
 #collectd_plugin_processes_processes:
-#  - name: "someprocessname"
+#  someprocessname:
 #    collect_file_descriptor: True
 #    collect_context_switch: True
-collectd_plugin_processes_process_matches: []
+collectd_plugin_processes_process_matches: {}
 #collectd_plugin_processes_process_matches:
-#  - name: "someprocessname"
+#  someprocessname:
 #    regex: "(^_^|*.*)"
 #    collect_file_descriptor: True
 #    collect_context_switch: True
