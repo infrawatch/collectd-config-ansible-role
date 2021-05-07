@@ -99,7 +99,7 @@ See the collectd `config guide <https://collectd.org/documentation/manpages/coll
 ::
 
   collectd_plugin_connectivity_interface: []
-  collectd_plugin_connectivity_ignoreselected: False
+  collectd_plugin_connectivity_ignore_selected: False
 
 collectd_plugin_cpu_*
 ~~~~~~~~~~~~~~~~~~~~~
@@ -126,7 +126,7 @@ See the collectd `wiki <https://collectd.org/wiki/index.php/Plugin:csv>`_ for de
   collectd_plugin_csv_storerates: false
 
 collectd_plugin_cgroups_*
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~
 These vars are ones passed to the ``cgroups`` plugin.
 See the collectd `config guide <https://collectd.org/documentation/manpages/collectd.conf.5.shtml#plugin_cgroups>`_ for details.
 
@@ -136,7 +136,7 @@ See the collectd `config guide <https://collectd.org/documentation/manpages/coll
   collectd_plugin_cgroups_cgroups:
     - libvirt
 
-  collectd_plugin_cgroups_ignoreselected: False
+  collectd_plugin_cgroups_ignore_selected: False
 
 collectd_plugin_dcpmm_*
 ~~~~~~~~~~~~~~~~~~~~~~~
@@ -333,10 +333,10 @@ See the collectd `config guide <https://collectd.org/documentation/manpages/coll
 
 ::
 
-  collectd_plugin_logfile_loglevel: info
+  collectd_plugin_logfile_log_level: info
   collectd_plugin_logfile_file: "/var/log/collectd.log"
   collectd_plugin_logfile_timestamp: true
-  collectd_plugin_logfile_printseverity: false
+  collectd_plugin_logfile_print_severity: false
 
 collectd_plugin_mcelog_*
 ~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -458,7 +458,7 @@ See the collectd `config guide <https://collectd.org/documentation/manpages/coll
     - name: "someprocessname"
       collectfiledescriptor: True
       collectcontextswitch: True
-  collectd_plugin_processes_processmatch:
+  collectd_plugin_processes_process_match:
     - name: "someprocessname"
       regex: "(^_^|*.*)"
       collectfiledescriptor: True
@@ -487,8 +487,8 @@ See the collectd `config guide <https://collectd.org/documentation/manpages/coll
 
 ::
 
-  collectd_plugin_syslog_loglevel: info
-  collectd_plugin_syslog_notifylevel: WARNING
+  collectd_plugin_syslog_log_level: info
+  collectd_plugin_syslog_notify_level: WARNING
 
 collectd_plugin_unixsock_*
 ~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -567,7 +567,7 @@ See the collectd `config guide <https://collectd.org/documentation/manpages/coll
 ::
 
   collectd_plugin_write_prometheus_port: 9103
-  collectd_plugin_write_prometheus_stalenessdelta: 300
+  collectd_plugin_write_prometheus_staleness_delta: 300
 
 Dependencies
 ------------

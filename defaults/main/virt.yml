@@ -1,15 +1,15 @@
 ---
 # Defaults for virt plugin
 collectd_plugin_virt_connection: qemu:///system
-collectd_plugin_virt_refreshinterval: 10
-collectd_plugin_virt_hostnameformat: hostname
-collectd_plugin_virt_plugininstanceformat: name
-collectd_plugin_virt_extrastats: cpu_util disk disk_err pcpu job_stats_background perf vcpupin
+collectd_plugin_virt_refresh_interval: 10
+collectd_plugin_virt_hostname_format: hostname
+collectd_plugin_virt_plugin_instance_format: name
+collectd_plugin_virt_extra_stats: cpu_util disk disk_err pcpu job_stats_background perf vcpupin
 # collectd_plugin_virt_domain
-# collectd_plugin_virt_blockdevice:
-# collectd_plugin_virt_interfacedevice:
-# collectd_plugin_virt_ignoreselected:
-# collectd_plugin_virt_blockdeviceformat:
-# collectd_plugin_virt_blockdeviceformatbasename:
-# collectd_plugin_virt_interfaceformat:
+# collectd_plugin_virt_block_device:
+# collectd_plugin_virt_interface_device:
+# collectd_plugin_virt_ignore_selected:
+# collectd_plugin_virt_block_device_format:
+# collectd_plugin_virt_block_device_format_basename:
+# collectd_plugin_virt_interface_format:
 # collectd_plugin_virt_instances:

@@ -10,5 +10,5 @@ LoadPlugin cgroups
 {% for cgroup in collectd_plugin_cgroups_cgroups %}
   CGroup "{{ cgroup }}"
 {% endfor %}
-  IgnoreSelected {{ collectd_plugin_cgroups_ignoreselected }}
+  IgnoreSelected {{ collectd_plugin_cgroups_ignore_selected }}
 </Plugin>

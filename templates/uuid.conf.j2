@@ -1,4 +1,3 @@
-# This file was created using the template generator at https://github.com/infrawatch/osp-observability-ansible/tree/plugin_templates_generate/tools/
 {% if collectd_plugin_uuid_interval is not defined %}
 LoadPlugin uuid
 {% else %}
@@ -8,7 +7,7 @@ LoadPlugin uuid
 {% endif %}
 
 <Plugin "uuid">
-{% if collectd_plugin_uuid_uuidfile is defined %}
-  UUIDFile "{{ collectd_plugin_uuid_uuidfile }}"
+{% if collectd_plugin_uuid_uuid_file is defined %}
+  UUIDFile "{{ collectd_plugin_uuid_uuid_file }}"
 {% endif %}
 </Plugin>

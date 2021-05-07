@@ -7,10 +7,10 @@ LoadPlugin syslog
 {% endif %}
 
 <Plugin "syslog">
-{% if collectd_plugin_syslog_loglevel is defined %}
-  LogLevel {{ collectd_plugin_syslog_loglevel }}
+{% if collectd_plugin_syslog_log_level is defined %}
+  LogLevel {{ collectd_plugin_syslog_log_level }}
 {% endif %}
-{% if collectd_plugin_syslog_notifylevel is defined %}
-  NotifyLevel {{ collectd_plugin_syslog_notifylevel }}
+{% if collectd_plugin_syslog_notify_level is defined %}
+  NotifyLevel {{ collectd_plugin_syslog_notify_level }}
 {% endif %}
 </Plugin>

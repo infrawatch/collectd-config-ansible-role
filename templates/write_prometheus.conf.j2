@@ -4,7 +4,7 @@ LoadPlugin write_prometheus
 {% if collectd_plugin_write_prometheus_port is defined %}
   Port "{{ collectd_plugin_write_prometheus_port }}"
 {% endif %}
-{% if collectd_plugin_write_prometheus_stalenessdelta is defined %}
-  StalenessDelta {{ collectd_plugin_write_prometheus_stalenessdelta }}
+{% if collectd_plugin_write_prometheus_staleness_delta is defined %}
+  StalenessDelta {{ collectd_plugin_write_prometheus_staleness_delta }}
 {% endif %}
 </Plugin>
