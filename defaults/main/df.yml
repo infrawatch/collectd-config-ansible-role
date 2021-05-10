@@ -2,7 +2,7 @@
 # Defaults for df plugin
 collectd_plugin_df_devices: []
 collectd_plugin_df_mountpoints: []
-collectd_plugin_df_fstype: []
+collectd_plugin_df_fstypes: []
 collectd_plugin_df_ignoreselected: true
 collectd_plugin_df_reportbydevice: true
 collectd_plugin_df_reportinodes: true

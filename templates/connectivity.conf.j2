@@ -9,7 +9,7 @@ LoadPlugin connectivity
 LoadPlugin connectivity
 
 <Plugin connectivity>
-{% for interface in collectd_plugin_connectivity_interface %}
+{% for interface in collectd_plugin_connectivity_interfaces %}
   Interface "{{ interface }}"
 {% endfor %}
 {% if collectd_plugin_connectivity_ignore_selected is defined %}

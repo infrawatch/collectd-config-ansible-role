@@ -35,8 +35,10 @@ LoadPlugin write_http
 {% if "clientkeypass" in collectd_plugin_write_http_nodes[node] %}
     ClientKeyPass "{{ collectd_plugin_write_http_nodes[node].clientkeypass }}"
 {%- endif -%}
-{% if "header" in collectd_plugin_write_http_nodes[node] %}
-    Header "{{ collectd_plugin_write_http_nodes[node].header }}"
+{% if "headers" in collectd_plugin_write_http_nodes[node] %}
+    {% for header in collectd_plugin_write_http_nodes[node].headers %}
+    Header "{{ header }}"
+    {% endfor %}
 {%- endif -%}
 {% if "ssl_version" in collectd_plugin_write_http_nodes[node] %}
     SSLVersion "{{ collectd_plugin_write_http_nodes[node].ssl_version }}"

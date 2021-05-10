@@ -1,3 +1,6 @@
 ---
-collectd_plugin_connectivity_interface: []
+collectd_plugin_connectivity_interfaces: []
+# collectd_plugin_connectivity_interfaces:
+#   - eth0
+#   - eth1
 # collectd_plugin_connectivity_ignore_selected: False

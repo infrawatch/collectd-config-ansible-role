@@ -8,7 +8,7 @@ LoadPlugin smart
 {% endif %}
 
 <Plugin "smart">
-{% for disk in collectd_plugin_smart_disk %}
+{% for disk in collectd_plugin_smart_disks %}
   Disk "{{ disk }}"
 {% endfor %}
 {% if collectd_plugin_smart_ignoreselected is defined %}

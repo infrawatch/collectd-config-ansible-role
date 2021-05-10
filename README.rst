@@ -98,7 +98,7 @@ See the collectd `config guide <https://collectd.org/documentation/manpages/coll
 
 ::
 
-  collectd_plugin_connectivity_interface: []
+  collectd_plugin_connectivity_interfaces: []
   collectd_plugin_connectivity_ignore_selected: False
 
 collectd_plugin_cpu_*
@@ -159,7 +159,7 @@ See the collectd `config guide <https://collectd.org/documentation/manpages/coll
 
   collectd_plugin_df_devices: []
   collectd_plugin_df_mountpoints: []
-  collectd_plugin_df_fstype: []
+  collectd_plugin_df_fstypes: []
   collectd_plugin_df_ignoreselected: true
   collectd_plugin_df_reportbydevice: true
   collectd_plugin_df_reportinodes: true
@@ -206,13 +206,17 @@ See the collectd `config guide <https://collectd.org/documentation/manpages/coll
 
 ::
 
-  collectd_plugin_ethstat_map: []
-  OR
-  collectd_plugin_ethstat_map:
+  collectd_plugin_ethstat_maps: []
+  # OR
+  collectd_plugin_ethstat_maps:
      - '"rx_csum_offload_errors" "if_rx_errors" "checksum_offload"'
      - '"multicast" "if_multicast"'
 
-  collectd_plugin_ethstat_interface: "eth0"
+  collectd_plugin_ethstat_interfaces: []
+  # OR
+  collectd_plugin_ethstat_interfaces:
+    - eth0
+    - eth1
   collectd_plugin_ethstat_mappedonly: False
 
 collectd_plugin_hddtemp_*
@@ -318,9 +322,9 @@ See the collectd `config guide <https://collectd.org/documentation/manpages/coll
 ::
 
   collectd_plugin_irq_ignoreselected: False
-  collectd_plugin_irq_irq: ["7", "8", "9"]
+  collectd_plugin_irq_irqs: ["7", "8", "9"]
   OR
-  collectd_plugin_irq_irq:
+  collectd_plugin_irq_irqs:
     - 7
     - 8
     - 9
@@ -454,11 +458,11 @@ See the collectd `config guide <https://collectd.org/documentation/manpages/coll
 
 ::
 
-  collectd_plugin_processes_process:
+  collectd_plugin_processes_processes:
     - name: "someprocessname"
       collectfiledescriptor: True
       collectcontextswitch: True
-  collectd_plugin_processes_process_match:
+  collectd_plugin_processes_process_matches:
     - name: "someprocessname"
       regex: "(^_^|*.*)"
       collectfiledescriptor: True
@@ -467,15 +471,15 @@ See the collectd `config guide <https://collectd.org/documentation/manpages/coll
   collectd_plugin_processes_collectcontextswitch: True
   collectd_plugin_processes_collectmemorymaps: True
 
-collectd_plugins_smart_*
-~~~~~~~~~~~~~~~~~~~~~~~~
+collectd_plugin_smart_*
+~~~~~~~~~~~~~~~~~~~~~~~
 These vars are ones passed to the ``smart`` plugin
 See the collectd `config guide <https://collectd.org/documentation/manpages/collectd.conf.5.shtml#plugin_smart>`_ f
 or details.
 
 ::
 
-  collectd_plugin_smart_disk: []
+  collectd_plugin_smart_disks: []
   collectd_plugin_smart_ignoreselected: False
   collectd_plugin_smart_ignoresleepmode: False
   collectd_plugin_smart_useserial: False
@@ -522,7 +526,8 @@ See the collectd `config guide <https://collectd.org/documentation/manpages/coll
       clientkey: "/etc/ssl/client.pem"
       clientcert: "/etc/ssl/client.crt"
       clientkeypass: "secret"
-      header: ["X-Custom-Header: custom_value"]
+      headers:
+        - "X-Custom-Header: custom_value"
       ssl_version: "SSLv2"|"SSLv3"|"TLSv1"|"TLSv1_0"|"TLSv1_1"|"TLSv1_2"
       format: "Command"|"JSON"
       metrics: true|false
@@ -536,7 +541,8 @@ See the collectd `config guide <https://collectd.org/documentation/manpages/coll
     collectd:
       url: 'write_http_server'
       metrics: True
-      header: 'foo'
+      headers:
+       - 'foo'
 
 collectd_plugin_write_kafka_*
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~

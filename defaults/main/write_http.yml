@@ -11,7 +11,7 @@ collectd_plugin_write_http_nodes: {}
 #    clientkey: "/etc/ssl/client.pem"
 #    clientcert: "/etc/ssl/client.crt"
 #    clientkeypass: "secret"
-#    header: ["X-Custom-Header: custom_value"]
+#    headers: ["X-Custom-Header: custom_value"]
 #    ssl_version: "SSLv2"|"SSLv3"|"TLSv1"|"TLSv1_0"|"TLSv1_1"|"TLSv1_2"
 #    format: "Command"|"JSON"
 #    metrics: true|false

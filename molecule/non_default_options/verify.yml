@@ -10,7 +10,80 @@
     failed_when:
       - not output.stat.exists
     with_items:
+      - connectivity
+      - df
+      - ethstat
+      - irq
       - netlink
+      - ping
+      - write_http
+
+  # Check connectivity
+  - name: "Get contents of df.conf"
+    slurp:
+      src: /etc/collectd.d/connectivity.conf
+    register: connectivity_conf
+
+  - debug:
+      var: connectivity_conf.content | b64decode
+
+  - name: "Check contents of connectivity.conf"
+    assert:
+      that:
+        - '"Interface \"eth0\"\n" in connectivity_conf.content | b64decode'
+        - '"Interface \"eth1\"\n" in connectivity_conf.content | b64decode'
+
+  # Check df
+  - name: "Get contents of df.conf"
+    slurp:
+      src: /etc/collectd.d/df.conf
+    register: df_conf
+
+  - debug:
+      var: df_conf.content | b64decode
+
+  - name: "Check contents of df.conf"
+    assert:
+      that:
+        - '"Device \"/dev/hda1\"" in df_conf.content | b64decode'
+        - '"Device \"192.168.0.2:/mnt/nfs\"" in df_conf.content | b64decode'
+        - '"MountPoint \"/mnt\"" in df_conf.content | b64decode'
+        - '"MountPoint \"/home\"" in df_conf.content | b64decode'
+        - '"FSType \"TypeA\"" in df_conf.content | b64decode'
+        - '"FSType \"TypeB\"" in df_conf.content | b64decode'
+
+  # check ethstat
+  - name: "Get contents of ethstat.conf"
+    slurp:
+      src: /etc/collectd.d/ethstat.conf
+    register: ethstat_conf
+
+  - debug:
+      var: ethstat_conf.content | b64decode
+
+  - name: "Check contents of ethstat.conf"
+    assert:
+      that:
+        - '"Interface \"eth0\"" in ethstat_conf.content | b64decode'
+        - '"Interface \"eth0\"" in ethstat_conf.content | b64decode'
+        - '"Map \"rx_csum_offload_errors\" \"if_rx_errors\" \"checksum_offload\"" in ethstat_conf.content | b64decode'
+        - '"Map \"multicast\" \"if_multicast\"" in ethstat_conf.content | b64decode'
+
+  # check irq
+  - name: "Get contents of irq.conf"
+    slurp:
+      src: /etc/collectd.d/irq.conf
+    register: irq_conf
+
+  - debug:
+      var: irq_conf.content | b64decode
+
+  - name: "Check contents of irq.conf"
+    assert:
+      that:
+        - '"Irq \"7\"" in irq_conf.content | b64decode'
+        - '"Irq \"8\"" in irq_conf.content | b64decode'
+        - '"Irq \"9\"" in irq_conf.content | b64decode'
 
   # Check netlink
   - name: "Get contents of netlink.conf"
@@ -25,3 +98,29 @@
     assert:
       that:
         - '"VerboseInterface \"All\"" in netlink_conf.content | b64decode'
+
+  # Check ping
+  - name: "Get contents of ping.conf"
+    slurp:
+      src: /etc/collectd.d/ping.conf
+    register: ping_conf
+
+  - name: "Check contents of ping.conf"
+    assert:
+      that:
+        - '"Host \"example.org\"" in ping_conf.content | b64decode'
+        - '"Host \"provider.net\"" in ping_conf.content | b64decode'
+
+  # Check write_http
+  - name: "Get contents of write_http.conf"
+    slurp:
+      src: /etc/collectd.d/write_http.conf
+    register: write_http_conf
+
+  - debug:
+      var: write_http_conf.content | b64decode
+
+  - assert:
+      that:
+        - '"Header \"X-Custom-Header: custom_value\"" in write_http_conf.content | b64decode'
+        - '"Header \"Y-Custom-Header: custom_value\"" in write_http_conf.content | b64decode'
