@@ -506,6 +506,53 @@ See the collectd `config guide <https://collectd.org/documentation/manpages/coll
   collectd_plugin_unixsock_socketperms: 0770
   collectd_plugin_unixsock_deletesocket: True
 
+collectd_plugin_uptime_*
+~~~~~~~~~~~~~~~~~~~~~~~~
+The ``uptime`` plugn doesn't have any options.
+See the collectd `wiki <https://collectd.org/wiki/index.php/Plugin:Uptime>`_ for details.
+
+collectd_plugin_uuid_*
+~~~~~~~~~~~~~~~~~~~~~~
+These vars are ones passed to the ``uuid`` plugin.
+See the collectd `config guide <https://collectd.org/documentation/manpages/collectd.conf.5.shtml#plugin_uuid>`_ for details.
+
+::
+
+  collectd_plugin_uuid_uuid_file: "/etc/uuid"
+
+collectd_plugin_virt_*
+~~~~~~~~~~~~~~~~~~~~~~
+These vars are ones passed to the ``virt`` plugin.
+See the collectd `config guide <https://collectd.org/documentation/manpages/collectd.conf.5.shtml#plugin_virt>`_ for details.
+
+::
+
+  collectd_plugin_virt_connection: qemu:///system
+  collectd_plugin_virt_refresh_interval: 10
+  collectd_plugin_virt_domain: "name"
+  collectd_plugin_virt_report_block_devices: true
+  collectd_plugin_virt_report_network_interfaces: true
+  collectd_plugin_virt_block_device: "name:device"
+  collectd_plugin_virt_block_device_format: target
+  collectd_plugin_virt_block_device_format_basename: false
+  collectd_plugin_virt_interface_device: "name:device"
+  collectd_plugin_virt_ignore_selected: false
+  collectd_plugin_virt_hostname_format: hostname
+  collectd_plugin_virt_interface_format: name
+  collectd_plugin_virt_plugin_instance_format: name
+  collectd_plugin_virt_instances: 1
+  collectd_plugin_virt_extra_stats: cpu_util disk disk_err pcpu job_stats_background perf vcpupin
+  collectd_plugin_virt_persistent_notification: false
+
+collectd_plugin_vmem_*
+~~~~~~~~~~~~~~~~~~~~~~
+These vars are ones passed to the ``vmem`` plugin.
+See the collectd `config guide <https://collectd.org/documentation/manpages/collectd.conf.5.shtml#plugin_vmem>`_ for details.
+
+::
+
+  collectd_plugin_vmem_verbose: False
+
 collectd_plugins_write_http_*
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 These vars are ones passed to the ``write_http`` plugin

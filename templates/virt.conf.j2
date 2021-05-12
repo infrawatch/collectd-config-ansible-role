@@ -21,6 +21,12 @@ LoadPlugin virt
 {% if collectd_plugin_virt_interface_device is defined %}
   InterfaceDevice "{{ collectd_plugin_virt_interface_device }}"
 {% endif %}
+{% if collectd_plugin_virt_report_block_devices is defined %}
+  ReportBlockDevices {{ collectd_plugin_virt_report_block_devices | string | lower }}
+{% endif %}
+{% if collectd_plugin_virt_report_network_interfaces is defined %}
+  ReportNetworkInterfaces {{ collectd_plugin_virt_report_network_interfaces | string | lower }}
+{% endif %}
 {% if collectd_plugin_virt_ignore_selected is defined %}
   IgnoreSelected {{ collectd_plugin_virt_ignore_selected | string | lower }}
 {% endif %}
@@ -44,5 +50,8 @@ LoadPlugin virt
 {% endif %}
 {% if collectd_plugin_virt_extra_stats is defined %}
   ExtraStats "{{ collectd_plugin_virt_extra_stats }}"
+{% endif %}
+{% if collectd_plugin_virt_persistent_notification is defined %}
+  PersistentNotification {{ collectd_plugin_virt_persistent_notification | string | lower }}
 {% endif %}
 </Plugin>

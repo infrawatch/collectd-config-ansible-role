@@ -5,11 +5,14 @@ collectd_plugin_virt_refresh_interval: 10
 collectd_plugin_virt_hostname_format: hostname
 collectd_plugin_virt_plugin_instance_format: name
 collectd_plugin_virt_extra_stats: cpu_util disk disk_err pcpu job_stats_background perf vcpupin
-# collectd_plugin_virt_domain
-# collectd_plugin_virt_block_device:
-# collectd_plugin_virt_interface_device:
-# collectd_plugin_virt_ignore_selected:
-# collectd_plugin_virt_block_device_format:
-# collectd_plugin_virt_block_device_format_basename:
-# collectd_plugin_virt_interface_format:
-# collectd_plugin_virt_instances:
+# collectd_plugin_virt_domain: "name"
+# collectd_plugin_virt_report_block_devices: true
+# collectd_plugin_virt_report_network_interfaces: true
+# collectd_plugin_virt_block_device: "name:device"
+# collectd_plugin_virt_block_device_format: target
+# collectd_plugin_virt_block_device_format_basename: false
+# collectd_plugin_virt_interface_device: "name:device"
+# collectd_plugin_virt_ignore_selected: false
+# collectd_plugin_virt_interface_format: name
+# collectd_plugin_virt_instances: 1
+# collectd_plugin_virt_persistent_notification: false
