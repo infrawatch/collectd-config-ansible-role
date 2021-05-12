@@ -6,8 +6,6 @@ LoadPlugin connectivity
 </LoadPlugin>
 {% endif %}
 
-LoadPlugin connectivity
-
 <Plugin connectivity>
 {% for interface in collectd_plugin_connectivity_interfaces %}
   Interface "{{ interface }}"

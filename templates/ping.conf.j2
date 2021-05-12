@@ -11,7 +11,7 @@ LoadPlugin ping
   Timeout "{{ collectd_plugin_ping_timeout }}"
 {% endif %}
 {% if collectd_plugin_ping_ttl is defined %}
-  TTL "<{{ collectd_plugin_ping_ttl }}"
+  TTL "{{ collectd_plugin_ping_ttl }}"
 {% endif %}
 {% if collectd_plugin_ping_source_address is defined %}
   SourceAddress "{{ collectd_plugin_ping_source_address }}"

@@ -822,7 +822,6 @@ See the collectd `config guide <https://collectd.org/documentation/manpages/coll
   collectd_plugin_write_kafka_topics:
     collectd:
       format: json
-  collectd_plugin_write_kafka_meta: {}
 
 collectd_plugin_write_prometheus_*
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~

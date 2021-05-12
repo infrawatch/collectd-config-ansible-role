@@ -14,8 +14,5 @@ LoadPlugin write_kafka
     StoreRates {{ collectd_plugin_write_kafka_topics[topic].store_rates | string | lower }}
     {% endif %}
   </Topic>
-{% endfor %}
-  {% for meta in collectd_plugin_write_kafka_meta %}
-  Meta "{{ meta }}" "{{ collectd_plugin_write_kafka_meta[meta] }}"
   {% endfor %}
 </Plugin>
