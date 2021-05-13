@@ -19,6 +19,9 @@ LoadPlugin turbostat
 {% if collectd_plugin_turbostat_digital_temperature_sensor is defined %}
   DigitalTemperatureSensor {{ collectd_plugin_turbostat_digital_temperature_sensor | string | lower }}
 {% endif %}
+{% if collectd_plugin_turbostat_package_thermal_management is defined %}
+  PackageThermalManagement {{ collectd_plugin_turbostat_package_thermal_management | string | lower }}
+{% endif %}
 {% if collectd_plugin_turbostat_tcc_activation_temp is defined %}
   TCCActivationTemp "{{ collectd_plugin_turbostat_tcc_activation_temp }}"
 {% endif %}
@@ -27,5 +30,8 @@ LoadPlugin turbostat
 {% endif %}
 {% if collectd_plugin_turbostat_logical_core_names is defined %}
   LogicalCoreNames {{ collectd_plugin_turbostat_logical_core_names | string | lower }}
+{% endif %}
+{% if collectd_plugin_turbostat_restore_affinity_policy is defined %}
+  RestoreAffinityPolicy "{{ collectd_plugin_turbostat_restore_affinity_policy }}"
 {% endif %}
 </Plugin>
