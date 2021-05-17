@@ -144,3 +144,9 @@
       that:
         - '"Header \"X-Custom-Header: custom_value\"" in write_http_conf.content | b64decode'
         - '"Header \"Y-Custom-Header: custom_value\"" in write_http_conf.content | b64decode'
+        - '"User \"myuser\"" in write_http_conf.content | b64decode'
+        - '"<Node \"host1\">" in write_http_conf.content | b64decode'
+        - '"URL \"192.168.1.1\"" in write_http_conf.content | b64decode'
+        - 'not "<URL \"192.168.1.1\">" in write_http_conf.content | b64decode'
+        - '"<URL \"host2\">" in write_http_conf.content | b64decode'
+        - 'not "<Node \"host2\">" in write_http_conf.content | b64decode'

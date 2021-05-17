@@ -49,6 +49,9 @@
         collect_context_switch: False
     collectd_plugin_write_http_nodes:
       host1:
+        url: "192.168.1.1"
         headers:
           - "X-Custom-Header: custom_value"
           - "Y-Custom-Header: custom_value"
+        user: "myuser"
+      host2: []

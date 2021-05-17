@@ -2,14 +2,14 @@ LoadPlugin write_http
 
 <Plugin "write_http">
 {% for node in collectd_plugin_write_http_nodes %}
-{% if collectd_plugin_write_http_nodes[node].url is defined %}
+{% if "url" in collectd_plugin_write_http_nodes[node] %}
   <Node "{{ node }}">
     URL "{{ collectd_plugin_write_http_nodes[node].url }}"
 {% else %}
   <URL "{{ node }}">
 {% endif %}
 {% if "user" in collectd_plugin_write_http_nodes[node] %}
-    User "{{ node.user }}"
+    User "{{ collectd_plugin_write_http_nodes[node].user }}"
 {%- endif -%}
 {% if "password" in collectd_plugin_write_http_nodes[node] %}
     Password "{{ collectd_plugin_write_http_nodes[node].password }}"
