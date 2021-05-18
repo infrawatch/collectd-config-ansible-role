@@ -817,11 +817,15 @@ See the collectd `config guide <https://collectd.org/documentation/manpages/coll
     - "localhost:9092"
     - "otherhost:9093"
   collectd_plugin_write_kafka_properties: {}
+
   collectd_plugin_write_kafka_topics: {}
   # OR
   collectd_plugin_write_kafka_topics:
     collectd:
       format: json
+    other_topic:
+      format: json
+      store_rates: true
 
 collectd_plugin_write_prometheus_*
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~

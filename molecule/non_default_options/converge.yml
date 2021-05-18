@@ -14,6 +14,7 @@
       - ping
       - processes
       - write_http
+      - write_kafka
 
     collectd_plugin_connectivity_interfaces:
       - eth0
@@ -55,3 +56,15 @@
           - "Y-Custom-Header: custom_value"
         user: "myuser"
       host2: []
+    collectd_plugin_write_kafka_kafka_hosts:
+      - "localhost:9092"
+      - "otherhost:9093"
+    collectd_plugin_write_kafka_properties:
+      property1: value
+      prop2: value2
+    collectd_plugin_write_kafka_topics:
+      collectd:
+        format: JSON
+      other_topic:
+        format: json
+        store_rates: true
