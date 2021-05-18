@@ -13,6 +13,7 @@
       - connectivity
       - df
       - ethstat
+      - ipmi
       - irq
       - netlink
       - ping
@@ -70,6 +71,32 @@
         - '"Interface \"eth0\"" in ethstat_conf.content | b64decode'
         - '"Map \"rx_csum_offload_errors\" \"if_rx_errors\" \"checksum_offload\"" in ethstat_conf.content | b64decode'
         - '"Map \"multicast\" \"if_multicast\"" in ethstat_conf.content | b64decode'
+
+  # check ipmi
+  - name: "Get contents of ipmi.conf"
+    slurp:
+      src: /etc/collectd.d/ipmi.conf
+    register: ipmi_conf
+
+  - debug:
+      var: ipmi_conf.content | b64decode
+
+  - name: "Check contents of ipmi.conf"
+    assert:
+      that:
+        - '"<Instance \"local\">\n" in ipmi_conf.content | b64decode'
+        - '"Sensor \"first_sensor\"\n" in ipmi_conf.content | b64decode'
+        - '"Sensor \"second_sensor\"\n" in ipmi_conf.content | b64decode'
+        - '"IgnoreSelected false\n" in ipmi_conf.content | b64decode'
+        - '"<Instance \"remote\">\n" in ipmi_conf.content | b64decode'
+        - '"Host \"server.example.com\"\n" in ipmi_conf.content | b64decode'
+        - '"Address \"1.2.3.4\"\n" in ipmi_conf.content | b64decode'
+        - '"Username \"user\"\n" in ipmi_conf.content | b64decode'
+        - '"Password \"secret\"\n" in ipmi_conf.content | b64decode'
+        - '"SELSensor \"sel_sensor1\"\n" in ipmi_conf.content | b64decode'
+        - '"SELSensor \"sel_sensor2\"\n" in ipmi_conf.content | b64decode'
+        - '"SELEnabled true\n" in ipmi_conf.content | b64decode'
+        - '"SELClearEvent false\n" in ipmi_conf.content | b64decode'
 
   # check irq
   - name: "Get contents of irq.conf"

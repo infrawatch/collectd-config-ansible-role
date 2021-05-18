@@ -9,6 +9,7 @@
       - connectivity
       - df
       - ethstat
+      - ipmi
       - irq
       - netlink
       - ping
@@ -34,6 +35,22 @@
     collectd_plugin_ethstat_maps:
       - '"rx_csum_offload_errors" "if_rx_errors" "checksum_offload"'
       - '"multicast" "if_multicast"'
+    collectd_plugin_ipmi_instances:
+      local:
+        sensors:
+          - first_sensor
+          - second_sensor
+        ignore_selected: False
+      remote:
+        host: "server.example.com"
+        address: "1.2.3.4"
+        username: "user"
+        password: "secret"
+        sel_sensors:
+          - sel_sensor1
+          - sel_sensor2
+        sel_enabled: True
+        sel_clear_event: False
     collectd_plugin_irq_irqs: ["7", "8", "9"]
     collectd_plugin_netlink_verboseinterfaces: ["All"]
     collectd_plugin_ping_hosts:
