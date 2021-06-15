@@ -7,9 +7,9 @@ LoadPlugin hugepages
 {% endif %}
 
 <Plugin "hugepages">
-  ReportPerNodeHP {{ collectd_plugin_hugepages_report_per_node_hp | lower }}
-  ReportRootHP {{ collectd_plugin_hugepages_report_root_hp | lower }}
-  ValuesPages {{ collectd_plugin_hugepages_values_pages | lower }}
-  ValuesBytes {{ collectd_plugin_hugepages_values_bytes | lower }}
-  ValuesPercentage {{ collectd_plugin_hugepages_values_percentage | lower }}
+  ReportPerNodeHP {{ collectd_plugin_hugepages_report_per_node_hp | string | lower }}
+  ReportRootHP {{ collectd_plugin_hugepages_report_root_hp | string | lower }}
+  ValuesPages {{ collectd_plugin_hugepages_values_pages | string | lower }}
+  ValuesBytes {{ collectd_plugin_hugepages_values_bytes | string | lower }}
+  ValuesPercentage {{ collectd_plugin_hugepages_values_percentage | string | lower }}
 </Plugin>

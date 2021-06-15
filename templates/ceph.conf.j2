@@ -1,4 +1,10 @@
+{% if collectd_plugin_ceph_interval is not defined %}
 LoadPlugin ceph
+{% else %}
+<LoadPlugin ceph>
+   Interval {{ collectd_plugin_ceph_interval }}
+</LoadPlugin>
+{% endif %}
 
 <Plugin ceph>
 {% if collectd_plugin_ceph_longrunlatency is defined %}

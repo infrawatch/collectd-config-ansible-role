@@ -1,0 +1,202 @@
+---
+- name: Verify
+  hosts: all
+  gather_facts: false
+  tasks:
+  - name: "Check that {{ item }} was enabled"
+    stat:
+      path: /etc/collectd.d/{{ item }}.conf
+    register: output
+    failed_when:
+      - not output.stat.exists
+    with_items:
+      - connectivity
+      - df
+      - ethstat
+      - ipmi
+      - irq
+      - netlink
+      - ping
+      - processes
+      - write_http
+      - write_kafka
+
+  # Check connectivity
+  - name: "Get contents of df.conf"
+    slurp:
+      src: /etc/collectd.d/connectivity.conf
+    register: connectivity_conf
+
+  - debug:
+      var: connectivity_conf.content | b64decode
+
+  - name: "Check contents of connectivity.conf"
+    assert:
+      that:
+        - '"Interface \"eth0\"\n" in connectivity_conf.content | b64decode'
+        - '"Interface \"eth1\"\n" in connectivity_conf.content | b64decode'
+
+  # Check df
+  - name: "Get contents of df.conf"
+    slurp:
+      src: /etc/collectd.d/df.conf
+    register: df_conf
+
+  - debug:
+      var: df_conf.content | b64decode
+
+  - name: "Check contents of df.conf"
+    assert:
+      that:
+        - '"Device \"/dev/hda1\"" in df_conf.content | b64decode'
+        - '"Device \"192.168.0.2:/mnt/nfs\"" in df_conf.content | b64decode'
+        - '"MountPoint \"/mnt\"" in df_conf.content | b64decode'
+        - '"MountPoint \"/home\"" in df_conf.content | b64decode'
+        - '"FSType \"TypeA\"" in df_conf.content | b64decode'
+        - '"FSType \"TypeB\"" in df_conf.content | b64decode'
+
+  # check ethstat
+  - name: "Get contents of ethstat.conf"
+    slurp:
+      src: /etc/collectd.d/ethstat.conf
+    register: ethstat_conf
+
+  - debug:
+      var: ethstat_conf.content | b64decode
+
+  - name: "Check contents of ethstat.conf"
+    assert:
+      that:
+        - '"Interface \"eth0\"" in ethstat_conf.content | b64decode'
+        - '"Interface \"eth0\"" in ethstat_conf.content | b64decode'
+        - '"Map \"rx_csum_offload_errors\" \"if_rx_errors\" \"checksum_offload\"" in ethstat_conf.content | b64decode'
+        - '"Map \"multicast\" \"if_multicast\"" in ethstat_conf.content | b64decode'
+
+  # check ipmi
+  - name: "Get contents of ipmi.conf"
+    slurp:
+      src: /etc/collectd.d/ipmi.conf
+    register: ipmi_conf
+
+  - debug:
+      var: ipmi_conf.content | b64decode
+
+  - name: "Check contents of ipmi.conf"
+    assert:
+      that:
+        - '"<Instance \"local\">\n" in ipmi_conf.content | b64decode'
+        - '"Sensor \"first_sensor\"\n" in ipmi_conf.content | b64decode'
+        - '"Sensor \"second_sensor\"\n" in ipmi_conf.content | b64decode'
+        - '"IgnoreSelected false\n" in ipmi_conf.content | b64decode'
+        - '"<Instance \"remote\">\n" in ipmi_conf.content | b64decode'
+        - '"Host \"server.example.com\"\n" in ipmi_conf.content | b64decode'
+        - '"Address \"1.2.3.4\"\n" in ipmi_conf.content | b64decode'
+        - '"Username \"user\"\n" in ipmi_conf.content | b64decode'
+        - '"Password \"secret\"\n" in ipmi_conf.content | b64decode'
+        - '"SELSensor \"sel_sensor1\"\n" in ipmi_conf.content | b64decode'
+        - '"SELSensor \"sel_sensor2\"\n" in ipmi_conf.content | b64decode'
+        - '"SELEnabled true\n" in ipmi_conf.content | b64decode'
+        - '"SELClearEvent false\n" in ipmi_conf.content | b64decode'
+
+  # check irq
+  - name: "Get contents of irq.conf"
+    slurp:
+      src: /etc/collectd.d/irq.conf
+    register: irq_conf
+
+  - debug:
+      var: irq_conf.content | b64decode
+
+  - name: "Check contents of irq.conf"
+    assert:
+      that:
+        - '"Irq \"7\"" in irq_conf.content | b64decode'
+        - '"Irq \"8\"" in irq_conf.content | b64decode'
+        - '"Irq \"9\"" in irq_conf.content | b64decode'
+
+  # Check netlink
+  - name: "Get contents of netlink.conf"
+    slurp:
+      src: /etc/collectd.d/netlink.conf
+    register: netlink_conf
+
+  - debug:
+      var: netlink_conf.content | b64decode
+
+  - name: "Check contents of netlink.conf"
+    assert:
+      that:
+        - '"VerboseInterface \"All\"" in netlink_conf.content | b64decode'
+
+  # Check ping
+  - name: "Get contents of ping.conf"
+    slurp:
+      src: /etc/collectd.d/ping.conf
+    register: ping_conf
+
+  - name: "Check contents of ping.conf"
+    assert:
+      that:
+        - '"Host \"example.org\"" in ping_conf.content | b64decode'
+        - '"Host \"provider.net\"" in ping_conf.content | b64decode'
+
+  # Check processes
+  - name: "Get contents of processes"
+    slurp:
+      src: /etc/collectd.d/processes.conf
+    register: processes_conf
+
+  - debug:
+      var: processes_conf.content | b64decode
+
+  - name: "Check contents of processes.conf"
+    assert:
+      that:
+        - '"<Process \"someprocessname\" >" in processes_conf.content | b64decode'
+        - '"CollectFileDescriptor true" in processes_conf.content | b64decode'
+        - '"CollectContextSwitch true" in processes_conf.content | b64decode'
+        - '"<ProcessMatch \"someprocessname\" \"(^_^|*.*)\">" in processes_conf.content | b64decode'
+        - '"CollectFileDescriptor false" in processes_conf.content | b64decode'
+        - '"CollectContextSwitch false" in processes_conf.content | b64decode'
+
+  # Check write_http
+  - name: "Get contents of write_http.conf"
+    slurp:
+      src: /etc/collectd.d/write_http.conf
+    register: write_http_conf
+
+  - debug:
+      var: write_http_conf.content | b64decode
+
+  - assert:
+      that:
+        - '"Header \"X-Custom-Header: custom_value\"" in write_http_conf.content | b64decode'
+        - '"Header \"Y-Custom-Header: custom_value\"" in write_http_conf.content | b64decode'
+        - '"User \"myuser\"" in write_http_conf.content | b64decode'
+        - '"<Node \"host1\">" in write_http_conf.content | b64decode'
+        - '"URL \"192.168.1.1\"" in write_http_conf.content | b64decode'
+        - 'not "<URL \"192.168.1.1\">" in write_http_conf.content | b64decode'
+        - '"<URL \"host2\">" in write_http_conf.content | b64decode'
+        - 'not "<Node \"host2\">" in write_http_conf.content | b64decode'
+
+  # Check write_kafka
+  - name: "Get contents of write_kafka"
+    slurp:
+      src: /etc/collectd.d/write_kafka.conf
+    register: write_kafka_conf
+
+  - debug:
+      var: write_kafka_conf.content | b64decode
+
+  - name: "Check contents of write_kafka.conf"
+    assert:
+      that:
+        - '"Property \"metadata.broker.list\" \"localhost:9092,otherhost:9093\"\n" in write_kafka_conf.content | b64decode'
+        - '"Property \"property1\" \"value\"\n" in write_kafka_conf.content | b64decode'
+        - '"Property \"prop2\" \"value2\"\n" in write_kafka_conf.content | b64decode'
+        - '"<Topic \"collectd\">\n" in write_kafka_conf.content | b64decode'
+        - '"Format JSON\n" in write_kafka_conf.content | b64decode'
+        - 'not "StoreRates false\n" in write_kafka_conf.content | b64decode'
+        - '"Format JSON\n" in write_kafka_conf.content | b64decode'
+        - '"<Topic \"other_topic\">\n" in write_kafka_conf.content | b64decode'
+        - '"StoreRates true\n" in write_kafka_conf.content | b64decode'

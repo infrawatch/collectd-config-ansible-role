@@ -1,4 +1,3 @@
-# This file was created using the template generator at https://github.com/infrawatch/osp-observability-ansible/tree/plugin_templates_generate/tools/
 {% if collectd_plugin_turbostat_interval is not defined %}
 LoadPlugin turbostat
 {% else %}
@@ -8,25 +7,31 @@ LoadPlugin turbostat
 {% endif %}
 
 <Plugin "turbostat">
-{% if collectd_plugin_turbostat_corecstates is defined %}
-  CoreCstates "{{ collectd_plugin_turbostat_corecstates }}"
+{% if collectd_plugin_turbostat_core_c_states is defined %}
+  CoreCstates "{{ collectd_plugin_turbostat_core_c_states }}"
 {% endif %}
-{% if collectd_plugin_turbostat_packagecstates is defined %}
-  PackageCstates "{{ collectd_plugin_turbostat_packagecstates }}"
+{% if collectd_plugin_turbostat_package_c_states is defined %}
+  PackageCstates "{{ collectd_plugin_turbostat_package_c_states }}"
 {% endif %}
-{% if collectd_plugin_turbostat_systemmanagementinterrupt is defined %}
-  SystemManagementInterrupt "{{ collectd_plugin_turbostat_systemmanagementinterrupt }}"
+{% if collectd_plugin_turbostat_system_management_interrupt is defined %}
+  SystemManagementInterrupt {{ collectd_plugin_turbostat_system_management_interrupt | string | lower }}
 {% endif %}
-{% if collectd_plugin_turbostat_digitaltemperaturesensor is defined %}
-  DigitalTemperatureSensor "{{ collectd_plugin_turbostat_digitaltemperaturesensor }}"
+{% if collectd_plugin_turbostat_digital_temperature_sensor is defined %}
+  DigitalTemperatureSensor {{ collectd_plugin_turbostat_digital_temperature_sensor | string | lower }}
 {% endif %}
-{% if collectd_plugin_turbostat_tccactivationtemp is defined %}
-  TCCActivationTemp "{{ collectd_plugin_turbostat_tccactivationtemp }}"
+{% if collectd_plugin_turbostat_package_thermal_management is defined %}
+  PackageThermalManagement {{ collectd_plugin_turbostat_package_thermal_management | string | lower }}
 {% endif %}
-{% if collectd_plugin_turbostat_runningaveragepowerlimit is defined %}
-  RunningAveragePowerLimit "{{ collectd_plugin_turbostat_runningaveragepowerlimit }}"
+{% if collectd_plugin_turbostat_tcc_activation_temp is defined %}
+  TCCActivationTemp "{{ collectd_plugin_turbostat_tcc_activation_temp }}"
 {% endif %}
-{% if collectd_plugin_turbostat_logicalcorenames is defined %}
-  LogicalCoreNames "{{ collectd_plugin_turbostat_logicalcorenames }}"
+{% if collectd_plugin_turbostat_running_average_power_limit is defined %}
+  RunningAveragePowerLimit "{{ collectd_plugin_turbostat_running_average_power_limit }}"
+{% endif %}
+{% if collectd_plugin_turbostat_logical_core_names is defined %}
+  LogicalCoreNames {{ collectd_plugin_turbostat_logical_core_names | string | lower }}
+{% endif %}
+{% if collectd_plugin_turbostat_restore_affinity_policy is defined %}
+  RestoreAffinityPolicy "{{ collectd_plugin_turbostat_restore_affinity_policy }}"
 {% endif %}
 </Plugin>

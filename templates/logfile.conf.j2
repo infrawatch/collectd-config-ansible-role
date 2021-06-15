@@ -1,10 +1,10 @@
 # The plugin is loaded in collectd.conf
 
 <Plugin "logfile">
-  LogLevel {{ collectd_plugin_logfile_loglevel }}
+  LogLevel {{ collectd_plugin_logfile_log_level }}
   File "{{ collectd_plugin_logfile_file }}"
-  Timestamp {{ collectd_plugin_logfile_timestamp }}
-{% if collectd_plugin_logfile_printseverity is defined %}
-  PrintSeverity {{ collectd_plugin_logfile_printseverity | string | lower }}
+  Timestamp {{ collectd_plugin_logfile_timestamp | string | lower }}
+{% if collectd_plugin_logfile_print_severity is defined %}
+  PrintSeverity {{ collectd_plugin_logfile_print_severity | string | lower }}
 {% endif %}
 </Plugin>

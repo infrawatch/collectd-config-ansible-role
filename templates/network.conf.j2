@@ -9,10 +9,10 @@ LoadPlugin network
    MaxPacketSize {{ collectd_plugin_network_maxpacketsize }}
 {% endif %}
 {% if collectd_plugin_network_forward is defined %}
-   Forward {{ collectd_plugin_network_forward }}
+   Forward {{ collectd_plugin_network_forward | string | lower }}
 {% endif %}
 {% if collectd_plugin_network_reportstats is defined %}
-   ReportStats "{{ collectd_plugin_network_reportstats | string | lower }}"
+   ReportStats {{ collectd_plugin_network_reportstats | string | lower }}
 {% endif %}
 {% for server in collectd_plugin_network_server %}
    <Server "{{ server.name }}"{% if server.port is defined %} "{{ server.port }}"{% endif %}>

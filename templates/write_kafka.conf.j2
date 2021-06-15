@@ -11,11 +11,8 @@ LoadPlugin write_kafka
     Format {{ collectd_plugin_write_kafka_topics[topic].format }}
     {% endif %}
     {% if "store_rates" in collectd_plugin_write_kafka_topics[topic] %}
-    StoreRates {{ collectd_plugin_write_kafka_topics[topic].store_rates }}
+    StoreRates {{ collectd_plugin_write_kafka_topics[topic].store_rates | string | lower }}
     {% endif %}
   </Topic>
-{% endfor %}
-  {% for meta in collectd_plugin_write_kafka_meta %}
-  Meta "{{ meta }}" "{{ collectd_plugin_write_kafka_meta[meta] }}"
   {% endfor %}
 </Plugin>

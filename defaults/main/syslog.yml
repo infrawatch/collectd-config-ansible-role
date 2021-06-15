@@ -1,5 +1,4 @@
 ---
-# This file was created using the template generator at https://github.com/infrawatch/osp-observability-ansible/tree/plugin_templates_generate/tools/
 # Defaults for syslog plugin
-collectd_plugin_syslog_loglevel: info
-# collectd_plugin_syslog_notifylevel: WARNING
+collectd_plugin_syslog_log_level: info
+# collectd_plugin_syslog_notify_level: WARNING

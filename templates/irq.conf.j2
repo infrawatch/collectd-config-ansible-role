@@ -1,10 +1,16 @@
+{% if collectd_plugin_irq_interval is not defined %}
 LoadPlugin irq
+{% else %}
+<LoadPlugin irq>
+   Interval {{ collectd_plugin_irq_interval }}
+</LoadPlugin>
+{% endif %}
 
 <Plugin "irq">
-{% for irq in collectd_plugin_irq_irq %}
-    Irq {{ irq }}
+{% for irq in collectd_plugin_irq_irqs %}
+    Irq "{{ irq }}"
 {% endfor %}
 {% if collectd_plugin_irq_ignoreselected is defined %}
-    IgnoreSelected "{{ collectd_plugin_irq_ignoreselected }}"
+    IgnoreSelected {{ collectd_plugin_irq_ignoreselected | string | lower }}
 {% endif %}
 </Plugin>

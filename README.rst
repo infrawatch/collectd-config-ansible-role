@@ -98,8 +98,12 @@ See the collectd `config guide <https://collectd.org/documentation/manpages/coll
 
 ::
 
-  collectd_plugin_connectivity_interface: []
-  collectd_plugin_connectivity_ignoreselected: False
+  collectd_plugin_connectivity_interfaces: []
+  # OR
+  collectd_plugin_connectivity_interfaces:
+    - eth0
+    - eth1
+  collectd_plugin_connectivity_ignore_selected: False
 
 collectd_plugin_cpu_*
 ~~~~~~~~~~~~~~~~~~~~~
@@ -115,6 +119,21 @@ See the collectd `wiki <https://collectd.org/wiki/index.php/Plugin:cpu>`_ for de
   collectd_plugin_cpu_reportgueststate: true
   collectd_plugin_cpu_subtractgueststate: true
 
+collectd_plugin_cpufreq_*
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+The ``cpufreq`` plugn doesn't have any options.
+See the collectd `config guide <https://collectd.org/documentation/manpages/collectd.conf.5.shtml#plugin_cpufreq>`_ for details.
+
+collectd_plugin_cpusleep_*
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+The ``cpusleep`` plugn doesn't have any options.
+See the collectd `config guide <https://collectd.org/documentation/manpages/collectd.conf.5.shtml#plugin_cpusleep>`_ for details.
+
+collectd_plugin_contextswitch_*
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+The ``contextswitch`` plugn doesn't have any options.
+See the collectd `wiki <https://collectd.org/wiki/index.php/Plugin:ContextSwitch>`_ for details.
+
 collectd_plugin_csv_*
 ~~~~~~~~~~~~~~~~~~~~~
 These vars are ones passed to the ``csv`` plugin.
@@ -126,7 +145,7 @@ See the collectd `wiki <https://collectd.org/wiki/index.php/Plugin:csv>`_ for de
   collectd_plugin_csv_storerates: false
 
 collectd_plugin_cgroups_*
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~
 These vars are ones passed to the ``cgroups`` plugin.
 See the collectd `config guide <https://collectd.org/documentation/manpages/collectd.conf.5.shtml#plugin_cgroups>`_ for details.
 
@@ -136,7 +155,7 @@ See the collectd `config guide <https://collectd.org/documentation/manpages/coll
   collectd_plugin_cgroups_cgroups:
     - libvirt
 
-  collectd_plugin_cgroups_ignoreselected: False
+  collectd_plugin_cgroups_ignore_selected: False
 
 collectd_plugin_dcpmm_*
 ~~~~~~~~~~~~~~~~~~~~~~~
@@ -157,9 +176,11 @@ See the collectd `config guide <https://collectd.org/documentation/manpages/coll
 
 ::
 
-  collectd_plugin_df_devices: []
+  collectd_plugin_df_devices:
+    - "/dev/hda1"
+    - "192.168.0.2:/mnt/nfs"
   collectd_plugin_df_mountpoints: []
-  collectd_plugin_df_fstype: []
+  collectd_plugin_df_fstypes: []
   collectd_plugin_df_ignoreselected: true
   collectd_plugin_df_reportbydevice: true
   collectd_plugin_df_reportinodes: true
@@ -206,14 +227,40 @@ See the collectd `config guide <https://collectd.org/documentation/manpages/coll
 
 ::
 
-  collectd_plugin_ethstat_map: []
-  OR
-  collectd_plugin_ethstat_map:
+  collectd_plugin_ethstat_maps: []
+  # OR
+  collectd_plugin_ethstat_maps:
      - '"rx_csum_offload_errors" "if_rx_errors" "checksum_offload"'
      - '"multicast" "if_multicast"'
 
-  collectd_plugin_ethstat_interface: "eth0"
+  collectd_plugin_ethstat_interfaces: []
+  # OR
+  collectd_plugin_ethstat_interfaces:
+    - eth0
+    - eth1
   collectd_plugin_ethstat_mappedonly: False
+
+collectd_plugin_exec_*
+~~~~~~~~~~~~~~~~~~~~~~
+These vars are ones passed to the ``exec`` plugin.
+See the collectd `config guide <https://collectd.org/documentation/manpages/collectd.conf.5.shtml#plugin_exec>`_ for details.
+
+::
+
+  collectd_plugin_exec_exec: []
+  # OR
+  collectd_plugin_exec_exec:
+   - user: collectd
+     group: collectd
+     exec: "my-prog"
+     args: ["arg0", "arg1"]
+  collectd_plugin_exec_notification: []
+  # OR
+  collectd_plugin_exec_notification:
+   - user: collectd
+     group: collectd
+     notification_exec: "my-notifier"
+     args: ["arg0", "arg1"]
 
 collectd_plugin_hddtemp_*
 ~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -224,6 +271,19 @@ See the collectd `config guide <https://collectd.org/documentation/manpages/coll
 
   collectd_plugin_hddtemp_host: '127.0.0.1'
   collectd_plugin_hddtemp_port: 7638
+
+collectd_plugin_hugepages_*
+~~~~~~~~~~~~~~~~~~~~~~~~~~~
+These vars are ones passed to the ``hugepages`` plugin.
+See the collectd `config guide <https://collectd.org/documentation/manpages/collectd.conf.5.shtml#plugin_hugepages>`_ for details.
+
+::
+
+  collectd_plugin_hugepages_report_per_node_hp: true
+  collectd_plugin_hugepages_report_root_hp: true
+  collectd_plugin_hugepages_values_pages: true
+  collectd_plugin_hugepages_values_bytes: false
+  collectd_plugin_hugepages_values_percentage: false
 
 collectd_plugin_intel_pmu_*
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -255,6 +315,8 @@ See the collectd `config guide <https://collectd.org/documentation/manpages/coll
 ::
 
   collectd_plugin_intel_rdt_cores: []
+  # OR
+  collectd_plugin_intel_rdt_cores: ["0-2", "3,4,6", "8-10,15"]
 
 
 collectd_plugin_interface_*
@@ -271,6 +333,11 @@ See the collectd `config guide <https://collectd.org/documentation/manpages/coll
     - "/^tun[0-9]+/"
   collectd_plugin_interface_ignoreselected: False
   collectd_plugin_interface_reportinactive: False
+
+collectd_plugin_ipc_*
+~~~~~~~~~~~~~~~~~~~~~
+The ``ipc`` plugn doesn't have any options.
+See the collectd `config guide <https://collectd.org/documentation/manpages/collectd.conf.5.shtml#plugin_ipc>`_ for details.
 
 collectd_plugin_ipmi_*
 ~~~~~~~~~~~~~~~~~~~~~~
@@ -307,7 +374,10 @@ See the collectd `config guide <https://collectd.org/documentation/manpages/coll
         notify_sensor_remove: true
         notify_sensor_not_present: false
         notify_ipmi_connection_state: false
-        sel_enabled: false
+        sel_enabled: true
+        sel_clear_event: false
+        sel_sensors: []
+        sel_ignore_selected: false
         sel_clear_event: false
 
 collectd_plugin_irq_*
@@ -318,12 +388,21 @@ See the collectd `config guide <https://collectd.org/documentation/manpages/coll
 ::
 
   collectd_plugin_irq_ignoreselected: False
-  collectd_plugin_irq_irq: ["7", "8", "9"]
+  collectd_plugin_irq_irqs: ["7", "8", "9"]
   OR
-  collectd_plugin_irq_irq:
+  collectd_plugin_irq_irqs:
     - 7
     - 8
     - 9
+
+collectd_plugin_load_*
+~~~~~~~~~~~~~~~~~~~~~~
+These vars are ones passed to the ``load`` plugin.
+See the collectd `config guide <https://collectd.org/documentation/manpages/collectd.conf.5.shtml#plugin_load>`_ for details.
+
+::
+
+  collectd_plugin_load_report_relative: true
 
 collectd_plugin_logfile_*
 ~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -333,10 +412,10 @@ See the collectd `config guide <https://collectd.org/documentation/manpages/coll
 
 ::
 
-  collectd_plugin_logfile_loglevel: info
+  collectd_plugin_logfile_log_level: info
   collectd_plugin_logfile_file: "/var/log/collectd.log"
   collectd_plugin_logfile_timestamp: true
-  collectd_plugin_logfile_printseverity: false
+  collectd_plugin_logfile_print_severity: false
 
 collectd_plugin_mcelog_*
 ~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -373,6 +452,7 @@ These vars are ones passed to the ``memcached`` plugin.
 See the collectd `config guide <https://collectd.org/documentation/manpages/collectd.conf.5.shtml#plugin_memcached>`_ for details.
 
 ::
+
   collectd_plugin_memcached_instances: {}
   # OR
   collectd_plugin_memcached_instances:
@@ -382,6 +462,16 @@ See the collectd `config guide <https://collectd.org/documentation/manpages/coll
       port: 11211
     second_instance:
       socket: path/to/socket
+
+collectd_plugin_memory_*
+~~~~~~~~~~~~~~~~~~~~~~~~
+These vars are ones passed to the ``memory`` plugin.
+See the collectd `config guide <https://collectd.org/documentation/manpages/collectd.conf.5.shtml#plugin_memory>`_ for details.
+
+::
+
+  collectd_plugin_memory_valuesabsolute: True
+  collectd_plugin_memory_valuespercentage: True
 
 collectd_plugin_netlink_*
 ~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -409,6 +499,40 @@ See the collectd `config guide <https://collectd.org/documentation/manpages/coll
 
   collectd_plugin_netlink_ignoreselected: False
 
+collectd_plugin_network_*
+~~~~~~~~~~~~~~~~~~~~~~~~~
+These vars are ones passed to the ``network`` plugin.
+See the collectd `config guide <https://collectd.org/documentation/manpages/collectd.conf.5.shtml#plugin_network>`_ for details.
+
+::
+
+  collectd_plugin_network_timetolive:
+  collectd_plugin_network_maxpacketsize: 1452
+  collectd_plugin_network_forward: false
+  collectd_plugin_network_reportstats: false
+
+  collectd_plugin_network_server: []
+  # OR
+  collectd_plugin_network_server:
+      - name: "first_server"
+      - name: "second_server"
+        port: 12345
+        securitylevel: "Encrypt"
+        username: "other"
+        password: "lastPass"
+        interface:
+        resolveinterval:
+  collectd_plugin_network_listen: []
+  # OR
+  collectd_plugin_network_listen:
+      - name: "first_server"
+      - name: "second_server"
+        port: 12345
+        securitylevel: "Encrypt"
+        username: "other"
+        password: "lastPass"
+        interface:
+
 collectd_plugin_ntpd_*
 ~~~~~~~~~~~~~~~~~~~~~~
 These vars are ones passed to the ``ntpd`` plugin.
@@ -420,6 +544,11 @@ See the collectd `config guide <https://collectd.org/documentation/manpages/coll
   collectd_plugin_ntpd_port: 123
   collectd_plugin_ntpd_reverselookups: False
   collectd_plugin_ntpd_includeunitid: True
+
+collectd_plugin_numa_*
+~~~~~~~~~~~~~~~~~~~~~~
+The ``numa`` plugn doesn't have any options.
+See the collectd `config guide <https://collectd.org/documentation/manpages/collectd.conf.5.shtml#plugin_numa>`_ for details.
 
 collectd_plugin_ovs_events_*
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -447,38 +576,107 @@ See the collectd `config guide <https://collectd.org/documentation/manpages/coll
   collectd_plugin_ovs_stats_socket: "/var/run/openvswitch/db.sock"
   collectd_plugin_ovs_stats_bridges: ["br0", "br_ext"]
 
-collectd_plugins_processes_*
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+collectd_plugin_ping_*
+~~~~~~~~~~~~~~~~~~~~~~
+These vars are ones passed to the ``ping`` plugin.
+See the collectd `config guide <https://collectd.org/documentation/manpages/collectd.conf.5.shtml#plugin_ping>`_ for details.
+
+::
+
+  collectd_plugin_ping_hosts: []
+  # OR
+  collectd_plugin_ping_hosts:
+    - example.org
+    - provider.net
+  collectd_plugin_ping_interval: 1.0
+  collectd_plugin_ping_timeout: 0.9
+  collectd_plugin_ping_ttl: 255
+  collectd_plugin_ping_source_address: localhost
+  collectd_plugin_ping_device: eth0
+  collectd_plugin_ping_max_missed: -1  # disabled
+  collectd_plugin_ping_size: 56
+
+collectd_plugin_processes_*
+~~~~~~~~~~~~~~~~~~~~~~~~~~~
 These vars are ones passed to the ``processes`` plugin
 See the collectd `config guide <https://collectd.org/documentation/manpages/collectd.conf.5.shtml#plugin_processes>`_ for details.
 
 ::
 
-  collectd_plugin_processes_process:
-    - name: "someprocessname"
-      collectfiledescriptor: True
-      collectcontextswitch: True
-  collectd_plugin_processes_processmatch:
-    - name: "someprocessname"
+  collectd_plugin_processes_processes:
+    someprocessname:
+      collect_file_descriptor: True
+      collect_context_switch: True
+  collectd_plugin_processes_process_matches:
+    someprocessname:
       regex: "(^_^|*.*)"
-      collectfiledescriptor: True
-      collectcontextswitch: True
-  collectd_plugin_processes_collectfiledescriptor: True
-  collectd_plugin_processes_collectcontextswitch: True
-  collectd_plugin_processes_collectmemorymaps: True
+      collect_file_descriptor: True
+      collect_context_switch: True
+  collectd_plugin_processes_collect_file_descriptor: True
+  collectd_plugin_processes_collect_context_switch: True
+  collectd_plugin_processes_collect_memory_maps: True
 
-collectd_plugins_smart_*
+collectd_plugin_procevent_*
+~~~~~~~~~~~~~~~~~~~~~~~~~~~
+These vars are ones passed to the ``procevent`` plugin
+See the collectd `collectd wiki <https://collectd.org/wiki/index.php/Plugin:procevent>`_ for details.
+
+::
+
+  collectd_plugin_procevent_process: tuned
+  collectd_plugin_procevent_process_regex: "/^ovs.*$/"
+  collectd_plugin_procevent_buffer_length: 10
+
+collectd_plugin_python_*
 ~~~~~~~~~~~~~~~~~~~~~~~~
+These vars are ones passed to the ``python`` plugin
+See the collectd `config guide <https://collectd.org/documentation/manpages/collectd-python.5.shtml>`_ f
+or details.
+
+::
+
+  collectd_plugin_python_globals: true
+  collectd_plugin_python_interactive: false
+  collectd_plugin_python_logtraces: false
+  collectd_plugin_python_modulepaths: []
+  collectd_plugin_python_modules: []
+  # OR
+  collectd_plugin_python_modules:
+    sqlalchemy:
+      module_import: 'sqlalchemy_collectd.server.plugin'
+      config:
+        listen: ["bind_host", 25827]
+        loglevel: "debug"
+
+collectd_plugin_smart_*
+~~~~~~~~~~~~~~~~~~~~~~~
 These vars are ones passed to the ``smart`` plugin
 See the collectd `config guide <https://collectd.org/documentation/manpages/collectd.conf.5.shtml#plugin_smart>`_ f
 or details.
 
 ::
 
-  collectd_plugin_smart_disk: []
+  collectd_plugin_smart_disks: []
+  # OR
+  collectd_plugin_smart_disks:
+    - "/^dm/"
   collectd_plugin_smart_ignoreselected: False
   collectd_plugin_smart_ignoresleepmode: False
   collectd_plugin_smart_useserial: False
+
+collectd_plugin_swap_*
+~~~~~~~~~~~~~~~~~~~~~~
+These vars are ones passed to the ``swap`` plugin
+See the collectd `config guide <https://collectd.org/documentation/manpages/collectd.conf.5.shtml#plugin_swap>`_ f
+or details.
+
+::
+
+  collectd_plugin_swap_reportbydevice: false
+  collectd_plugin_swap_reportbytes: true
+  collectd_plugin_swap_valuesabsolute: true
+  collectd_plugin_swap_valuespercentage: false
+  collectd_plugin_swap_reportio: true
 
 collectd_plugin_syslog_*
 ~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -487,8 +685,25 @@ See the collectd `config guide <https://collectd.org/documentation/manpages/coll
 
 ::
 
-  collectd_plugin_syslog_loglevel: info
-  collectd_plugin_syslog_notifylevel: WARNING
+  collectd_plugin_syslog_log_level: info
+  collectd_plugin_syslog_notify_level: WARNING
+
+collectd_plugin_turbostat_*
+~~~~~~~~~~~~~~~~~~~~~~~~~~~
+These vars are ones passed to the ``turbostat`` plugin.
+See the collectd `config guide <https://collectd.org/documentation/manpages/collectd.conf.5.shtml#plugin_turbostat>`_ for details.
+
+::
+
+  collectd_plugin_turbostat_core_c_states: 392
+  collectd_plugin_turbostat_package_c_states: 396
+  collectd_plugin_turbostat_system_management_interrupt: true
+  collectd_plugin_turbostat_digital_temperature_sensor: true
+  collectd_plugin_turbostat_package_thermal_management: true
+  collectd_plugin_turbostat_tcc_activation_temp: 100
+  collectd_plugin_turbostat_running_average_power_limit: 7
+  collectd_plugin_turbostat_logical_core_names: true
+  collectd_plugin_turbostat_restore_affinity_policy: "AllCPUs"
 
 collectd_plugin_unixsock_*
 ~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -502,6 +717,53 @@ See the collectd `config guide <https://collectd.org/documentation/manpages/coll
   collectd_plugin_unixsock_socketperms: 0770
   collectd_plugin_unixsock_deletesocket: True
 
+collectd_plugin_uptime_*
+~~~~~~~~~~~~~~~~~~~~~~~~
+The ``uptime`` plugn doesn't have any options.
+See the collectd `wiki <https://collectd.org/wiki/index.php/Plugin:Uptime>`_ for details.
+
+collectd_plugin_uuid_*
+~~~~~~~~~~~~~~~~~~~~~~
+These vars are ones passed to the ``uuid`` plugin.
+See the collectd `config guide <https://collectd.org/documentation/manpages/collectd.conf.5.shtml#plugin_uuid>`_ for details.
+
+::
+
+  collectd_plugin_uuid_uuid_file: "/etc/uuid"
+
+collectd_plugin_virt_*
+~~~~~~~~~~~~~~~~~~~~~~
+These vars are ones passed to the ``virt`` plugin.
+See the collectd `config guide <https://collectd.org/documentation/manpages/collectd.conf.5.shtml#plugin_virt>`_ for details.
+
+::
+
+  collectd_plugin_virt_connection: qemu:///system
+  collectd_plugin_virt_refresh_interval: 10
+  collectd_plugin_virt_domain: "name"
+  collectd_plugin_virt_report_block_devices: true
+  collectd_plugin_virt_report_network_interfaces: true
+  collectd_plugin_virt_block_device: "name:device"
+  collectd_plugin_virt_block_device_format: target
+  collectd_plugin_virt_block_device_format_basename: false
+  collectd_plugin_virt_interface_device: "name:device"
+  collectd_plugin_virt_ignore_selected: false
+  collectd_plugin_virt_hostname_format: hostname
+  collectd_plugin_virt_interface_format: name
+  collectd_plugin_virt_plugin_instance_format: name
+  collectd_plugin_virt_instances: 1
+  collectd_plugin_virt_extra_stats: cpu_util disk disk_err pcpu job_stats_background perf vcpupin
+  collectd_plugin_virt_persistent_notification: false
+
+collectd_plugin_vmem_*
+~~~~~~~~~~~~~~~~~~~~~~
+These vars are ones passed to the ``vmem`` plugin.
+See the collectd `config guide <https://collectd.org/documentation/manpages/collectd.conf.5.shtml#plugin_vmem>`_ for details.
+
+::
+
+  collectd_plugin_vmem_verbose: False
+
 collectd_plugins_write_http_*
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 These vars are ones passed to the ``write_http`` plugin
@@ -514,6 +776,7 @@ See the collectd `config guide <https://collectd.org/documentation/manpages/coll
   collectd_plugin_write_http_nodes:
     example:
       url: "http://example.com/collectd-post"
+      user: "username"
       password: "pass"
       verifypeer: true|false
       verifyhost: true|false
@@ -522,7 +785,8 @@ See the collectd `config guide <https://collectd.org/documentation/manpages/coll
       clientkey: "/etc/ssl/client.pem"
       clientcert: "/etc/ssl/client.crt"
       clientkeypass: "secret"
-      header: ["X-Custom-Header: custom_value"]
+      headers:
+        - "X-Custom-Header: custom_value"
       ssl_version: "SSLv2"|"SSLv3"|"TLSv1"|"TLSv1_0"|"TLSv1_1"|"TLSv1_2"
       format: "Command"|"JSON"
       metrics: true|false
@@ -536,7 +800,8 @@ See the collectd `config guide <https://collectd.org/documentation/manpages/coll
     collectd:
       url: 'write_http_server'
       metrics: True
-      header: 'foo'
+      headers:
+       - 'foo'
 
 collectd_plugin_write_kafka_*
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -552,12 +817,15 @@ See the collectd `config guide <https://collectd.org/documentation/manpages/coll
     - "localhost:9092"
     - "otherhost:9093"
   collectd_plugin_write_kafka_properties: {}
+
   collectd_plugin_write_kafka_topics: {}
   # OR
   collectd_plugin_write_kafka_topics:
     collectd:
       format: json
-  collectd_plugin_write_kafka_meta: {}
+    other_topic:
+      format: json
+      store_rates: true
 
 collectd_plugin_write_prometheus_*
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -567,7 +835,7 @@ See the collectd `config guide <https://collectd.org/documentation/manpages/coll
 ::
 
   collectd_plugin_write_prometheus_port: 9103
-  collectd_plugin_write_prometheus_stalenessdelta: 300
+  collectd_plugin_write_prometheus_staleness_delta: 300
 
 Dependencies
 ------------

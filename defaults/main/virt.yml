@@ -1,15 +1,18 @@
 ---
 # Defaults for virt plugin
 collectd_plugin_virt_connection: qemu:///system
-collectd_plugin_virt_refreshinterval: 10
-collectd_plugin_virt_hostnameformat: hostname
-collectd_plugin_virt_plugininstanceformat: name
-collectd_plugin_virt_extrastats: cpu_util disk disk_err pcpu job_stats_background perf vcpupin
-# collectd_plugin_virt_domain
-# collectd_plugin_virt_blockdevice:
-# collectd_plugin_virt_interfacedevice:
-# collectd_plugin_virt_ignoreselected:
-# collectd_plugin_virt_blockdeviceformat:
-# collectd_plugin_virt_blockdeviceformatbasename:
-# collectd_plugin_virt_interfaceformat:
-# collectd_plugin_virt_instances:
+collectd_plugin_virt_refresh_interval: 10
+collectd_plugin_virt_hostname_format: hostname
+collectd_plugin_virt_plugin_instance_format: name
+collectd_plugin_virt_extra_stats: cpu_util disk disk_err pcpu job_stats_background perf vcpupin
+# collectd_plugin_virt_domain: "name"
+# collectd_plugin_virt_report_block_devices: true
+# collectd_plugin_virt_report_network_interfaces: true
+# collectd_plugin_virt_block_device: "name:device"
+# collectd_plugin_virt_block_device_format: target
+# collectd_plugin_virt_block_device_format_basename: false
+# collectd_plugin_virt_interface_device: "name:device"
+# collectd_plugin_virt_ignore_selected: false
+# collectd_plugin_virt_interface_format: name
+# collectd_plugin_virt_instances: 1
+# collectd_plugin_virt_persistent_notification: false

@@ -1,7 +1,8 @@
 ---
-# This file was created using the template generator at https://github.com/infrawatch/osp-observability-ansible/tree/plugin_templates_generate/tools/
 # Defaults for smart plugin
-collectd_plugin_smart_disk: []
+collectd_plugin_smart_disks: []
+# collectd_plugin_smart_disks:
+#   - "/^dm/"
 # collectd_plugin_smart_ignoreselected: False
 # collectd_plugin_smart_ignoresleepmode: False
 # collectd_plugin_smart_useserial: False

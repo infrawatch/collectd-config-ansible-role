@@ -1,0 +1,87 @@
+---
+- name: Converge
+  hosts: all
+  roles:
+    - role: "{{ playbook_dir }}/../../../collectd-config-ansible-role"
+  vars:
+    collectd_conf_output_dir: "/etc/collectd.d"
+    collectd_plugins:
+      - connectivity
+      - df
+      - ethstat
+      - ipmi
+      - irq
+      - netlink
+      - ping
+      - processes
+      - write_http
+      - write_kafka
+
+    collectd_plugin_connectivity_interfaces:
+      - eth0
+      - eth1
+    collectd_plugin_df_devices:
+      - "/dev/hda1"
+      - "192.168.0.2:/mnt/nfs"
+    collectd_plugin_df_fstypes:
+      - TypeA
+      - TypeB
+    collectd_plugin_df_mountpoints:
+      - /mnt
+      - /home
+    collectd_plugin_ethstat_interfaces:
+      - eth0
+      - eth1
+    collectd_plugin_ethstat_maps:
+      - '"rx_csum_offload_errors" "if_rx_errors" "checksum_offload"'
+      - '"multicast" "if_multicast"'
+    collectd_plugin_ipmi_instances:
+      local:
+        sensors:
+          - first_sensor
+          - second_sensor
+        ignore_selected: False
+      remote:
+        host: "server.example.com"
+        address: "1.2.3.4"
+        username: "user"
+        password: "secret"
+        sel_sensors:
+          - sel_sensor1
+          - sel_sensor2
+        sel_enabled: True
+        sel_clear_event: False
+    collectd_plugin_irq_irqs: ["7", "8", "9"]
+    collectd_plugin_netlink_verboseinterfaces: ["All"]
+    collectd_plugin_ping_hosts:
+      - example.org
+      - provider.net
+    collectd_plugin_processes_processes:
+      someprocessname:
+        collect_file_descriptor: True
+        collect_context_switch: True
+    collectd_plugin_processes_process_matches:
+      someprocessname:
+        regex: "(^_^|*.*)"
+        collect_file_descriptor: False
+        collect_context_switch: False
+    collectd_plugin_write_http_nodes:
+      host1:
+        url: "192.168.1.1"
+        headers:
+          - "X-Custom-Header: custom_value"
+          - "Y-Custom-Header: custom_value"
+        user: "myuser"
+      host2: []
+    collectd_plugin_write_kafka_kafka_hosts:
+      - "localhost:9092"
+      - "otherhost:9093"
+    collectd_plugin_write_kafka_properties:
+      property1: value
+      prop2: value2
+    collectd_plugin_write_kafka_topics:
+      collectd:
+        format: JSON
+      other_topic:
+        format: json
+        store_rates: true

@@ -6,13 +6,11 @@ LoadPlugin connectivity
 </LoadPlugin>
 {% endif %}
 
-LoadPlugin connectivity
-
 <Plugin connectivity>
-{% for interface in collectd_plugin_connectivity_interface %}
+{% for interface in collectd_plugin_connectivity_interfaces %}
   Interface "{{ interface }}"
 {% endfor %}
-{% if collectd_plugin_connectivity_ignoreselected is defined %}
-  IgnoreSelected {{ collectd_plugin_connectivity_ignoreselected }}
+{% if collectd_plugin_connectivity_ignore_selected is defined %}
+  IgnoreSelected {{ collectd_plugin_connectivity_ignore_selected }}
 {% endif %}
 </Plugin>

@@ -13,7 +13,7 @@ LoadPlugin df
 {% for mountpoint in  collectd_plugin_df_mountpoints %}
   MountPoint "{{ mountpoint }}"
 {% endfor %}
-{% for fstype in collectd_plugin_df_fstype %}
+{% for fstype in collectd_plugin_df_fstypes %}
   FSType "{{ fstype }}"
 {% endfor %}
   IgnoreSelected {{ collectd_plugin_df_ignoreselected | string | lower }}

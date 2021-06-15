@@ -1,4 +1,3 @@
-# This file was created using the template generator at https://github.com/infrawatch/osp-observability-ansible/tree/plugin_templates_generate/tools/
 {% if collectd_plugin_load_interval is not defined %}
 LoadPlugin load
 {% else %}
@@ -8,7 +7,7 @@ LoadPlugin load
 {% endif %}
 
 <Plugin "load">
-{% if collectd_plugin_load_reportrelative is defined %}
-  ReportRelative {{ collectd_plugin_load_reportrelative| string | lower }}
+{% if collectd_plugin_load_report_relative is defined %}
+  ReportRelative {{ collectd_plugin_load_report_relative | string | lower }}
 {% endif %}
 </Plugin>

@@ -4,8 +4,13 @@ collectd_plugin_write_kafka_kafka_hosts: ["localhost:9092"]
 #  - "localhost:9092"
 #  - "otherhost:9093"
 collectd_plugin_write_kafka_properties: {}
+#collectd_plugin_write_kafka_properties:
+#  property1: value
+#  prop2: value2
 collectd_plugin_write_kafka_topics: {}
 #collectd_plugin_write_kafka_topics:
 #  collectd:
 #    format: JSON
-collectd_plugin_write_kafka_meta: {}
+#  other_topic:
+#    format: json
+#    store_rates: true

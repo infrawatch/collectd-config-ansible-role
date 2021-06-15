@@ -1,4 +1,3 @@
 ---
-# Ansible managed
 # Defaults for load plugin
-collectd_plugin_load_reportrelative: True
+collectd_plugin_load_report_relative: true
