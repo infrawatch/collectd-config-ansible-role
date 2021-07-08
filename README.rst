@@ -33,19 +33,19 @@ See the collectd `config guide <https://collectd.org/documentation/manpages/coll
   collectd_plugin_amqp1_retry_delay: 1
   collectd_plugin_amqp1_send_queue_limit:
 
-  collectd_plugin_amqp1_instances: []
+  collectd_plugin_amqp1_instances: {}
   # OR
   collectd_plugin_amqp1_instances:
-     - name: "openshift-notify"
+     openshift-notify:
        format: JSON
        presettle: False
        notify: true
-     - name: "openshift-telemetry"
+     openshift-telemetry:
        format: JSON
        presettle: False
    # OR
    collectd_plugin_amqp1_instances:
-     - name: metrics
+     metrics:
        format: "Command|JSON|Graphite"
        presettle: false
        notify: false

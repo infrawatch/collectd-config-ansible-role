@@ -7,4 +7,4 @@ collectd_plugin_amqp1_port: '5672'
 collectd_plugin_amqp1_address: 'collectd'
 # collectd_plugin_amqp1_retry_delay: 1
 # collectd_plugin_amqp1_send_queue_limit:
-collectd_plugin_amqp1_instances: []
+collectd_plugin_amqp1_instances: {}

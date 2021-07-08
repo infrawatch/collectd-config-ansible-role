@@ -24,36 +24,36 @@ LoadPlugin amqp1
     SendQueueLimit {{ collectd_plugin_amqp1_send_queue_limit }}
 {% endif %}
 {% for instance in collectd_plugin_amqp1_instances %}
-    <Instance "{{ instance.name }}">
-{% if "format" in instance %}
-       Format {{ instance.format }}
+    <Instance "{{ instance }}">
+{% if "format" in collectd_plugin_amqp1_instances[instance] %}
+       Format {{ collectd_plugin_amqp1_instances[instance].format }}
 {% endif %}
-{% if "presettle" in instance %}
-       PreSettle {{ instance.presettle | string | lower }}
+{% if "presettle" in collectd_plugin_amqp1_instances[instance] %}
+       PreSettle {{ collectd_plugin_amqp1_instances[instance].presettle | string | lower }}
 {% endif %}
-{% if "notify" in instance %}
-       Notify {{ instance.notify | string | lower }}
+{% if "notify" in collectd_plugin_amqp1_instances[instance] %}
+       Notify {{ collectd_plugin_amqp1_instances[instance].notify | string | lower }}
 {% endif %}
-{% if "store_rates" in instance %}
-       StoreRates {{ instance.store_rates | string | lower }}
+{% if "store_rates" in collectd_plugin_amqp1_instances[instance] %}
+       StoreRates {{ collectd_plugin_amqp1_instances[instance].store_rates | string | lower }}
 {% endif %}
-{% if "graphite_prefix" in instance %}
-       GraphitePrefix {{ instance.graphite_prefix }}
+{% if "graphite_prefix" in collectd_plugin_amqp1_instances[instance] %}
+       GraphitePrefix {{ collectd_plugin_amqp1_instances[instance].graphite_prefix }}
 {% endif %}
-{% if "graphite_postfix" in instance %}
-       GraphitePostfix {{ instance.graphite_postfix }}
+{% if "graphite_postfix" in collectd_plugin_amqp1_instances[instance] %}
+       GraphitePostfix {{ collectd_plugin_amqp1_instances[instance].graphite_postfix }}
 {% endif %}
-{% if "graphite_escape_char" in instance %}
-       GraphiteEscapeChar {{ instance.graphite_escape_char }}
+{% if "graphite_escape_char" in collectd_plugin_amqp1_instances[instance] %}
+       GraphiteEscapeChar {{ collectd_plugin_amqp1_instances[instance].graphite_escape_char }}
 {% endif %}
-{% if "graphite_separate_instances" in instance %}
-       GraphiteSeparateInstances {{ instance.graphite_separate_instances | string | lower }}
+{% if "graphite_separate_instancess" in collectd_plugin_amqp1_instances[instance] %}
+       GraphiteSeparateInstances {{ collectd_plugin_amqp1_instances[instance].graphite_separate_instances | string | lower }}
 {% endif %}
-{% if "graphite_always_append_ds" in instance %}
-       GraphiteAlwaysAppendDS {{ instance.graphite_always_append_ds | string | lower }}
+{% if "graphite_always_append_ds" in collectd_plugin_amqp1_instances[instance] %}
+       GraphiteAlwaysAppendDS {{ collectd_plugin_amqp1_instances[instance].graphite_always_append_ds | string | lower }}
 {% endif %}
-{% if "graphite_preserve_separator" in instance %}
-       GraphitePreserveSeperator {{ instance.graphite_preserve_separator | string | lower }}
+{% if "graphite_preserve_separator" in collectd_plugin_amqp1_instances[instance] %}
+       GraphitePreserveSeperator {{ collectd_plugin_amqp1_instances[instance].graphite_preserve_separator | string | lower }}
 {% endif %}
     </Instance>
 {% endfor %}
