@@ -186,14 +186,15 @@
 
   - assert:
       that:
-        - '"Header \"X-Custom-Header: custom_value\"" in write_http_conf.content | b64decode'
-        - '"Header \"Y-Custom-Header: custom_value\"" in write_http_conf.content | b64decode'
-        - '"User \"myuser\"" in write_http_conf.content | b64decode'
-        - '"<Node \"host1\">" in write_http_conf.content | b64decode'
-        - '"URL \"192.168.1.1\"" in write_http_conf.content | b64decode'
+        - '"Header \"X-Custom-Header: custom_value\"\n" in write_http_conf.content | b64decode'
+        - '"Header \"Y-Custom-Header: custom_value\"\n" in write_http_conf.content | b64decode'
+        - '"User \"myuser\"\n" in write_http_conf.content | b64decode'
+        - '"<Node \"host1\">\n" in write_http_conf.content | b64decode'
+        - '"URL \"192.168.1.1\"\n" in write_http_conf.content | b64decode'
         - 'not "<URL \"192.168.1.1\">" in write_http_conf.content | b64decode'
-        - '"<URL \"host2\">" in write_http_conf.content | b64decode'
+        - '"<URL \"host2\">\n  </URL>" in write_http_conf.content | b64decode'
         - 'not "<Node \"host2\">" in write_http_conf.content | b64decode'
+        - '"<Node \"flask\">\n    URL \"http://localhost:5000\"\n    Format \"Command\"\n  </Node>" in write_http_conf.content | b64decode'
 
   # Check write_kafka
   - name: "Get contents of write_kafka"
