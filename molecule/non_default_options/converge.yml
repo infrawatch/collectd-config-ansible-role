@@ -6,6 +6,7 @@
   vars:
     collectd_conf_output_dir: "/etc/collectd.d"
     collectd_plugins:
+      - amqp1
       - connectivity
       - df
       - ethstat
@@ -17,6 +18,14 @@
       - write_http
       - write_kafka
 
+    collectd_plugin_amqp1_instances:
+      openshift-notify:
+        notify: true
+        format: JSON
+        presettle: false
+      openshift-telemetry:
+        format: JSON
+        presettle: false
     collectd_plugin_connectivity_interfaces:
       - eth0
       - eth1

@@ -10,6 +10,7 @@
     failed_when:
       - not output.stat.exists
     with_items:
+      - amqp1
       - connectivity
       - df
       - ethstat
@@ -20,6 +21,21 @@
       - processes
       - write_http
       - write_kafka
+
+  # Check amqp1
+  - name: "Get contents of amqp1.conf"
+    slurp:
+      src: /etc/collectd.d/amqp1.conf
+    register: amqp1_conf
+
+  - debug:
+      var: amqp1_conf.content | b64decode
+
+  - name: "Check the contents of amqp1.conf"
+    assert:
+      that:
+        - '"<Instance \"openshift-notify\">\n       Format JSON\n       PreSettle false\n       Notify true\n    </Instance>\n" in amqp1_conf.content | b64decode'
+        - '"<Instance \"openshift-telemetry\">\n       Format JSON\n       PreSettle false\n    </Instance>\n" in amqp1_conf.content | b64decode'
 
   # Check connectivity
   - name: "Get contents of df.conf"
