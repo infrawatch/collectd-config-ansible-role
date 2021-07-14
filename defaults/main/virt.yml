@@ -13,6 +13,8 @@ collectd_plugin_virt_extra_stats: cpu_util disk disk_err pcpu job_stats_backgrou
 # collectd_plugin_virt_block_device_format_basename: false
 # collectd_plugin_virt_interface_device: "name:device"
 # collectd_plugin_virt_ignore_selected: false
+# collectd_plugin_virt_hostname_metadata_xpath: "/instance/name/text()"
+# collectd_plugin_virt_hostname_metadata_ns: "http://openstack.org/xmlns/libvirt/nova/1.0"
 # collectd_plugin_virt_interface_format: name
 # collectd_plugin_virt_instances: 1
 # collectd_plugin_virt_persistent_notification: false

@@ -749,6 +749,8 @@ See the collectd `config guide <https://collectd.org/documentation/manpages/coll
   collectd_plugin_virt_interface_device: "name:device"
   collectd_plugin_virt_ignore_selected: false
   collectd_plugin_virt_hostname_format: hostname
+  collectd_plugin_virt_hostname_metadata_xpath: "/instance/name/text()"
+  collectd_plugin_virt_hostname_metadata_ns: "http://openstack.org/xmlns/libvirt/nova/1.0"
   collectd_plugin_virt_interface_format: name
   collectd_plugin_virt_plugin_instance_format: name
   collectd_plugin_virt_instances: 1

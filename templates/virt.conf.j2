@@ -1,4 +1,3 @@
-# This file was created using the template generator at https://github.com/infrawatch/osp-observability-ansible/tree/plugin_templates_generate/tools/
 {% if collectd_plugin_virt_interval is not defined %}
 LoadPlugin virt
 {% else %}
@@ -38,6 +37,12 @@ LoadPlugin virt
 {% endif %}
 {% if collectd_plugin_virt_hostname_format is defined %}
   HostnameFormat {{ collectd_plugin_virt_hostname_format }}
+{% endif %}
+{% if collectd_plugin_virt_hostname_metadata_xpath is defined %}
+  HostnameMetadataXPath "{{ collectd_plugin_virt_hostname_metadata_xpath }}"
+{% endif %}
+{% if collectd_plugin_virt_hostname_metadata_ns is defined %}
+  HostnameMetadataNS "{{collectd_plugin_virt_hostname_metadata_ns }}"
 {% endif %}
 {% if collectd_plugin_virt_interface_format is defined %}
   InterfaceFormat "{{ collectd_plugin_virt_interface_format }}"

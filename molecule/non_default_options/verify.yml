@@ -19,6 +19,7 @@
       - netlink
       - ping
       - processes
+      - virt
       - write_http
       - write_kafka
 
@@ -174,6 +175,20 @@
         - '"<ProcessMatch \"someprocessname\" \"(^_^|*.*)\">" in processes_conf.content | b64decode'
         - '"CollectFileDescriptor false" in processes_conf.content | b64decode'
         - '"CollectContextSwitch false" in processes_conf.content | b64decode'
+
+  # Check virt
+  - name: "Get contents of virt.conf"
+    slurp:
+      src: /etc/collectd.d/virt.conf
+    register: virt_conf
+
+  - debug:
+      var: virt_conf.content | b64decode
+
+  - assert:
+      that:
+        - '"HostnameMetadataXPath \"/instance/name/text()\"\n" in virt_conf.content | b64decode'
+        - '"HostnameMetadataNS \"http://openstack.org/xmlns/libvirt/nova/1.0\"\n" in virt_conf.content | b64decode'
 
   # Check write_http
   - name: "Get contents of write_http.conf"
