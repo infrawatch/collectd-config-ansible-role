@@ -85,6 +85,9 @@
           - "Y-Custom-Header: custom_value"
         user: "myuser"
       host2: []
+      flask:
+        url: http://localhost:5000
+        format: "Command"
     collectd_plugin_write_kafka_kafka_hosts:
       - "localhost:9092"
       - "otherhost:9093"
