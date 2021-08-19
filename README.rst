@@ -829,6 +829,15 @@ See the collectd `config guide <https://collectd.org/documentation/manpages/coll
       format: json
       store_rates: true
 
+collectd_plugin_write_log_*
+~~~~~~~~~~~~~~~~~~~~~~~~~~~
+These vars are ones passed to the ``write_log`` plugin.
+See the collectd `config guide <https://collectd.org/documentation/manpages/collectd.conf.5.shtml#plugin_write_log>`_ for details.
+
+::
+
+  collectd_plugin_write_log_format: JSON
+
 collectd_plugin_write_prometheus_*
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 These vars are ones passed to the ``write_prometheus`` plugin.

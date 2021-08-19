@@ -62,3 +62,4 @@
           - vmem
           - write_http
           - write_kafka
+          - write_log
