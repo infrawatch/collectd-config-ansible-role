@@ -1,0 +1,9 @@
+---
+- name: Converge
+  hosts: all
+  roles:
+    - role: "{{ playbook_dir }}/../../../collectd_config"
+  vars:
+        collectd_conf_output_dir: "/etc/collectd.d"
+        collectd_plugins:
+          - ceph

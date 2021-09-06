@@ -1,0 +1,21 @@
+---
+- import_playbook: ../common/prepare.yml
+
+- name: Prepare
+  hosts: all
+  tasks:
+    - name: "Add in a ceph dir with some files for auto configuration"
+      file:
+        path: "/var/run/ceph/"
+        state: directory
+    - name: "Add in some fake OSDs"
+      file:
+        path: "/var/run/ceph/{{ item }}.asok"
+        state: touch
+      with_items:
+        - ceph-osd.0
+        - ceph-osd.3
+        - ceph-osd.6
+        - ceph-osd.9
+        - ceph-osd.12
+

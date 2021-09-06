@@ -7,6 +7,7 @@
     collectd_conf_output_dir: "/etc/collectd.d"
     collectd_plugins:
       - amqp1
+      - ceph
       - connectivity
       - df
       - ethstat
@@ -27,6 +28,12 @@
       openshift-telemetry:
         format: JSON
         presettle: false
+    collectd_plugin_ceph_daemons:
+      - ceph-osd.0
+      - ceph-osd.1
+      - ceph-osd.2
+      - ceph-osd.3
+      - ceph-osd.4
     collectd_plugin_connectivity_interfaces:
       - eth0
       - eth1

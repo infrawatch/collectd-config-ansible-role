@@ -1,0 +1,31 @@
+---
+- name: Verify
+  hosts: all
+  gather_facts: false
+  tasks:
+  - name: "Check that {{ item }} was enabled"
+    stat:
+      path: /etc/collectd.d/{{ item }}.conf
+    register: output
+    failed_when:
+      - not output.stat.exists
+    with_items:
+      - ceph
+
+  - name: "Get contents of ceph.conf"
+    slurp:
+      src: /etc/collectd.d/ceph.conf
+    register: ceph_conf
+
+  - debug:
+      var: ceph_conf.content | b64decode
+
+  - name: "Check contents of ceph.conf"
+    assert:
+      that:
+        - '"<Daemon \"ceph-osd.0\">\n    SocketPath \"/var/run/ceph/ceph-osd.0.asok\"\n  </Daemon>" in ceph_conf.content | b64decode'
+        - '"<Daemon \"ceph-osd.3\">\n    SocketPath \"/var/run/ceph/ceph-osd.3.asok\"\n  </Daemon>" in ceph_conf.content | b64decode'
+        - '"<Daemon \"ceph-osd.6\">\n    SocketPath \"/var/run/ceph/ceph-osd.6.asok\"\n  </Daemon>" in ceph_conf.content | b64decode'
+        - '"<Daemon \"ceph-osd.9\">\n    SocketPath \"/var/run/ceph/ceph-osd.9.asok\"\n  </Daemon>" in ceph_conf.content | b64decode'
+        - '"<Daemon \"ceph-osd.12\">\n    SocketPath \"/var/run/ceph/ceph-osd.12.asok\"\n  </Daemon>" in ceph_conf.content | b64decode'
+

@@ -2,6 +2,28 @@
 - debug:
     var: collectd_plugins
 
+- name: "Auto configure ceph OSDs"
+  when:
+    - collectd_plugin_ceph_daemons | length == 0
+    - '"ceph" in collectd_plugins'
+  block:
+    - name: "Get contents of /var/run/ceph"
+      shell: |
+        ls /var/run/ceph/ || /bin/true
+      register: dir_contents
+
+    - name: "Add sockets in /var/run/ceph to daemons list"
+      set_fact:
+         collectd_plugin_ceph_daemons: "{{ dir_contents.stdout_lines | map( 'regex_replace', '.asok') | list }}"
+
+    # Potential issue: these sockets might not be there until ceph is running...
+    # Is there somewhere else to get the daemon list? What about /var/lib/ceph -- this might only be on the ceph master node.
+    # Create the list of daemons.
+
+  # This has no effect if the value is already assigned.
+  # Assume that ceph osds are in /var/run/ceph and that this is mounted.
+  # Assume that ONLY ceph OSDs are in this directory
+
 - block:
   - name: "Remove files from {{ collectd_conf_output_dir }}"
     file:

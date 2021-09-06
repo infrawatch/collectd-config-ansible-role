@@ -11,6 +11,7 @@
       - not output.stat.exists
     with_items:
       - amqp1
+      - ceph
       - connectivity
       - df
       - ethstat
@@ -37,6 +38,24 @@
       that:
         - '"<Instance \"openshift-notify\">\n       Format JSON\n       PreSettle false\n       Notify true\n    </Instance>\n" in amqp1_conf.content | b64decode'
         - '"<Instance \"openshift-telemetry\">\n       Format JSON\n       PreSettle false\n    </Instance>\n" in amqp1_conf.content | b64decode'
+
+  # Check ceph
+  - name: "Get contents of ceph.conf"
+    slurp:
+      src: /etc/collectd.d/ceph.conf
+    register: ceph_conf
+
+  - debug:
+      var: ceph_conf.content | b64decode
+
+  - name: "Check the contents of ceph.conf"
+    assert:
+      that:
+        - '"<Daemon \"ceph-osd.0\">\n    SocketPath \"/var/run/ceph/ceph-osd.0.asok\"\n  </Daemon>" in ceph_conf.content | b64decode'
+        - '"<Daemon \"ceph-osd.1\">\n    SocketPath \"/var/run/ceph/ceph-osd.1.asok\"\n  </Daemon>" in ceph_conf.content | b64decode'
+        - '"<Daemon \"ceph-osd.2\">\n    SocketPath \"/var/run/ceph/ceph-osd.2.asok\"\n  </Daemon>" in ceph_conf.content | b64decode'
+        - '"<Daemon \"ceph-osd.3\">\n    SocketPath \"/var/run/ceph/ceph-osd.3.asok\"\n  </Daemon>" in ceph_conf.content | b64decode'
+        - '"<Daemon \"ceph-osd.4\">\n    SocketPath \"/var/run/ceph/ceph-osd.4.asok\"\n  </Daemon>" in ceph_conf.content | b64decode'
 
   # Check connectivity
   - name: "Get contents of df.conf"
